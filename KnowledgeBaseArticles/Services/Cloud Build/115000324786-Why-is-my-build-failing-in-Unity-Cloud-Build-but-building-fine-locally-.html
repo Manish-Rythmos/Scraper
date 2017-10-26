@@ -1,0 +1,20 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My game builds fine locally, but it fails in Unity Cloud Build.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>There are a number of reasons why this could happen, but the most common cause is not&#xA0;adding all your files to your source control.</p>
+<p><strong>Resolution</strong> </p>
+<p>Sometimes your source control won&apos;t have all the files that your local machine has. First, you should check if it builds locally&#xA0;from a fresh checkout by doing the following:</p>
+<ol>
+<li>Clone/checkout your Project into a new directory from source control.</li>
+<li>Open the Unity Project in the same version of the Editor that you are trying to build with in Cloud Build.</li>
+<li>Build a version of your Project for the same platform you are targeting in Cloud Build.</li>
+<li>Verify that the errors received in your Cloud Build log are not apparent during this local build.</li>
+</ol>
+<p>If it still looks fine locally, try doing a clean build from the dashboard (see below).</p>
+<p><img src="/hc/en-us/article_attachments/115000835286/CleanBuild.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p>Be sure to keep an eye on <a href="https://forum.unity3d.com/forums/unity-cloud-build.61/">our forums</a>,&#xA0;where we post about current issues that could be affecting your builds.</p>
+      

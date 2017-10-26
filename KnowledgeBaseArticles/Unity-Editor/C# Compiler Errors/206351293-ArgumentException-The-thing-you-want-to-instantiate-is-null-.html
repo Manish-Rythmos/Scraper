@@ -1,0 +1,17 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the error below appearing in my console:</li>
+</ul>
+<pre>error ArgumentException: The thing that you want to instantiate is null. <br>Unity Engine.Object.CheckNullArgument (System.Object arg, <br>System.String.Message)</pre>
+<p><strong>Cause</strong> </p>
+<p>This error is caused when you use a script to instantiate a GameObject&#xA0;that does not reference a prefab.</p>
+<p><strong>Resolution</strong> </p>
+<p>You will need to assign a reference to the&#xA0;GameObject that you wish to instantiate via the inspector&#xA0;or a&#xA0;script.</p>
+<p>Via the inspector:</p>
+<p><img src="/hc/en-us/article_attachments/201915643/Script_Empty.png" alt=""></p>
+<p><img src="/hc/en-us/article_attachments/201761306/Script_Full.png" alt=""></p>
+<p>Create reference via a script:</p>
+<p><img src="/hc/en-us/article_attachments/201761286/Script_assignAtRuntime.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+      

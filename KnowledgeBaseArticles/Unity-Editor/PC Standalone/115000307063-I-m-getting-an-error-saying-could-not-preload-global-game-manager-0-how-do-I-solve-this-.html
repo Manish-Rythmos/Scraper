@@ -1,0 +1,24 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I made a standalone player build but when trying to run it an error is thrown:</li>
+</ul>
+<pre class="prettyprint">Error: could not preload global game manager #0</pre>
+<p><strong>Cause</strong> </p>
+<p>Unity could not load the  <strong>globalgamemanagers.asset</strong>  file from the  <strong>YourGame_Data</strong>  folder because it is corrupted.</p>
+<p>This can happen for multiple reasons:</p>
+<ul>
+<li>If you are submitting the exported files to an FTP server, it&#x2019;s important to know that sometimes FTP servers make changes to the files if you upload them as  <strong>ASCII file transfer type</strong> , which will transfer the files as regular text files.</li>
+<li>You have a corrupted installation of Unity Editor and have created a build with it.</li>
+<li>You are running out of disk space.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>There are a number of possible solutions for this problem:</p>
+<ul>
+<li>If you are downloading the files from an FTP server, make sure the binary files don&#x2019;t get transferred as text files - force  <strong>binary transfer type</strong>  in your FTP transfer software when submitting a Unity exported build.</li>
+<li>If the above doesn&#x2019;t work, try reinstalling Unity and then exporting the application again.</li>
+<li>Make sure you are not running out of disk space.</li>
+</ul>
+<p><strong>More Information</strong> </p>
+<p>See full documentation on <a href="https://docs.unity3d.com/Manual/TroubleShootingEditor.html">troubleshooting the Editor</a> for more information.</p>
+      

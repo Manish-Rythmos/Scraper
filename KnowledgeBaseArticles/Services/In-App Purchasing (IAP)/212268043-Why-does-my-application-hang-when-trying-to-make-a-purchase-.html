@@ -1,0 +1,13 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My application hangs after making a purchase</li>
+<li>My app hangs if I try to make a purchase after not completing a previous purchase (via returning c.Complete from ProcessPurchase).</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>This is caused when a purchase has not yet been completed and is still pending.&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>StoreKit will not send the Application any more transaction events for a product whilse there is an open transaction outstanding.</p>
+<p><strong>More Information</strong> </p>
+<p>Please see the <a href="https://docs.unity3d.com/ScriptReference/Purchasing.IStoreListener.ProcessPurchase.html" target="_blank">Documentation</a> for more information.</p>
+      

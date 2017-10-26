@@ -1,0 +1,52 @@
+Knowledge base articles where we need manual efforts or need to exclude some html portions :
+
+KnowledgeBaseArticles\Accounts\Accounts (UDN)
+
+1. 205053589-How-do-I-change-my-username-
+2. 205057499-Why-is-my-account-disabled-
+3. 205142919-Why-have-I-not-received-my-confirmation-email-
+4. 205752275-How-do-I-change-the-e-mail-address-attached-to-my-Unity-account-
+5. 205754635-I-have-misspelled-my-email-address-when-creating-my-user-account-How-do-I-change-this-
+6. 205756265-Could-you-re-enable-my-Unity-Account-
+7. 210716003-How-do-I-change-my-billing-details-
+
+KnowledgeBaseArticles\Accounts\Organizations
+
+1. 206494363-How-do-I-add-members-to-my-organization-
+2. 208592876-How-do-I-create-a-new-Organization-
+3. 208592986-Where-are-my-Unity-projects-and-who-has-access-to-them-
+4. 210141563-What-is-an-Organization-
+5. 115000075126-How-do-I-archive-a-Project-
+6. 115003176383-How-do-I-change-the-Owner-of-my-Organization-
+
+KnowledgeBaseArticles\Licenses\Activations and Management
+
+1. 205056069-How-do-I-return-the-activations-on-my-Pro-Plus-license-
+2. 205265449-I-am-unable-to-add-my-license-to-my-account
+3. 205676999-I-have-not-received-an-e-mail-with-my-serial-number
+4. 205958825-My-serial-number-does-not-work-during-activation-of-Unity
+5. 206506105-Why-can-t-I-use-version-control-
+6. 206586053-Unity-Editor-crashes-whenever-I-try-to-run-it-It-says-Unity-editor-has-stopped-working-
+7. 206590155-I-get-a-message-saying-Checking-License-Unity-is-checking-your-license-authorization-stay-tuned-when-I-launch-the-Editor
+8. 208609916-Where-am-I-able-to-see-my-Unity-Licenses-
+9. 210001066-Can-I-activate-more-than-one-version-of-Unity-on-the-same-machine-
+10. 115004452043-License-error-Unity-License-return-request-has-timed-out-Please-verify-that-you-are-connected-to-the-Internet-and-or-try-again-later-
+
+KnowledgeBaseArticles\Licenses\Licensing and Payments
+
+1. 205253119-Can-I-make-a-commercial-game-with-Unity-Free-Personal-Edition-
+2. 205767635-How-do-I-change-my-subscription-billing-details-
+3. 205767715-How-do-I-cancel-my-subscription-
+4. 206336795-What-platforms-are-supported-by-Unity-
+5. 208610336-What-subscription-tiers-are-available-
+6. 208659006-Can-I-purchase-different-subscription-tiers-on-my-Organization-
+7. 209018426-Do-I-have-to-switch-to-the-new-subscription-plan-
+8. 209961006-How-can-I-download-a-copy-of-my-invoice-
+9. 210135803-What-do-I-get-with-a-Unity-Pro-Subscription-license-
+10. 210223843-How-do-I-downgrade-my-subscription-tier-
+11. 210246713-My-flexible-subscription-plan-has-been-deactivated-
+12. 210290483-How-do-I-reduce-the-number-of-seats-in-my-subscription-plan-
+13. 210326043-Will-my-Unity-subscription-renew-automatically-when-I-have-finished-my-12-month-contract-
+14. 211948583-Can-I-combine-content-from-my-school-with-my-home-Personal-Edition-
+15. 115001547326-How-are-my-Unity-Services-impacted-as-a-Unity-5-x-Pro-perpetual-license-holder-
+

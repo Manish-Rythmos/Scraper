@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS1612: Cannot modify a value type return value of `__&apos;. Consider <br>storing it in a temporary variable.</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS1612 error occurs because value types are copied on assignment. When you retrieve a value type from a property or indexer, you are getting a copy of the object, not a reference to the object itself. The copy that is returned is not stored by the property or indexer because they are actually methods, not storage locations (variables).&#xA0;</p>
+<p><img src="/hc/en-us/article_attachments/202168366/CS1612_a.png" alt=""></p>
+<p>The error displayed in this example:&#xA0;</p>
+<pre>error CS1612: Cannot modify a value type return value of <br>`UnityEngine.Transform.position&apos;. Consider storing it in a <br>temporary variable.</pre>
+<p><strong>Resolution</strong> </p>
+<p>The error CS1612 is solved by&#xA0;storing the copy into a variable that you declare before you can modify it.</p>
+<p><img src="/hc/en-us/article_attachments/202330253/CS1612_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/wydkhw2c.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/wydkhw2c.aspx</a></p>
+<p>&#xA0;</p>
+      

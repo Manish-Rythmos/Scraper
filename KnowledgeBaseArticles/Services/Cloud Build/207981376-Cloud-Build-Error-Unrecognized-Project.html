@@ -1,0 +1,15 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My build is failing with the error below:</li>
+</ul>
+<p><img src="/hc/en-us/article_attachments/203149933/ProjectSubdirectoryError.png" alt=""></p>
+<p><strong>Cause</strong> </p>
+<p>This error is caused when&#xA0;the ProjectSettings and Assets folders are contained within a sub-directory of the folder targeted by Unity Cloud Build in your source code repository.</p>
+<p><strong>Resolution</strong> </p>
+<p>You can create a new target and define the name of the SubDirectory. Cloud Build will then know to look in this SubDirectory for the project it needs to build.</p>
+<p><img src="/hc/en-us/article_attachments/203003326/ProjectSubdirectoryError_NewTarget.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p>For more information please read <a href="https://build.cloud.unity3d.com/support/">here</a>.&#xA0;</p>
+<p>&#xA0;</p>
+      

@@ -1,0 +1,13 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Assignment of textures to Material via code does not update the material. It is necessary to open the Material in the Inspector tab.</li>
+</ul>
+<p><br><strong>Cause</strong> <br>If you use scripting to change a Material that would cause it to use a different variant of the Standard Shader.</p>
+<p>For example assigning a Normal Map to a Material that did not have one, or setting the Emissive level to a value greater than zero, when it was previously zero.</p>
+<p><strong>Resolution</strong> <br>You must enable the Standard Shader variant by using the EnableKeyword function. A different variant would be required if you start using a shader feature that was not initially in use by the material.&#xA0;</p>
+<p>The specific Keywords required to enable the Standard Shader features are as follows:<br>_NORMALMAP (Normal Mapping)<br>_ALPHATEST_ON (&#x201C;Cut out&#x201D; Transparency Rendering Mode)<br>_ALPHABLEND_ON (&#x201C;Fade&#x201D; Transparency Rendering Mode)<br>_ALPHAPREMULTIPLY_ON (&#x201C;Transparent&#x201D; Transparency Rendering Mode)<br>_EMISSION (Emission Colour or Emission Mapping)<br>_PARALLAXMAP (Height Mapping)<br>_DETAIL_MULX2 (Secondary &#x201C;Detail&#x201D; Maps (Albedo &amp; Normal Map)<br>_METALLICGLOSSMAP (Metallic/Smoothness Mapping in Metallic Workflow)<br>_SPECCGLOSSMAP (Specular/Smoothness Mapping in Specular Workflow)</p>
+<p><strong>More Information</strong> </p>
+<p>Please see our <a href="http://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html" target="_blank">Manual</a> for more information.</p>
+<p>This articles applies to Unity versions 5.0+</p>
+      

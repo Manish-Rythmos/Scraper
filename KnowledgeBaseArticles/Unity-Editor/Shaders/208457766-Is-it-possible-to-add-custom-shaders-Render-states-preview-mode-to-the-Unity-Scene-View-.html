@@ -1,0 +1,40 @@
+
+         <strong>Symptoms</strong> &#xA0;
+
+<ul>
+<li>I would like to know if it is possible to add custom shaders / Render states preview mode to the Unity Scene View</li>
+</ul>
+
+ <strong>Cause</strong> 
+You may want to use a custom shader on &quot;Scene View&quot; for debugging.&#xA0;
+&#xA0;
+ <strong>Resolution</strong> 
+Currently, you cannot add a new option into the Render Mode drop-down menu on Scene View. You can however use a  <strong><em>MenuItem</em> </strong>  to add your custom shaders and the function  <em><strong>SetSceneViewShaderReplace</strong> </em>  to load them on Scene View. &#xA0;
+&#xA0;
+With this snippet, you can load your custom shader on Scene View:&#xA0;
+
+<pre><code>[MenuItem(&quot;Tools/Custom Render Mode on SceneView&quot;)]
+static void SceneViewCustomSceneMode() 
+{
+         SceneView.currentDrawingSceneView.SetSceneViewShaderReplace(Shader, null);
+}</code></pre>
+
+&#xA0;
+Now, to reset the render mode, you can use:&#xA0;
+
+<pre><code>[MenuItem(&quot;Tools/Clear SceneView&quot;)]
+static void SceneViewClearSceneView() 
+{
+         SceneView.currentDrawingSceneView.SetSceneViewShaderReplace(null, null);
+}</code></pre>
+
+ <strong>More Information</strong> 
+This article applies to Unity versions 4.1+
+More information about  <em><strong>SetSceneViewShaderReplace </strong> </em> 
+
+<ul>
+<li>forums:&#xA0;<a href="http://forum.unity3d.com/threads/shader-replacement-problems.192520/" target="_blank">http://forum.unity3d.com/threads/shader-replacement-problems.192520/</a></li>
+<li>Unity Answers:&#xA0;<a href="http://answers.unity3d.com/questions/454091/how-to-reset-shader-replacement-in-scene-view.html" target="_blank">http://answers.unity3d.com/questions/454091/how-to-reset-shader-replacement-in-scene-view.html</a></li>
+</ul>
+
+      

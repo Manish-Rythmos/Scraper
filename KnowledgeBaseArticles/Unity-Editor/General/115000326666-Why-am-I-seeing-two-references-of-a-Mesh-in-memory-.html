@@ -1,0 +1,29 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>In the Memory Profiler, I can see two references to a Mesh but there&apos;s only one instance of it in the Scene.</li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/115000842566/Screenshot_1.png" alt=""></p>
+<p><strong>Cause</strong> </p>
+<p class="wysiwyg-text-align-left">This happens when models are imported with the  <strong>Read/Write Enabled</strong>  flag.</p>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/115000842606/Screenshot_2.png" alt=""></p>
+<p class="wysiwyg-text-align-left">Making a Mesh readable will keep an additional copy of it in system memory (the original reference and the copy for scripting access). <br><br>There are other reasons for Unity to keep the additional copy in the system memory regardless of whether the flag is enabled or not (but it will always keeps a reference in video memory):</p>
+<ul>
+<li>If the Mesh used as a  <strong>Skinned Mesh</strong> .</li>
+<li>If the Mesh is a candidate for dynamic batching.</li>
+<li>A particle system uses the Mesh as an emitter.</li>
+</ul>
+<p>In certain cases when the Mesh is used with a Mesh Collider, this option also needs to be enabled. These cases include:</p>
+<ul>
+<li>Negative scaling (for example (-1, 1, 1))</li>
+<li>Shear transform (for example when a rotated Mesh has a scaled parent transform).</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>Unless you need to access the vertex data for the Mesh or any of your Meshes meet one of the conditions above, setting this flag to false will save you some memory (you can check if a Mesh is readable via scripting by using  <strong>Mesh.isReadable</strong> ).<br><br>If you only want to update a Mesh once or don&#x2019;t want to modify it any more you can call  <strong>Mesh.UploadMeshData(true)</strong> , which makes the Mesh data unreadable from the script and frees up the system memory copy of the data.<br><br>Keep in mind that Meshes that are not marked as readable will throw an error when accessing any data arrays from a script at runtime. <br><br><strong>More Information</strong> </p>
+<p>For more information, consult the following documentation:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/ModelImporter-isReadable.html">ModelImporter.isReadable script reference documentation</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Mesh-isReadable.html">Mesh.isReadable script reference documentation</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Mesh.UploadMeshData.html">Mesh.UploadMeshData script reference documentation</a></li>
+</ul>
+      

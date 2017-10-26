@@ -1,0 +1,80 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Editor Application does not offer a public API to modify the Editor Layout.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>The public API does not offer any method for changing the Editor Layout, however using Reflection it is possible to save and load layouts using the UnityEditor namespace.</p>
+<p><strong>Resolution</strong> </p>
+<p>UnityEditor.WindowLayout has two methods useful for saving and loading an Editor layout:  <em>SaveWindowLayout</em>  and  <em>LoadWindowLayout</em> .&#xA0;</p>
+
+<pre>using UnityEditor;
+using System.IO;
+using System.Reflection;
+using Type = System.Type;
+
+public static class LayoutUtility {
+
+	private static MethodInfo _miLoadWindowLayout;
+	private static MethodInfo _miSaveWindowLayout;
+	private static MethodInfo _miReloadWindowLayoutMenu;
+	private static bool _available;
+	private static string _layoutsPath;
+
+	static LayoutUtility() {
+		Type tyWindowLayout = Type.GetType(&quot;UnityEditor.WindowLayout,UnityEditor&quot;);
+		Type tyEditorUtility = Type.GetType(&quot;UnityEditor.EditorUtility,UnityEditor&quot;);
+		Type tyInternalEditorUtility = Type.GetType(&quot;UnityEditorInternal.InternalEditorUtility,UnityEditor&quot;);
+		if (tyWindowLayout != null &amp;&amp; tyEditorUtility != null &amp;&amp; tyInternalEditorUtility != null) {
+			MethodInfo miGetLayoutsPath = tyWindowLayout.GetMethod(&quot;GetLayoutsPath&quot;, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+			_miLoadWindowLayout = tyWindowLayout.GetMethod(&quot;LoadWindowLayout&quot;, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string), typeof(bool) }, null);
+			_miSaveWindowLayout = tyWindowLayout.GetMethod(&quot;SaveWindowLayout&quot;, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+			_miReloadWindowLayoutMenu = tyInternalEditorUtility.GetMethod(&quot;ReloadWindowLayoutMenu&quot;, BindingFlags.Public | BindingFlags.Static);
+
+			if (miGetLayoutsPath == null || _miLoadWindowLayout == null || _miSaveWindowLayout == null || _miReloadWindowLayoutMenu == null)
+				return;
+
+			_layoutsPath = (string)miGetLayoutsPath.Invoke(null, null);
+			if (string.IsNullOrEmpty(_layoutsPath))
+				return;
+
+			_available = true;
+		}
+	}
+
+	// Gets a value indicating whether all required Unity API functionality is available for usage.
+	public static bool IsAvailable {
+		get { return _available; }
+	}
+
+	// Gets absolute path of layouts directory. Returns `null` when not available.
+	public static string LayoutsPath {
+		get { return _layoutsPath; }
+	}
+
+	// Save current window layout to asset file. `assetPath` must be relative to project directory.
+	public static void SaveLayoutToAsset(string assetPath) {
+		SaveLayout(Path.Combine(Directory.GetCurrentDirectory(), assetPath));
+	}
+
+	// Load window layout from asset file. `assetPath` must be relative to project directory.
+	public static void LoadLayoutFromAsset(string assetPath) {
+		if (_miLoadWindowLayout != null) {
+			string path = Path.Combine(Directory.GetCurrentDirectory(), assetPath);
+			_miLoadWindowLayout.Invoke(null, new object[] { path , true });
+		}
+	}
+
+	// Save current window layout to file. `path` must be absolute.
+	public static void SaveLayout(string path) {
+		if (_miSaveWindowLayout != null)
+			_miSaveWindowLayout.Invoke(null, new object[] { path });
+	}
+}
+</pre>
+
+<p><strong>More Information&#xA0;</strong> </p>
+<p><a href="http://answers.unity3d.com/questions/382973/programmatically-change-editor-layout.html" target="_blank">http://answers.unity3d.com/questions/382973/programmatically-change-editor-layout.html</a></p>
+<p><a href="https://github.com/MattRix/UnityDecompiled/blob/master/UnityEditor/UnityEditor/WindowLayout.cs" target="_blank">https://github.com/MattRix/UnityDecompiled/blob/master/UnityEditor/UnityEditor/WindowLayout.cs</a></p>
+<p>This article applies to Unity version 5.3</p>
+      

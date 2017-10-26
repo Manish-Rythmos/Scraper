@@ -1,0 +1,14 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I wish to use&#xA0;receipt validation to make it harder for hackers to access content without paying for it</li>
+<li>I have In App Purchases in my app and require Receipt validation</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>When a user purchases products in your game, such as DLC or extra downloadable content, you will have the option&#xA0;to use receipt validation. This allows the&#xA0;server to verify if the user&apos;s purchase is valid. This will&#xA0;then check&#xA0;any In App Purchases that require an external download.</p>
+<p><strong>Resolution</strong> </p>
+<p>Currently, yes it is possible to add validation for purchase receipts locally and remotely.</p>
+<p>Unity IAP provides additional local support for iOS and Google Play receipt validation, with instructions <a href="http://docs.unity3d.com/Manual/UnityIAPValidatingReceipts.html" target="_blank">here</a>.</p>
+<p>For other store platforms, the complexity varies by platform and receipt verification details are not covered here. Generally though, you can extract the receipt for a given product and pass it through cryptographic verification. Access platform specific receipts by first accessing the Unity IAP Product&#x2019;s <a href="http://docs.unity3d.com/ScriptReference/Purchasing.Product-receipt.html" target="_blank">receipt field</a> and then accessing its payload for the platform <a href="http://docs.unity3d.com/Manual/UnityIAPPurchaseReceipts.html" target="_blank">specific receipt</a>.</p>
+<p><strong>More Information</strong> </p>
+      

@@ -1,0 +1,15 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Calling the screen orientation changes from portrait to landscape mode, even if the project is set to use portrait mode only</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>If you are using the iOS presentation controller, this could override your orientation constraints.&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>As a workaround, you can modify the iOS trampoline code to use only the portrait mode.</p>
+<p>Build for iOS and open&#xA0;UnityAppController.mm and replace supportedInterfaceOrientationsForWindow with the provided code:</p>
+<pre class="prettyprint">- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+{
+    return (1 &lt;&lt; UIInterfaceOrientationPortrait) | <br>           (0 &lt;&lt; UIInterfaceOrientationPortraitUpsideDown) | <br>           (0 &lt;&lt; UIInterfaceOrientationLandscapeRight) | <br>           (0 &lt;&lt; UIInterfaceOrientationLandscapeLeft);<br>}</pre>
+<p>This article applies to Unity versions 5.3.4p3 and higher</p>
+      

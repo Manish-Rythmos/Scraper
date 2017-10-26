@@ -1,0 +1,34 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I do not know how to debug the cache server.&#xA0;</li>
+<li>Cache server runs in my local machine making it difficult to identify problems.</li>
+</ul>
+<p><strong>Cause</strong> &#xA0;</p>
+<ul>
+<li>Multiple clients are running the cache server and are making it unresponsive.</li>
+<li>You need to debug the cache server.&#xA0;</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>The Cache Server is a set of javascript scripts, run using Node.js. There is a tool, which allows debugging Node.js scripts, called Node Inspector. To the debug the Cache Server with this tool, there are several steps to follow:</p>
+<ol>
+<li>Install Node.js: Get the latest build of Node.js here: <a href="https://nodejs.org/en/download.">https://nodejs.org/en/download.</a>&#xA0;Once Node.js is installed, it should be added to your &quot;/usr/bin/&quot; path. This will add the extra tools needed for debugging.</li>
+<li>Install the Node inspector: &apos; <em>npm install -g node-inspector</em> &apos; (Run this through the terminal). &#xA0;&#xA0;*MAC: If by any chance&#xA0;you get an error stating &quot; <em>This is most likely a problem with the v8-profiler package,&#xA0;not with npm itself.</em>  &quot; a workaround for this is to write &apos; <em>sudo npm install -g node-inspector --unsafe-perm&apos; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;*WINDOWS: Your Node.js application should be stored in&#xA0; <em>C:\Program Files\nodejs, thus</em> &#xA0;using&#xA0;the Command Line write : cd C:\Program Files\nodejs npm install -g node-inspector.&#xA0;</em> </li>
+<li>Modify the script that launches Node.js to use &quot;node-debug&quot;. This script can be found in the &#xA0;folder where you stored&#xA0;the Cache Sever. On OS X, the script is &quot; <em>RunOSX.command</em> &quot;, while on Linux it is &quot; <em>RunLinux.sh</em> &quot; and in Windows it is &quot; <em>RunWin.cmd&quot;</em> . (See the images&#xA0;below).</li>
+<li>Replace this obsolete method in the cache server scripts (LegacyCacheServer.js and CacheServer.js) &quot;path.existsSync --&gt; fs.existsSync&quot;</li>
+<li>Once you execute the script according to your platform, this will use &quot;node-debug&quot;, which should launch Google Chrome and allow you to debug the Cache Server code. (You need to have Google Chrome installed). &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  <em>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;*WINDOWS: You have to do something different here. You need to execute the main.js script in the command prompt like this &quot;node-debug C:...\CacheServer-5.3.0f4\CacheServer\main.js&quot;</em> </li>
+</ol>
+<p>&#xA0;</p>
+<p><em>Mac:</em> </p>
+<p><img src="/hc/en-us/article_attachments/202298376/Mac.png" alt=""></p>
+<p><em>&#xA0;Windows:</em> </p>
+<p><img src="/hc/en-us/article_attachments/202298426/Windows.png" alt=""></p>
+<p><em>Linux:</em> </p>
+<p><img src="/hc/en-us/article_attachments/202298456/Linux.png" alt="">&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p><a href="http://docs.unity3d.com/Manual/CacheServer.html">http://docs.unity3d.com/Manual/CacheServer.html</a></p>
+<p><a href="https://github.com/node-inspector/node-inspector#quick-start">https://github.com/node-inspector/node-inspector#quick-start</a></p>
+<p><a href="https://nodejs.org/en/about/">https://nodejs.org/en/about/</a></p>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+      

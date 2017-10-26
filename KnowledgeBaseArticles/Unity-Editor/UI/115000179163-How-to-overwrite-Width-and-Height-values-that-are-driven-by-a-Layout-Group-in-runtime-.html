@@ -1,0 +1,15 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am adding items dynamically into a Layout Group and I cannot set a correct Spacing.</li>
+<li>I cannot modify the Width and Height values since they are grayed out and they are driven by Layout Group.<br><img src="/hc/en-us/article_attachments/115000373543/Img1.png" alt=""><br><br></li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>When UI items are children of a parent GameObject that has a Layout Group component, this component prevents the Width and Height properties of the UI Items from being modified via the Inspector, in order to be driven by the Layout Group in runtime.</p>
+<p><strong>Resolution</strong> </p>
+<p>You can override the Width and Height values by adding a Layout Element component in your item. Next, override automatic values set by the Layout Group with the values that you need.<br><br></p>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/115000366846/Img2.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://docs.unity3d.com/Manual/script-LayoutElement.html">https://docs.unity3d.com/Manual/script-LayoutElement.html</a></p>
+<p>This article applies to Unity versions 5.0+</p>
+      

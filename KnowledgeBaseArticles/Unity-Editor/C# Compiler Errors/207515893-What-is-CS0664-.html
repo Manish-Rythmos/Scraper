@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When trying to enter play mode, I am receiving&#xA0;the error below:</li>
+</ul>
+<pre>error CS0664: Literal of type double cannot be implicitly converted to type `float&apos;. Add suffix `f&apos; to create a literal of this type</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0664&#xA0;</em> error is caused when a&#xA0;number with a decimal place is entered when declaring a&#xA0;float but does not include the`f&apos; suffix. Please see the example below.</p>
+<p><img src="/hc/en-us/article_attachments/203388416/CS0664_a.png" alt=""></p>
+<p><strong>Resolution</strong> </p>
+<p>The error  <em>CS0664&#xA0;</em> is resolved by adding the&#xA0;`f&apos; suffix to the end of the value that you are assigning to the float. See the example below.</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/203518563/CS0664_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p>For more information please read <a href="https://msdn.microsoft.com/en-us/library/h9w1wc66.aspx">https://msdn.microsoft.com/en-us/library/h9w1wc66.aspx</a></p>
+<p>&#xA0;</p>
+      

@@ -1,0 +1,23 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>I would like to add a bit of seasonal flare to my trees added via the Terrain paint widget. The trees are not placed as GameObjects in the hierarchy.</li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+There is not a function to swap between tree prefabs.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+Unity Terrain exposes the Tree instances using the array&#xA0;<a href="http://docs.unity3d.com/ScriptReference/TerrainData-treeInstances.html" target="_blank">Terrain.treeInstances</a>. Every Tree instance included in this array&#xA0;has a property that stores the tree Prefab configured in the Terrain settings&#xA0;(<a href="http://docs.unity3d.com/ScriptReference/TreeInstance-prototypeIndex.html" target="_blank">prototypeIndex</a>).
+&#xA0;
+The tree Prefab is updated automatically by changing this value.
+&#xA0;
+<pre class="&quot;prettyprint&#x201D;">TreeInstance[] currentTreeList;<br>TerrainData terrain;<br>int springTreeIndex;<br>int fallTreeIndex;<br>bool season;<br><br>void ChangeSeasons ()<br>{<br>&#xA0;&#xA0;&#xA0; // The currentTreeList array must be at least terrain.treeInstances.Length in size<br>    System.Array.Copy (terrain.treeInstances, currentTreeList, terrain.treeInstances.Length);<br>&#xA0;&#xA0;&#xA0; if (terrain.treeInstances.Length == currentTreeList.Length)<br>&#xA0;&#xA0;&#xA0; {<br>        for (int tcnt=0; tcnt &lt; currentTreeList.Length; tcnt++)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; {<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0; &#xA0;&#xA0;&#xA0;&#xA0; if (season)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; {<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0; &#xA0;        if (currentTreeList [tcnt].prototypeIndex == springTreeIndex)<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0; &#xA0;&#xA0;&#xA0;&#xA0;         currentTreeList [tcnt].prototypeIndex = fallTreeIndex;<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0;&#xA0;         }<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;     else<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;     {<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0; &#xA0;        if (currentTreeList [tcnt].prototypeIndex == fallTreeIndex)<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0; &#xA0;&#xA0;&#xA0;&#xA0;         currentTreeList [tcnt].prototypeIndex = springTreeIndex;<br>&#xA0;&#xA0; &#xA0;&#xA0;&#xA0;&#xA0;     }<br>&#xA0;&#xA0; &#xA0;    }<br>&#xA0;&#xA0;&#xA0;     terrain.treeInstances = currentTreeList;<br>&#xA0;&#xA0; &#xA0;    season = !season;<br>&#xA0;&#xA0;&#xA0; }<br>}</pre>
+&#xA0;
+ <strong>More Information</strong> 
+<a href="http://answers.unity3d.com/questions/521056/access-terrain-tree-material-from-script.html%20" target="_blank">http://answers.unity3d.com/questions/521056/access-terrain-tree-material-from-script.html&#xA0;</a>
+&#xA0;
+      

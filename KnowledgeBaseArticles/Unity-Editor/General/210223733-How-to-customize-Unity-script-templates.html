@@ -1,0 +1,117 @@
+
+        
+ <strong>Symptoms</strong> 
+
+<ul>
+<li>When I create a new script, the Unity Editor&#xA0;generates its content. For C# scripts it uses the file name as the class name.</li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+Scripts templates are stored in %EDITOR_PATH%\Data\Resources\ScriptTemplates.
+&#xA0;
+ <strong>Resolution</strong> 
+
+<p>When you are creating a new script, the Unity Editor&#xA0;generates its content. For C# scripts it uses the file name as the class name. Please see the example below:</p>
+
+<pre>using UnityEngine;
+using System.Collections;
+
+public class MyCustomScript : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
+</pre>
+
+<p>If you want to change the initial script, you can modify the script templates stored here:</p>
+
+<ul>
+<li>Windows:&#xA0; <em>C:\Program Files\Unity\Editor\Data\Resources\ScriptTemplates</em> </li>
+<li>Mac:  <em>/Applications/Unity/Editor/Data/Resources/ScriptTemplates</em> </li>
+<li><em>Mac&#xA0;(since 5.2.1f1): /Applications/Unity/Unity.app/Contents/Resources/ScriptTemplates</em> </li>
+</ul>
+<p>In this directory you will find several template files:</p>
+
+<pre>81-C# Script-NewBehaviourScript.cs.txt
+82-Javascript-NewBehaviourScript.js.txt
+83-Shader__Standard Surface Shader-NewSurfaceShader.shader.txt
+84-Shader__Unlit Shader-NewUnlitShader.shader.txt
+...
+</pre>
+
+
+
+&#xA0;
+
+<p class="">If you would like to have a different C# script template just edit the&#xA0; <em>81-C# Script-NewBehaviourScript.cs.txt </em> file and leave the rest as it is.</p>
+<p class="">The mentioned file content looks like this (by default):</p>
+
+<pre>using UnityEngine;
+using System.Collections;
+ 
+public class #SCRIPTNAME# : MonoBehaviour {
+ 
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
+</pre>
+
+&#xA0;
+
+<p>You can change anything you want within the script, but remember to leave&#xA0; <em>#SCRIPTNAME#</em>  where it is. Without it, your template class name will not change&#xA0;and a new script file will be generated with an incorrect class name.</p>
+<p>Here is an example how the modified C# template may look:&#xA0;</p>
+
+<pre>/*
+ * Modified template by Unity Support.
+ */
+ 
+using UnityEngine;
+ 
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    #region Public Fields
+    #endregion
+ 
+    #region Unity Methods
+    void Start()
+    {
+    }
+ 
+    void Update()
+    {
+    }
+    #endregion
+ 
+    #region Private Methods
+    #endregion
+}
+</pre>
+
+
+&#xA0;
+
+<p>After modifying the template files, please relaunch your&#xA0;Unity Editor to apply these changes.</p>
+<p>Be sure to back up your original template files and the modified ones.&#xA0;Original files will be needed if your template is not recognized correctly &#x2013; you will have to start again if that happens. Make a copy of your modified template somewhere outside the Unity directory. When you upgrade your Unity version, the template files will be overwritten&#xA0;and you will need to copy and replace these again with your custom&#xA0;templates.</p>
+
+ <strong>More Information</strong> 
+&#xA0;
+<a href="http://blog.theknightsofunity.com/customize-unity-script-templates/" target="_blank" rel="noreferrer">http://blog.theknightsofunity.com/customize-unity-script-templates/</a>
+&#xA0;
+&#xA0;
+
+      

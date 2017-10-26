@@ -1,0 +1,24 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am having trouble playing AudioClips during specific events</li>
+<li>I want audio to play when my player enters a trigger zone</li>
+<li>I cannot hear any audio playing</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have created a C# script for an audio trigger in Unity that tells the audio to start playing when a player enters a trigger zone and stop when the player exits. </p>
+<p>You have assigned an AudioClip to an Audio Source and attached this to a GameObject in your game.</p>
+<p>Your script shows no errors according to the Console (located in the bottom left corner of the Unity Editor), but when your player enters the trigger zone you cannot hear any audio playing.</p>
+<p><strong>Resolution</strong> </p>
+<p>There are potentially two reasons for not hearing the audio when entering a trigger zone:</p>
+<ol>
+<li><em>The </em> <strong><em>Audio Source</em> </strong>  <em>is located too far away from the audio listener attached to the </em> <strong><em>Scene&#x2019;s Main Camera</em> </strong>  <em>. This causes the sound to fade too much to be heard.</em> </li>
+<li><em><em>You do not have a </em> <strong><em>Rigidbody</em> </strong>  <em>attached to your </em> <strong><em>Collider </em> </strong>  <em>or</em> <strong><em>GameObject</em> </strong>  <em>. Trigger events are only sent if a </em> <strong><em>Collider </em> </strong>  <em>or </em> <strong><em>GameObject </em> </strong>  <em>has a </em> <strong><em>Rigidbody</em> </strong>  <em>attached.</em> </em> </li>
+</ol>
+<p>You can make the  <strong>Audio Source</strong>  be heard at a longer distance by changing the min/max distance properties in the  <strong>3D Sound Settings</strong>  in your  <strong>Inspector</strong> . Or you can make the audio play at the specific distance you want it to be heard by attaching the  <strong>Audio Source</strong>  to your  <strong>Player Controller&#x2019;s Main Camera</strong>  in the  <strong>Hierarchy</strong>  window.</p>
+<p>Select your chosen  <strong>Collider</strong>  and ensure it is set to &#x201C;is trigger&#x201D; in the Inspector. Click  <strong>Add Component</strong> . You can search  <strong>Rigidbody</strong>  and attach this to your  <strong>Collider</strong> . You can add a  <strong>Rigidbody</strong>  to a  <strong>GameObject</strong>  the same way. The trigger will not register a collision with an incoming  <strong>Rigidbody</strong>  so instead you will need to modify your script to call  <strong><em>OnTriggerEnter();</em> </strong>  when the  <strong>Rigidbody</strong>  enters or exits the trigger zone. Below is a C# script showing how audio is played as soon as the Player enters a trigger zone.</p>
+<p><strong><img src="/hc/en-us/article_attachments/201975103/1.png" alt=""></strong> </p>
+<p><strong>More Information</strong> </p>
+<p>For more information on Colliders then see this documentation <a href="http://docs.unity3d.com/ScriptReference/Collider.html" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      

@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My build has failed.</li>
+<li>When I build my&#xA0;project locally, it crashes and I get a  <em>&quot;file not found&quot;</em>  error.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>There are a couple of possibilities for what could be going wrong:</p>
+<ul>
+<li>There are files&#xA0;conflicting with&#xA0;the checked in meta data library in the Library Folder.</li>
+<li>There are missing&#xA0;library files for specific plugins such as .a or .dll which can create compiler errors.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>The short answer is &apos;no&apos;, the Library Folder is not required in the repository.</p>
+<p>You will not need to include your&#xA0;Library folder in the code repository, as Unity Cloud Build will generate the Library folder automatically&#xA0;when it processes your project for the first time. You can however, disable Library caching in the Unity Cloud Build options if it causes problems, as Library caching is activated by default to improve the build speed after the first checkout.</p>
+<p>Sometimes it is necessary to perform a Clean Build, which can be done in the dropdown menu in the Unity Cloud Build dashboard. This will clear the Library cache and create a new one. &#xA0;</p>
+<p>Additionally, please make sure that you check in any Library files&#xA0;for specific plugins such as .a or .dll. When you create a build and these files are ignored by an ignore file of the SCM, it is likely to fail the build.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information on&#xA0;steps to your build process then see this guide for Cloud Build Advanced Features <a href="https://build.cloud.unity3d.com/support/guides/advancedfeatures" target="_blank">here</a></p>
+<p>For more information on publishing builds then see this document <a href="http://docs.unity3d.com/Manual/PublishingBuilds.html" target="_blank">here</a></p>
+<p>For more information about Library caching please see this <a href="http://forum.unity3d.com/threads/library-cache-being-rebuilt-every-single-time.358168/">thread</a>.&#xA0;</p>
+<p>For more information about the Library folder please see this <a href="http://forum.unity3d.com/threads/should-we-include-the-following-files-in-the-ucb-targeted-repository.306955/">thread</a>.&#xA0;</p>
+      

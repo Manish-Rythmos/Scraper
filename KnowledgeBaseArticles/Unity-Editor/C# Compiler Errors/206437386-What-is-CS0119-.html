@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS0119: Expression denotes a `___&apos; where a `___&apos;, `___&apos; or `___&apos; <br>was expected</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0119</em>  error is caused when a new type is created using a constructor in an incorrect way.</p>
+<p>In this example we are trying to create a new variable of type <a href="http://docs.unity3d.com/ScriptReference/RectTransform.html" target="_blank"><em>RectTransform</em> </a>.</p>
+<p><img src="/hc/en-us/article_attachments/202034436/CS0119_a.png" alt=""></p>
+<p>Here&#xA0;is how the error appears in this example:</p>
+<pre>error CS0119: Expression denotes a `type&apos; where a `variable&apos;,`value&apos; or `method group&apos; was expected</pre>
+<p><strong>Resolution</strong> </p>
+<p>When using C# you need to use the  <strong>new</strong>  keyword in front of all&#xA0;constructors. Constructors are like functions that are used to create new objects (or scructs). They always have the same name as the type of object you are creating.</p>
+<p><img src="/hc/en-us/article_attachments/202034446/CS0119_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p>&#xA0;</p>
+      

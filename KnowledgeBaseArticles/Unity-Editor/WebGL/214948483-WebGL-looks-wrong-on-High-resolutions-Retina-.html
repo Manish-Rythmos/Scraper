@@ -1,0 +1,60 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>The app content does not appear as I want on Retina display devices when I use the WebGL build.</li>
+<li>The Canvas content appears pixelated in WebGL.</li>
+<li>The Canvas content looks weird (stretched or squashed).</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>The browser will increase the size of the Canvas automatically, but its content will keep its size, showing some anti-aliasing errors.</p>
+<p><strong>Resolution</strong> </p>
+<p>A Canvas element in HTML has two different sizes properties and we should use them to adapt our content to High Resolution Screens (Retina included).</p>
+<ol>
+<li> The Canvas size is the size the Canvas element will be displayed on your screen (on the page), and we can change this value using CSS attributes width &amp; height:</li>
+</ol>
+<p><strong><em>&lt;canvas id=&quot;CanvasTest&quot; style=&quot;width: 400px; height: 300px;&quot; ...&gt;&lt;/canvas&gt;</em> </strong> </p>
+<ol>
+<li> The Canvas Contents size is how many pixels are in the Canvas, and we can modify this value&#xA0; changing the Canvas attributes width and height (in pixels). &#xA0;This size is called  <strong>drawingBuffer</strong> .</li>
+</ol>
+<p><strong><em>&lt;canvas id=&quot;CanvasTest&quot; width=&quot;100&quot; height=&quot;150&quot; ...&gt;&lt;/canvas&gt;</em> </strong> </p>
+<p>If you do not use the CSS properties to set the Canvas Size, the Canvas size will take the  <strong>drawingBuffer</strong>  size, so in the second example, the Canvas Content size is set to 100x150 (px), and the Canvas size will be set to 100x150 (px) as well.</p>
+<p><em><strong>Setting the Canvas size and fixing the Canvas Content size</strong> </em> </p>
+<p>We can use these properties to set our content as needed, for example, we can change the Canvas size to fill all browser size using this:</p>
+<p><em>&lt;style&gt;</em> </p>
+<p><em>body</em> </p>
+<p><em>{</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;margin: 0;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;border: 0;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;padding: 0;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;background-color: white; // It depends of your project.</em> </p>
+<p><em>}</em> </p>
+<p><em>canvas</em> </p>
+<p><em>{</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;width: 100%;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;height: 100%;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;position: absolute;</em> </p>
+<p><em>}</em> </p>
+<p><em>&lt;/style&gt;</em> <br><br></p>
+<p>We can set the app to full-screen using this code in a callback triggered by some Input event in C# code</p>
+<p><strong><em>void OnClickEvent ()</em> </strong> </p>
+<p><strong><em>{</em> </strong> </p>
+<p><strong><em>&#xA0;&#xA0;&#xA0; </em> </strong>  <strong><em>Screen.fullScreen = true;</em> </strong> </p>
+<p><strong><em>}</em> </strong> </p>
+<p>Please check these links to get more details of this: </p>
+<ul>
+<li>https://docs.unity3d.com/Manual/webgl-cursorfullscreen.html</li>
+<li>https://docs.unity3d.com/ScriptReference/Screen-fullScreen.html</li>
+</ul>
+<p>To make the Canvas Content size match with the Canvas size, we use the properties clientWidth and clientHeight and assign the width &amp; height Canvas properties like this:</p>
+<p><strong><em>canvas.width = canvas.clientWidth;</em> </strong> </p>
+<p><strong><em>canvas.height = canvas.clientHeight;</em> </strong> </p>
+<p>We can use this snippet in a resize callback in JS.</p>
+<p><em><strong>Handling the DPI property on Retina displays.</strong> </em> </p>
+<p>Finally, we have some cases where our app should run on Retina display devices such as the Macbook Pro with Retina display or mobile devices with Retina display. &#xA0;On these cases, we have to manage the High Pixel Densities (DPI). &#xA0;Unity does not have an internal option or setting to set this property, but we can fix it using JS.</p>
+<p>The browser will increase the size of the Canvas automatically, but its content will keep its size giving us some anti-aliasing errors. To fix that, we can use the property devicePixelRatio (window.devicePixelRatio) to know how many real pixels that fill 1 CSS pixel and change our resize callback function to something like:</p>
+<p><strong><em>canvas.width = canvas.clientWidth * window.devicePixelRatio;</em> </strong> </p>
+<p><strong><em>canvas.height = canvas.clientHeight * window.devicePixelRatio;</em> </strong> </p>
+<p>With these two lines, the content will match with our high-resolution device (even Retina) and your content will look as intended.</p>
+<p><strong>More Information</strong> </p>
+<p>https://docs.unity3d.com/Manual/webgl-cursorfullscreen.html<br>https://docs.unity3d.com/ScriptReference/Screen-fullScreen.html</p>
+      

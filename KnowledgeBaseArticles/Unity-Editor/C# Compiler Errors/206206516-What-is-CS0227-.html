@@ -1,0 +1,21 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>I am receiving&#xA0;the error below:</p>
+<pre>error CS0227: Unsafe code requires the `unsafe&apos; command line option to be specified</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0227&#xA0;</em> error is caused&#xA0;when you have added the  <em>unsafe&#xA0;</em> keyword to a&#xA0;method but have not specified the command line option.</p>
+<p><img src="/hc/en-us/article_attachments/202051353/CS0227_a.png" alt=""></p>
+<p>&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>To fix the  <em>CS0227&#xA0;</em> error you will need to tell the compiler that you will be using pointers an any methods marked with the  <em>unsafe</em>  keyword. This article will show you how to do it for the Editor and the iOS</p>
+<p><strong>Editor:</strong> </p>
+<p>1. Create a text file and enter the following:</p>
+<pre>-unsafe</pre>
+<p>2. Save the text file into your asset folder as &quot;smcs.rsp&quot;.</p>
+<p>3. Restart the editor.</p>
+<p><strong>Android:</strong> </p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/202051363/CS0227_b2.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/ezb5hwx9(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/ezb5hwx9(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

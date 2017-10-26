@@ -1,0 +1,29 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>Not all of the user code is shown in the Profiler and Deep Profiling slows down my application.</li>
+</ul>
+
+ <strong>Cause</strong> 
+The built-in <a href="http://docs.unity3d.com/Manual/Profiler.html" target="_blank">profiler</a>&#xA0;is not profiling all method calls. Also, Deep Profiling&#xA0;causes&#xA0;large overhead that will significantly slow down your application execution and it even may not be possible to perform the profiling activity at all (Unity can run out of memory).
+&#xA0;
+ <strong>Resolution</strong> 
+Profiler Sample&#xA0;is a block of code that starts with <a href="https://docs.unity3d.com/ScriptReference/Profiling.Profiler.BeginSample.html">Profiler.BeginSample()</a> and ends with&#xA0;<a href="https://docs.unity3d.com/ScriptReference/Profiling.Profiler.EndSample.html">Profiler.EndSample()</a> calls. Just like this:
+
+<pre class="prettyprint">using UnityEngine;<br><br>public class NeedsProfiling : MonoBehaviour {<br>&#xA0;&#xA0;&#xA0; void Update() {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Profiling.Profiler.BeginSample(&quot;My Sample&quot;);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Debug.Log(&quot;This code is being profiled&quot;);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Profiling.Profiler.EndSample();<br>&#xA0;&#xA0;&#xA0; }<br>}</pre>
+
+<p>You would put it before and after the chunk of code that you want to be profiled. Profiler Sample will record the execution time for you and it will be displayed in the Profiler window without the need to use Deep Profiling <em>.</em> </p>
+
+<p><img src="/hc/en-us/article_attachments/203701646/profiler.png" alt=""></p>
+
+
+<p>As you can see, there is a new entry in the Profiler&#xA0;Hierarchy.</p>
+<p>Of course you can add as many&#xA0;Profiler Samples as you want. Don&#x2019;t worry about adding too many samples. These calls have zero overhead when they are&#xA0;deployed&#xA0;in non-development build.</p>
+
+ <strong>More Information</strong> 
+&#xA0;<a href="http://docs.unity3d.com/Manual/MobileProfiling.html" target="_blank">http://docs.unity3d.com/Manual/MobileProfiling.html</a>
+<a href="http://docs.unity3d.com/ScriptReference/Profiling.Profiler.BeginSample.html" target="_blank">http://docs.unity3d.com/ScriptReference/Profiling.Profiler.BeginSample.html</a>
+<a href="http://docs.unity3d.com/ScriptReference/Profiling.Profiler.EndSample.html" target="_blank">http://docs.unity3d.com/ScriptReference/Profiling.Profiler.EndSample.html</a>
+<a href="http://blog.theknightsofunity.com/profiling-unity-application-profiler-samples/" target="_blank">http://blog.theknightsofunity.com/profiling-unity-application-profiler-samples/</a>
+      

@@ -1,0 +1,46 @@
+
+         
+<p><strong>Symptoms</strong> </p>
+<ul>
+<li>I have created some buttons that use the default behaviour for the UGUI button, but even after I have customized the state colors for the button, I cannot get the button to get brighter, or highlight, as I would expect?&#xA0;</li>
+</ul>
+ <strong>Cause</strong> &#xA0;<br>The default behaviour for the UGUI button is to use the Color Tint transition method which multiplies the color of the image component by the button component&apos;s state color (E.G (Image components colour) * (Button Highlight Color)). As the normal and highlight color states of the button component is set to full white by default. This means the color will match the one set in the Image component color for both states. The colors set in the Button states are not HDR, so can not go past white, meaning that you can only darken the overall color in the highlight if the normal color is set to white.  
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207750306/Default.PNG" alt="" width="261" height="324"></p>
+<p class="wysiwyg-text-align-left"><strong>Resolution</strong> </p>
+<p>You can get around this issue in multiple ways depending on what the final look of the button should be.</p>
+<ul>
+<li><strong>Standard Color Tint</strong> </li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207873506/Button_ColorTint.gif" alt="" width="437" height="127"></p>
+<p class="wysiwyg-text-align-left wysiwyg-indent3">This gives&#xA0;you some limited control when it comes to making the button lighter. I have included this method so you can compare how the default button states work compared to some of the other methods. The base color has an HSV value of 215. This gives a small amount of room (255 - 215 = 40 to play with) to lighten the button up with, as seen in the GIF above.</p>
+<ul>
+<li><strong>Color multiplier</strong> </li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207873526/Button_Multiplier.gif" alt="" width="441" height="128"></p>
+<p class="wysiwyg-text-align-left wysiwyg-indent3">The color multiplier value takes the HSV value of the state color of the button and multiplies it against the float specified in the range slider of the Button&apos;s Color Multiplier field (See below). This gives a far greater result than the color tinting, but might not yield the correct highlight color. This can be achieved through other methods further down the page.</p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207932823/ColorMulitplier.PNG" alt="" width="457" height="328"></p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-left">In this example, I have halved the normal state&apos;s original HSV value to 215 to&#xA0;108 (HSV value are specified in integers). This then means once we apply the Color Multiplier to the normal state, it will look very close to the original button color. It also means that out highlight state, which was left as 255 (white), will be twice as bright when the highlighted&#xA0;color state is active (in effect, doubling the base color of RGB (255, 176, 59) to (510, 352, 118)).</p>
+<ul>
+<li><strong>Overlay layer</strong> </li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207873546/Button_Overlay.gif" alt="" width="448" height="130"></p>
+<p class="wysiwyg-text-align-left wysiwyg-indent3">Using an overlay allows you to add another sprite on top of the base button, which gives you great control over the final color of the highlight state.</p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207929466/Overlay.PNG" alt=""></p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-left">In the image above, I have&#xA0;implemented the overlay highlight by placing the base state of the button on its&#xA0;own separate game object (Button_OverlayLayer) with&#xA0;the button artwork.</p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207935363/Overlay02.PNG" alt=""></p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-left">It took all the saturation from the Image component of the game object&#xA0;OverlayLayer&#xA0;and set its value to what I wanted the final highlight colour to be (it is a near white in this example, but you could have any colour). The button colour states were then set to be fully transparent&#xA0;for the normal colour (so that it has no effect by default) and then fully opaque&#xA0;in the highlighted colour state (this will show the colour set in the image component).</p>
+<ul>
+<li><strong>Animated</strong> </li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207880783/Button_Animated.gif" alt="" width="457" height="133"></p>
+<p class="wysiwyg-text-align-left wysiwyg-indent3">The last method is to use the Animation transition type. This allows you do many things within the transition (changing any keyable state on the game object or a parented game object like scale, position&#xA0;and rotation). In this transition, I had keyframed the highlighted trigger to animate the image component&apos;s color from the orange color to blue over 0.25 seconds.&#xA0;</p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/207935663/Animated.PNG" alt="">&#xA0;</p>
+<p class="wysiwyg-indent3 wysiwyg-text-align-center">&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p>All the buttons used in this article can be found in the example project here: <a href="/hc/article_attachments/207931346/ButtonKBArticle.zip">Example project containing the buttons above.</a></p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/script-Button.html">https://docs.unity3d.com/Manual/script-Button.html</a></li>
+<li>https://docs.unity3d.com/Manual/script-SelectableTransition.html</li>
+</ul>
+ 
+      

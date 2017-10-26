@@ -1,0 +1,30 @@
+
+        
+
+**Symptoms** 
+
+*   I have made a post on the Forums
+*   My post has been rejected by the Moderators
+
+**Cause** 
+
+Thousands of users visit our Community sites daily and threads on a huge array of topics are available. Some posts, however do not make it on to the public site as they are rejected by a Moderator.
+
+There are many reasons why a post may be rejected. It could be one of the following:
+
+*   Your question has already been answered in a different thread - please make sure to search for your question before posting, just in case another user has already posted about it
+*   Your post is not about Unity, or belongs in a different part of the Forum - the Forums are split into different areas, so be sure to post in the relevant one so that your question can be seen by the right users
+*   Your post does not have enough information - particularly with technical questions, you will be more likely to receive help if you are clear and specific about what the problem is. Including a section of your code can sometimes help as well.
+*   Your post contains many different, unrelated questions - this can be quite confusing for other users, so it's best to have different threads for different topics
+*   You post contains offensive material, or spam
+
+**Resolution** 
+
+We want our Community pages to be as straightforward and easy to navigate as possible. When posting new questions, please make sure you are posting in the correct section of the Forum, so that your question is easy to find for other users who may have had the same issues.
+
+Please ensure that you are also including enough information to help other users to advise you. Technical problems can often be answered in our [Answers](http://answers.unity3d.com/questions/ask.html) pages, so please do have a look there as well.
+
+**More Information** 
+
+
+      

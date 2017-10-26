@@ -1,0 +1,33 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the error below appearing in my console:</li>
+</ul>
+<pre>error CS0163: Control cannot fall through from one case label to another</pre>
+<p><strong>Cause</strong> </p>
+<p>CS0163 is caused when a switch with more than one case is not explicitly terminated within each section.&#xA0;This&#xA0;is&#xA0;required as a switch&#xA0;does not allow multiple cases to be used in the same iteration of the switch.</p>
+<p><img src="/hc/en-us/article_attachments/201987463/CS0163_a.png" alt=""></p>
+<p><strong>Resolution</strong> </p>
+<p>CS0163 is fixed by adding either of the following&#xA0;statements to each case.</p>
+<ul class="unordered">
+<li>
+<p><a href="https://msdn.microsoft.com/en-us/library/1h3swy84.aspx">return</a></p>
+</li>
+<li>
+<p><a href="https://msdn.microsoft.com/en-us/library/13940fs2.aspx">goto</a></p>
+</li>
+<li>
+<p><a href="https://msdn.microsoft.com/en-us/library/adbctzc4.aspx">break</a></p>
+</li>
+<li>
+<p><a href="https://msdn.microsoft.com/en-us/library/1ah5wsex.aspx">throw</a></p>
+</li>
+<li>
+<p><a href="https://msdn.microsoft.com/en-us/library/923ahwt1.aspx">continue</a></p>
+</li>
+</ul>
+<p><img src="/hc/en-us/article_attachments/201830386/CS0163_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/843c4c28.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/843c4c28.aspx</a></p>
+<p>&#xA0;</p>
+      

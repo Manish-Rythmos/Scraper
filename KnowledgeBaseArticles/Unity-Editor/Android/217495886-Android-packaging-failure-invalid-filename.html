@@ -1,0 +1,19 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When building to Android, a message like the following is displayed in the console (where  <strong>FILENAME</strong>  is the name of your Project):<br>
+<pre class="&quot;prettyprint&#x201D;">CommandInvokationFailure: Android Asset Packaging Tool failed. See the Console for details. </pre>
+</li>
+<li>
+<pre class="&quot;prettyprint&#x201D;">Stderr[<br>&lt;FILENAME&gt;: error: Invalid filename. Unable to add.<br>]</pre>
+</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>There is a <a href="https://code.google.com/p/android/issues/detail?id=36316">known limitation</a> in the Android Asset Packaging Tool meaning that filenames of Assets cannot exceed 100 characters.</p>
+<p>Files that have a name longer than 100 characters will fail the invocation of the Android Asset Packaging Tool.</p>
+<p>&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>Rename all the offending files so their filenames are under 100 characters.</p>
+<p>You can see a list of all files causing this error message in the console.</p>
+<p>&#xA0;</p>
+      

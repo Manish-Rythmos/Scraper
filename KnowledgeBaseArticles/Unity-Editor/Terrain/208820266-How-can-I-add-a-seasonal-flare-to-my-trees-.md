@@ -1,0 +1,49 @@
+
+         **Symptoms** 
+
+*   I would like to add a bit of seasonal flare to my trees added via the Terrain paint widget. The trees are not placed as GameObjects in the hierarchy.
+
+ **Cause** 
+
+There is not a function to swap between tree prefabs.
+
+ **Resolution** 
+
+Unity Terrain exposes the Tree instances using the array [Terrain.treeInstances](http://docs.unity3d.com/ScriptReference/TerrainData-treeInstances.html). Every Tree instance included in this array has a property that stores the tree Prefab configured in the Terrain settings ([prototypeIndex](http://docs.unity3d.com/ScriptReference/TreeInstance-prototypeIndex.html)).
+
+The tree Prefab is updated automatically by changing this value.
+
+TreeInstance[] currentTreeList;  
+TerrainData terrain;  
+int springTreeIndex;  
+int fallTreeIndex;  
+bool season;  
+
+void ChangeSeasons ()  
+{  
+    // The currentTreeList array must be at least terrain.treeInstances.Length in size  
+    System.Array.Copy (terrain.treeInstances, currentTreeList, terrain.treeInstances.Length);  
+    if (terrain.treeInstances.Length == currentTreeList.Length)  
+    {  
+        for (int tcnt=0; tcnt < currentTreeList.Length; tcnt++)  
+        {  
+            if (season)  
+            {  
+                if (currentTreeList [tcnt].prototypeIndex == springTreeIndex)  
+                    currentTreeList [tcnt].prototypeIndex = fallTreeIndex;  
+                }  
+                else  
+                {  
+                if (currentTreeList [tcnt].prototypeIndex == fallTreeIndex)  
+                    currentTreeList [tcnt].prototypeIndex = springTreeIndex;  
+            }  
+        }  
+        terrain.treeInstances = currentTreeList;  
+        season = !season;  
+    }  
+}
+
+ **More Information** 
+[http://answers.unity3d.com/questions/521056/access-terrain-tree-material-from-script.html ](http://answers.unity3d.com/questions/521056/access-terrain-tree-material-from-script.html%20)
+
+      

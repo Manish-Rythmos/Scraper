@@ -1,0 +1,18 @@
+
+        
+
+**Symptoms** 
+
+*   I want to know if Unity Ads is supported on the target platform for my game.
+
+**Cause** 
+
+You need to know if the Windows platform you are targeting supports our Unity Ads service.
+
+**Resolution** 
+
+No, Unity Ads does not currently support Windows Phone.
+
+We are always looking to expand to additional platforms, but for the time being Unity Ads only supports iOS and Android.
+
+      

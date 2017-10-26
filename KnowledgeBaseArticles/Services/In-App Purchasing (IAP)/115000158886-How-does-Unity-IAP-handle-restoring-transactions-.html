@@ -1,0 +1,12 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I would like to know what code I need to put into my game to show that a user owns previously purchased products.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You&#xA0;feel that you need to be able to detect and restore purchases via the code in your game if required.</p>
+<p><strong>Resolution</strong> </p>
+<p>App stores maintain a permanent record of each user&#x2019;s Non-Consumable and Subscription products that&#xA0;Unity IAP can retrieve, and as such no further action is required.</p>
+<p>Once product restoration has started (either automatically on Unity IAP initialization for Google Play or after the RestoreTransactions method has been called for iOS), Unity IAP&apos;s backend process will call the <a class="externalLink" href="http://docs.unity3d.com/ScriptReference/Purchasing.IStoreListener.ProcessPurchase.html" target="_blank">ProcessPurchase</a> method via the <a class="externalLink" href="http://docs.unity3d.com/ScriptReference/Purchasing.IStoreListener.html" target="_blank">IStoreListener</a>&#xA0;on each item being restored. This means that, whatever code the app has for the first time a purchase is made, this code will be executed again for the purchases being restored.</p>
+<p>On Apple platforms users must enter their password to retrieve previous transactions, so your application must provide users with a button allowing them to do so. During this process, the <a href="https://docs.unity3d.com/ScriptReference/Purchasing.IStoreListener.ProcessPurchase.html">ProcessPurchase</a>&#xA0;method of your <a href="https://docs.unity3d.com/ScriptReference/Purchasing.IStoreListener.html">IStoreListener</a>&#xA0;will be invoked for any items the user already owns.</p>
+      

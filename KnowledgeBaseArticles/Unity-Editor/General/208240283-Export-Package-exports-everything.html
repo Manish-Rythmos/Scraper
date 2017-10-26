@@ -1,0 +1,21 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>When I export a package using  <em>Assets -&gt; Export package</em> , it exports everything.</li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+When exporting packages that include scripts, it includes all scripts that are in the project. This happens because there is no way to track dependencies between scripts. If you include dependencies and one of the dependencies is a script, then you need all scripts.
+&#xA0;
+ <strong>Resolution</strong> 
+
+<p>You can use the function&#xA0;<a href="http://docs.unity3d.com/ScriptReference/AssetDatabase.ExportPackage.html" target="_blank">AssetDatabase.ExportPackage</a> and multiple&#xA0;<a href="http://docs.unity3d.com/ScriptReference/ExportPackageOptions.html" target="_blank">ExportPackageOptions</a>. Please be aware that this workaround could cause some errors with missing scripts.&#xA0; <em>Assets -&gt; Export package</em> &#xA0;is the suggested and secure option.</p>
+
+ <strong>More Information</strong> 
+&#xA0;
+<a href="http://docs.unity3d.com/ScriptReference/AssetDatabase.ExportPackage.html" target="_blank">http://docs.unity3d.com/ScriptReference/AssetDatabase.ExportPackage.html</a>
+<a href="http://docs.unity3d.com/ScriptReference/ExportPackageOptions.html" target="_blank">http://docs.unity3d.com/ScriptReference/ExportPackageOptions.html</a>
+&#xA0;
+      

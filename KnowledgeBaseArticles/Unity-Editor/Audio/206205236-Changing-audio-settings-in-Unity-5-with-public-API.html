@@ -1,0 +1,12 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>The docs state that in Unity 5 you can no longer set the speakerMode via API, but instead must use project settings-&gt;audio to set this</li>
+</ul>
+<p><strong>Cause</strong> <br>Setting AudioSettings.speakerMode is deprecated and has been replaced by audio project settings and the AudioSettings.GetConfiguration/AudioSettings.Reset API</p>
+<p><strong>Resolution</strong> </p>
+<p>In Unity 5, if you want to change the AudioSettings, the new API must be used:</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0; AudioConfiguration _audioConfig = AudioSettings.GetConfiguration ();<br>&#xA0; &#xA0; &#xA0; &#xA0; _audioConfig.speakerMode = AudioSettings.driverCapabilities;<br>&#xA0; &#xA0; &#xA0; &#xA0; AudioSettings.Reset (_audioConfig);</p>
+<p><strong>More Information</strong> <br><a href="http://docs.unity3d.com/ScriptReference/AudioSettings.GetConfiguration.html">http://docs.unity3d.com/ScriptReference/AudioSettings.GetConfiguration.html</a><br><a href="http://docs.unity3d.com/ScriptReference/AudioSettings.Reset.html">http://docs.unity3d.com/ScriptReference/AudioSettings.Reset.html</a></p>
+<p>This article applies to Unity versions 5.0+</p>
+      

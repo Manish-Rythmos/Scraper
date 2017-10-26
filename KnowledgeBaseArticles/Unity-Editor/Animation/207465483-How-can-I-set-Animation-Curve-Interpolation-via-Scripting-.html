@@ -1,0 +1,52 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I need to set Animation Curve Interpolation via Scripting</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are trying to set animation curves by script and when interpolation is done you get the following result:&#xA0;</p>
+<p><img src="/hc/en-us/article_attachments/202514423/FinalPlsDon.png" alt="" width="582" height="167"></p>
+<p><strong>Resolution</strong> </p>
+<p>To solve this issue do the following two things:</p>
+<ol>
+<li>Call <a href="http://docs.unity3d.com/ScriptReference/AnimationClip.EnsureQuaternionContinuity.html">AnimationClip.EnsureQuaternionContinuity</a>&#xA0;after you have manually set via script the Animation Curve properties.</li>
+<li>Save the assets with&#xA0;<a href="http://docs.unity3d.com/ScriptReference/AssetDatabase.SaveAssets.html">AssetDatabase.SaveAssets</a></li>
+</ol>
+<p>Please see the example code below for guidance:&#xA0;</p>
+<pre><code> AnimationClip clip = new AnimationClip ();
+ //If using Unity 5
+ clip.legacy = true;
+ 
+         
+ // Rotation
+ AnimationCurve CurveRot = new AnimationCurve ();
+ AnimationCurve CurveRotY = new AnimationCurve ();
+ AnimationCurve CurveRotZ = new AnimationCurve ();
+ AnimationCurve CurveRotW = new AnimationCurve ();
+         
+ 
+ float time = 0.5f;
+ //stepValues [0,1,0,10]
+ Quaternion angle = Quaternion.Euler (0, 0, stepValues[i] * 180.0f);
+ CurveRot.AddKey (time, angle.x);
+ CurveRotY.AddKey (time, angle.y);
+ CurveRotZ.AddKey (time, angle.z);
+ CurveRotW.AddKey (time, angle.w);    
+ 
+         
+ clip.SetCurve (&quot;&quot;, typeof(Transform),&quot;localRotation.z&quot;, CurveRot);
+ clip.SetCurve (&quot;&quot;,typeof(Transform),&quot;localRotation.y&quot;, CurveRotY);
+ clip.SetCurve (&quot;&quot;,typeof(Transform),&quot;localRotation.z&quot;, CurveRotZ);
+ clip.SetCurve (&quot;&quot;,typeof(Transform),&quot;localRotation.w&quot;, CurveRotW);
+ 
+ //This ensures a smooth interpolation
+ clip.EnsureQuaternionContinuity ();
+         
+ String newCName = &quot;Comp1_L_1&quot;;
+ AssetDatabase.CreateAsset (clip,ANIM_CLIP_PATH+newCName+&quot;.anim&quot;);
+ AssetDatabase.SaveAssets ();</code></pre>
+<p><strong>More Information</strong> </p>
+<p><a href="http://docs.unity3d.com/Manual/animeditor-AnimationCurves.html">http://docs.unity3d.com/Manual/animeditor-AnimationCurves.html</a>&#xA0;</p>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+      

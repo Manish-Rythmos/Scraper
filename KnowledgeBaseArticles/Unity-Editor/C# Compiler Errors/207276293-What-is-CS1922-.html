@@ -1,0 +1,19 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS1922: A field or property `___&apos; cannot be initialized with a collection object initializer because type `___&apos; does not implement `___&apos; interface</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS1922 error&#xA0;is caused when a  <em>collection object initializer</em>  is used incorrectly. The  <em>collection object initializer</em> &#xA0;can be used as a shorthand way of initializing multiple variables in the same line or assigning multiple values to an array at once.</p>
+<p><img src="/hc/en-us/article_attachments/202384663/CS1922_a.png" alt=""></p>
+<p>In the following example we have recreated the CS1922 error by using the&#xA0; <em>collection object initializer </em> on a <em>Vector3</em> .</p>
+<p><img src="/hc/en-us/article_attachments/202384713/CS1922_b.png" alt=""></p>
+<p>Errors displayed in this example:</p>
+<pre>error CS1922: A field or property `UnityEngine.Vector3&apos; cannot be initialized with a collection object initializer because type `UnityEngine.Vector3&apos; does not implement `System.Collections.IEnumerable&apos; interface</pre>
+<p><strong>Resolution</strong> </p>
+<p>To fix the CS1922 error you will need to find the section of code that incorrectly uses&#xA0;the&#xA0; <em>collection object initializer. </em> Double clicking the error in the console can take you directly to the line of code that causes the error.</p>
+<p>You will need to correct the code by altering it&#xA0;to avoid using the&#xA0; <em>collection object initializer. </em> In this example we have changed the curly braces for parentheses.</p>
+<p><img src="/hc/en-us/article_attachments/202215706/CS1922_c.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/bb384150(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/bb384150(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

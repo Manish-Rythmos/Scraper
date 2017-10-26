@@ -1,0 +1,28 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>I&#x2019;m using <a href="https://docs.unity3d.com/ScriptReference/WWW.LoadFromCacheOrDownload.html">www.LoadFromCacheOrDownload</a> to download AssetBundles but I&#x2019;m getting an error: &#x201C;Cannot load cached AssetBundle. A file of the same name is already loaded from another AssetBundle.&#x201D;</p>
+<p><strong>Cause</strong> </p>
+<p>This error is thrown because Unity will only allow you to have a single instance of a particular AssetBundle loaded in your application at one time. This means you are trying to access to a previously loaded Assetbundle, like this:</p>
+<pre class="prettyprint">AssetBundle bundle = www.assetBundle;
+</pre>
+<p>And you haven&apos;t unloaded it with <a href="https://docs.unity3d.com/ScriptReference/AssetBundle.Unload.html">AssetBundle.Unload</a> yet.</p>
+<p>This also applies for AssetBundle variants because the only difference between them are the individual Assets contained in it and the variant name, which is appended to the AssetBundle Name to identify it. However, when loaded they are considered the same AssetBundle, so it is not possible to load more than one variant of an AssetBundle at the same time.<br> <br><strong>Resolution</strong> </p>
+<p>Keep track of loaded AssetBundles and unload them when you are no longer using them. A guide to properly managing loaded AssetBundles can be found in our <a href="https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-usage-patterns">AssetBundles usage patterns tutorial</a>.</p>
+<p>If you still get this error and have lost track of the current AssetBundles, you can use <a href="https://docs.unity3d.com/ScriptReference/Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a> to find the already loaded AssetBundles in the memory as shown below.</p>
+<pre class="prettyprint">AssetBundle[] bundles = Resources.FindObjectsOfTypeAll();
+Debug.Log(&quot;number of bundles &quot; + bundles.Length);
+
+for (int i=0; i&lt; bundles.Length; i++)
+{
+	Debug.Log(&quot;Bundle: &quot; + bundles[i].name);
+}
+</pre>
+<p><strong>More Information</strong> </p>
+<p>For more information, take a look at the following documentation:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/keepingtrackofloadedassetbundles.html">Keeping track of loaded AssetBundles documentation</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/AssetBundle.html">AssetBundle script reference documentation</a></li>
+<li><a href="https://docs.unity3d.com/Manual/DownloadingAssetBundles.html">Downloading AssetBundles documentation</a></li>
+<li><a href="https://unity3d.com/es/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager">AssetBundles and the AssetBundle Manager tutorial&#xA0;</a></li>
+</ul>
+      

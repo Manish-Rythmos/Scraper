@@ -1,0 +1,66 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My Emissive material/shader does not appear in my Lightmap.</li>
+<li>My Emissive material/shader sometimes appears and sometimes does not.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Unity needs the flag  <strong>Emission GI</strong>  set to  <strong>Baked</strong>  always, to include the Emissive materials into lightmaps, and a custom shader may not have this flag.</p>
+<p><strong>Resolution</strong> </p>
+<p>To get the Emissive material into the lightmap, please follow these steps:</p>
+<ol>
+<li>Make sure lightmap UVs are included in the mesh. Use the option  <strong>&#x201C;Mode &gt; Import Settings &gt; Generate Lightmap UV&#x201D;</strong>  in the mesh importer to create the second UV channel utilized by the Lightmapping.</li>
+<li>Checking the option  <strong>Important GI</strong>  from the  <strong>&#x201C;Lighting Window &gt; Object &gt; Important GI&#x201D;</strong> . Sometimes Enlighten will cull small objects away because they are small relative to the indirect resolution. To avoid this behavior use this option on each object that you want to include into the lightmap (even Emissive Objects).</li>
+<li>Set the  <strong>&#x201C;Emission &gt; Global Illumination&#x201D; </strong> to <strong>Baked</strong> . It makes the Emissive light from this material to be baked into the static lightmaps for the scene. You can find this option seeing the material into the Inspector panel.</li>
+</ol>
+<p>If you custom shaders, you cannot make the third point from the shader code and you cannot get Emissive light into the Lightmaps because of that.&#xA0; In this case, we have to use a script to solves this problem:</p>
+<p><em>usingUnityEngine;</em> </p>
+<p><em>usingUnityEditor;</em> </p>
+<p><em>public</em>   <em>classLightMapMenu : MonoBehaviour</em> </p>
+<p><em>{</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;// The menu item.</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;[MenuItem(&quot;MyCustomBake/Bake&quot;)]</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;static</em>   <em>voidBake () </em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;{</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// Find all objects with the tag &lt;Emissive_to_baked&gt;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// We have to set the tag &#x201C;Emissive_to_baked&#x201D; on each GO to be baked.</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;GameObject[] _emissiveObjs = GameObject.FindGameObjectsWithTag(&quot;Emissive_to_baked&quot;);</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// Then, by each object, set the globalIllumiationFlags to BakedEmissive.</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;foreach(GameObjecttmpObj in_emissiveObjs) </em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;MaterialtmpMaterial = tmpObj.GetComponent&lt;Renderer&gt; ().sharedMaterial;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;tmpMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// Bake the lightmap.</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Lightmapping.Bake ();</em> </p>
+<p><em>&#xA0;&#xA0;&#xA0;}</em> </p>
+<p><em>}</em> </p>
+<p>This script will set the  <strong>Global Illumination</strong>  option to  <strong>Baked</strong>  in each object tagged as  <strong>Emissive_to_Lightmap</strong> . It will then execute the Bake function to create the Lightmap. &#xA0;Now, everything should work as expected and the Emissive Light should appear in the Lightmap even with custom shaders.</p>
+<p><strong>More Information</strong> </p>
+<p>For scripting:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Lightmapping.Bake.html">https://docs.unity3d.com/ScriptReference/Lightmapping.Bake.html</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Material-globalIlluminationFlags.html">https://docs.unity3d.com/ScriptReference/Material-globalIlluminationFlags.html</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/MaterialGlobalIlluminationFlags.html">https://docs.unity3d.com/ScriptReference/MaterialGlobalIlluminationFlags.html</a></li>
+</ul>
+<p>For Tags System:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/Tags.html">https://docs.unity3d.com/Manual/Tags.html</a></li>
+</ul>
+<p>For Emissive Standard Shader Settings:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/StandardShaderMaterialParameterEmission.html">https://docs.unity3d.com/Manual/StandardShaderMaterialParameterEmission.html</a></li>
+</ul>
+<p>For Generate Lightmap UV:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/FBXImporter-Model.html">https://docs.unity3d.com/Manual/FBXImporter-Model.html</a></li>
+</ul>
+<p>For Important GI:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/GlobalIllumination.html">https://docs.unity3d.com/Manual/GlobalIllumination.html</a></li>
+</ul>
+<p>For Lighting and rendering (Search by &#x201C;Emissive Materials&#x201D;):</p>
+<ul>
+<li><a href="https://unity3d.com/learn/tutorials/topics/graphics/unity-5-lighting-and-rendering">https://unity3d.com/learn/tutorials/topics/graphics/unity-5-lighting-and-rendering</a></li>
+</ul>
+      

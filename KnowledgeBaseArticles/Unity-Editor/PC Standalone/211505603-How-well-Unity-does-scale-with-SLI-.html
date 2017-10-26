@@ -1,0 +1,23 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>I have SLI working, but there is no performance improvement.</li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+If your content is using results of a previous frame, then SLI will not be faster.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+Firstly, Unity is not tested under these environments.<br><br>Secondly, to Unity (or any other 3d app) Crossfire and SLI configurations are presented as a single GPU.&#xA0;You can follow the best practices to possible improve performance using SLI/CrossFire are described by nVidia and ATI in these guides:
+&#xA0;
+<a href="http://developer.amd.com/media/gpu_assets/Programming_for_CrossFire.pdf" target="_blank">Programming for Crossfire</a>
+<a href="http://developer.download.nvidia.com/whitepapers/2011/SLI_Best_Practices_2011_Feb.pdf" target="_blank">SLI Best Practices</a><br><br>In general, if your content uses results from a previous frame, then SLI will not be faster. The best advice would be to make sure to render everything you need in the same frame. To clarify, you should not render some textures in one frame and use them in another frame. Specifically from the Image Effects package, the &quot;motion blur&quot; effect uses a render texture from the previous frame.<br><br>If you are not rendering textures in one frame and using them in another, it is difficult to say whether SLI will be faster. SLI is transparent to the programmer and nothing has to be done explicitly from the code for it to be used, which is a problem because there is little control over how it works. In the worst case scenario, you will not get a performance boost.
+&#xA0;
+ <strong>More Information</strong> 
+<a href="http://developer.amd.com/media/gpu_assets/Programming_for_CrossFire.pdf" target="_blank">http://developer.amd.com/media/gpu_assets/Programming_for_CrossFire.pdf</a><br><a href="http://developer.download.nvidia.com/whitepapers/2011/SLI_Best_Practices_2011_Feb.pdf" target="_blank">http://developer.download.nvidia.com/whitepapers/2011/SLI_Best_Practices_2011_Feb.pdf</a>
+<a href="http://answers.unity3d.com/questions/298732/does-unity-support-crossfire-or-sli.html" target="_blank">http://answers.unity3d.com/questions/298732/does-unity-support-crossfire-or-sli.html</a>
+&#xA0;
+      

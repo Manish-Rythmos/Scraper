@@ -1,0 +1,17 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I&apos;m receiving&#xA0;the error below:</p>
+<pre>error CS0236: A field initializer cannot reference the nonstatic <br>field, method, or property `___&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0236&#xA0;</em> error is caused when a non-local variable references a non-static variable. See the example below:</p>
+<p><img src="/hc/en-us/article_attachments/202220213/CS0236_a.png" alt="">&#xA0;</p>
+<p>Instance Variables should not be assigned this way.</p>
+<p>Here&#xA0;is how the error appears in this example:</p>
+<pre>error CS0236: A field initializer cannot reference the nonstatic <br>field, method, or property `ExampleScript.playerObj&apos;<br></pre>
+<p><strong>Resolution</strong> </p>
+<p>The error  <em>CS0236&#xA0;</em> is resolved by assigning the reference in a method such as Start() or Awake(). See below:</p>
+<p><img src="/hc/en-us/article_attachments/202220403/CS0236_c.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/5724t6za(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/5724t6za(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

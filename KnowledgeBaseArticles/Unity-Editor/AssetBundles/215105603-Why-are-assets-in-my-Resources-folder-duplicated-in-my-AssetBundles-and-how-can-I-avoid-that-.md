@@ -1,0 +1,26 @@
+
+        
+
+**Symptoms** 
+
+*   The Assets in my  *Resources * folder are being duplicated in my AssetBundles.
+
+**Cause** 
+
+If an asset in an AssetBundle is referencing an asset that is not tagged into any bundle, this asset will be added to the bundle. This means that if it is also used in a scene, or referenced in another bundle, the asset will be duplicated. This is also true for assets in the Resource folder so if any asset in the *Resources * folder is added to an AssetBundle, it will be duplicated. This behaviour is implemented to prevent corrupted AssetBundles.  
+
+If a bundle references an asset that is not in a bundle, it might be built and the asset could be deleted afterwards. This would break the bundle after it has been built as a reference is now missing.
+
+**Resolution** 
+
+It is important to have a clean separation between the *Resources * folder and AssetBundles. For every other asset it is important that all dependencies are also tagged in an AssetBundle to prevent duplication. It is necessary to be sure that there are no dependencies across AssetBundles and *Resources* .   
+
+An easy way to prevent this is to use [AssetDatabase](https://docs.unity3d.com/ScriptReference/AssetDatabase.html).[GetDependencies](https://docs.unity3d.com/ScriptReference/AssetDatabase.GetDependencies.html)(fullAssetPath) to check all dependencies for every asset that is going to be packed into an AssetBundle. If it is returning an asset stored in Resources folder, then the asset should be removed from that folder or not tagged into any bundle.
+
+**More Information** 
+
+[https://docs.unity3d.com/ScriptReference/AssetBundle.html](https://docs.unity3d.com/ScriptReference/AssetBundle.html)
+
+[https://docs.unity3d.com/Manual/BuildingAssetBundles.html](https://docs.unity3d.com/Manual/BuildingAssetBundles.html)
+
+      

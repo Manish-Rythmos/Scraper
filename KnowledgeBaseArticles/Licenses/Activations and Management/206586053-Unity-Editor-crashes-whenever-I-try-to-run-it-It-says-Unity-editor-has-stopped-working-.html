@@ -1,0 +1,49 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to run Unity on Windows, but it crashes on startup</li>
+<li>I have upgraded to Windows 10. I am using the latest version of the Unity Editor, but I receive an error stating &quot;Unity Editor has stopped working&quot;</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have upgraded your machine to Windows 10 and you have finished installing the latest version of Unity on your machine. Your Editor crashes on startup&#xA0;with a popup window&#xA0;from Windows showing the following error message:</p>
+<p><img src="/hc/en-us/article_attachments/202079533/0243.unity-error-message.PNG" alt=""></p>
+
+<p>If you are using the&#xA0;Unity 5.2 64-bit installation, third party proxy integration can crash Unity at the Project Browser.</p>
+
+<p><strong>Resolution</strong> </p>
+<p>Firstly, please check if you have any of the following third party software installed on your machine:</p>
+<ul>
+<li>Lavasoft Ad-Aware Web Companion</li>
+<li>OpenCandy (Windows computers can come with these pre-installed)</li>
+<li>Qustodio</li>
+<li>Nahimic drivers</li>
+<li>Astrill VPN or similar</li>
+</ul>
+<p>You will need to make sure these software programs&#xA0;are disabled. Then to fix this error:</p>
+<ol>
+<li>Downloaded the latest version of Unity <a href="https://unity3d.com/get-unity/download/archive" target="_blank">here</a>&#xA0;and select to install just the editor in the drop down menu.</li>
+<li>Opening Unity from the command line as described <a href="http://docs.unity3d.com/Manual/CommandLineArguments.html" target="_blank">here</a>.</li>
+</ol>
+<p>If the information above does not solve your issues, please create a crash dump file and send in a bug report.</p>
+<p>To create a crash dump file:</p>
+<p>When Unity crashes and you get &quot;Unity Editor has stopped working&quot; dialog,  <strong>do not </strong> press &quot;Close program&quot;, instead:</p>
+<ul>
+<li>
+<p>Open  <strong>Task Manager</strong> </p>
+</li>
+<li>
+<p>Go to  <strong>Details</strong> </p>
+</li>
+<li>
+<p>Find  <em><strong>Unity.exe</strong> </em> &#xA0;and right click on this file</p>
+</li>
+<li>
+<p>Click&#xA0; <em><strong>Create dump file</strong> </em> .</p>
+</li>
+</ul>
+<p>This will create a dump file. You can then open the Bug Reporter and attach the dump file to the report.</p>
+<p>Please note that creating a dump file might take several seconds, depending on your hard drive speed.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information on submitting a bug report then see this article <a href="/hc/en-us/articles/206336985-How-do-I-submit-a-bug-report-" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      

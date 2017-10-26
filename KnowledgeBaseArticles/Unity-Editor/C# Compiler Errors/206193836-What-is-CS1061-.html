@@ -1,0 +1,19 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When trying to enter play mode, I am receiving&#xA0;the error below:</li>
+</ul>
+<pre>error CS1061: Type `__&apos; does not contain a definition for `__&apos; and no <br>extension method `__&apos; of type `__&apos; could be found (are you missing <br>a using directive or an assembly reference?)</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS1061&#xA0;</em> error is caused&#xA0;when you try to call a method or access a class member that does not exist.</p>
+<p>The example below shows the method  <em>SayGoodbye</em>  being called through  <em>Class1</em> . As we can see  <em>Class1</em>  does not contain a definition for the method  <em>SayGoodbye</em> .</p>
+<p><img src="/hc/en-us/article_attachments/201880536/CS1061_a.png" alt=""></p>
+<p>Errors displayed in this example:</p>
+<pre>error CS1061: Type `Class1&apos; does not contain a definition for <br>`SayGoodbye&apos; and no extension method `SayGoodbye&apos; of type <br>`Class1&apos; could be found (are you missing a using directive <br>or an assembly reference?)</pre>
+<p><strong>Resolution</strong> </p>
+<p>To fix the  <em>CS1061&#xA0;</em> error you will need to ensure that the method or class member does exist and is being&#xA0;accessed&#xA0;from the correct location.</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/201880546/CS1061_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/bb383961.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/bb383961.aspx</a></p>
+<p>&#xA0;</p>
+      

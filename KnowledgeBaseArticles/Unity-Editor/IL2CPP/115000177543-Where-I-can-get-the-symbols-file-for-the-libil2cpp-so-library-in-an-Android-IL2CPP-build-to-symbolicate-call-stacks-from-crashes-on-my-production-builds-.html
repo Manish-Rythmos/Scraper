@@ -1,0 +1,104 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>I want to symbolicate a call stack from a crash that happened on my Android (IL2CPP) production build in libil2cpp.so, but I have been unable to find the symbols for that library.</p>
+<p><strong>Cause</strong> </p>
+<p>The symbols files are created for each build in the ProjectFolder/Temp/ directory and removed when the Editor application is exited, which is why you may not have seen them.<br> <br><strong>Resolution</strong> </p>
+<p>You can get the symbols from the following locations after each build:</p>
+<ul>
+<li><em>ProjectFolder\Temp\StagingArea\libs\x86\libil2cpp.so.debug</em> </li>
+<li><em>ProjectFolder\Temp\StagingArea\libs\armeabi-v7a\libil2cpp.so.debug</em> </li>
+</ul>
+<p>Make sure to not close the Unity Editor before copying the symbols files to a different folder.</p>
+<p>You can also use a post-process build script like the one below:</p>
+<pre class="prettyprint">using UnityEngine;
+using System.Collections;
+using UnityEditor.Callbacks;
+using UnityEditor;
+using System.IO;
+using System;
+
+public class MyBuildPostprocessor  <br>{
+        [PostProcessBuildAttribute()]
+        public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
+        {
+                if (target == BuildTarget.Android)
+    		        PostProcessAndroidBuild(pathToBuiltProject);
+        }
+
+        public static void PostProcessAndroidBuild(string pathToBuiltProject)
+        {
+                UnityEditor.ScriptingImplementation backend = UnityEditor.PlayerSettings.GetScriptingBackend(UnityEditor.BuildTargetGroup.Android) as UnityEditor.ScriptingImplementation;
+
+                if (backend == UnityEditor.ScriptingImplementation.IL2CPP)
+                {
+                        CopyAndroidIL2CPPSymbols(pathToBuiltProject, PlayerSettings.Android.targetDevice);
+                }
+        }
+
+        public static void CopyAndroidIL2CPPSymbols(string pathToBuiltProject, AndroidTargetDevice targetDevice)
+        {
+                string buildName = Path.GetFileNameWithoutExtension(pathToBuiltProject);
+                FileInfo fileInfo = new FileInfo(pathToBuiltProject);
+                string symbolsDir = fileInfo.Directory.Name;
+                symbolsDir = symbolsDir + &quot;/&quot;+buildName+&quot;_IL2CPPSymbols&quot;;
+
+                CreateDir(symbolsDir);
+
+                switch (PlayerSettings.Android.targetDevice)
+                {
+                      case AndroidTargetDevice.FAT:
+                        {
+                            CopyARMSymbols(symbolsDir);
+                            CopyX86Symbols(symbolsDir);
+                            break;
+                        }
+                      case AndroidTargetDevice.ARMv7:
+                        {
+                            CopyARMSymbols(symbolsDir);
+                            break;
+                        }
+                      case AndroidTargetDevice.x86:
+                        {
+                            CopyX86Symbols(symbolsDir);
+                            break;
+                        }
+                      default:
+                      break;
+                }
+        }
+
+
+        const string libpath = &quot;/../Temp/StagingArea/libs/&quot;;
+        Const string libFilename = &quot;libil2cpp.so.debug&quot;;
+        private static void CopyARMSymbols(string symbolsDir)
+        {
+                string sourcefileARM = Application.dataPath + libpath + &quot;armeabi-v7a/&quot; + libFilename;
+                CreateDir(symbolsDir + &quot;/armeabi-v7a/&quot;);
+                File.Copy(sourcefileARM, symbolsDir + &quot;/armeabi-v7a/libil2cpp.so.debug&quot;);
+        }
+
+        private static void CopyX86Symbols(string symbolsDir)
+        {
+                string sourcefileX86 = Application.dataPath + libpath + &quot;x86/libil2cpp.so.debug&quot;;
+                File.Copy(sourcefileX86, symbolsDir + &quot;/x86/libil2cpp.so.debug&quot;);
+        }
+
+        public static void CreateDir(string path)
+        {
+                if (Directory.Exists(path))
+                    return;
+
+                Directory.CreateDirectory(path);
+        }
+}&#xA0;</pre>
+<p><strong>More Information</strong> </p>
+<p>For more information, consult the following documentation:</p>
+<ul>
+<li><a href="https://blogs.unity3d.com/es/2015/05/06/an-introduction-to-ilcpp-internals/">An introduction to IL2CPP internals&#xA0;</a></li>
+<li><a href="https://support.unity3d.com/hc/en-us/articles/210141723-How-can-I-get-symbols-in-Instruments-during-profiling-">How can I get symbols in Instruments during profiling?</a></li>
+<li><a href="https://support.unity3d.com/hc/en-us/articles/208593736-How-can-I-symbolicate-iOS-crash-logs-from-projects-generated-with-Cloud-Build-">How can I symbolicate iOS crash logs from Projects generated with Cloud Build?</a></li>
+<li><a href="https://support.unity3d.com/hc/en-us/articles/208593516-How-to-symbolicate-iOS-tvOS-crashlogs">How to symbolicate iOS and tvOS crash logs</a></li>
+<li><a href="https://support.unity3d.com/hc/en-us/articles/205485376-How-do-you-debug-on-Android-">How do you debug on Android?</a></li>
+<li><a href="https://docs.unity3d.com/Manual/IL2CPP.html">IL2CPP documentation</a></li>
+</ul>
+      

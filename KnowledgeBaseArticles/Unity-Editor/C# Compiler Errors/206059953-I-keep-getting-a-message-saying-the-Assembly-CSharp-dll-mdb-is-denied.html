@@ -1,0 +1,35 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I keep getting a compiler error&#xA0;whenever I use C# in my game.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are creating a game on a Windows machine and you a receiving the following internal compiler error when you try to compile your project:</p>
+<p><em>&quot;Unhandled Exception: System.UnauthorizedAccessException: Access to the path &quot;C:\...\Temp\Assembly-CSharp.dll.mdb&quot; is denied.&quot;</em> </p>
+<p><strong>Resolution</strong> </p>
+<p>This error is caused by one of the following:</p>
+<ul>
+<li>You have an anti-virus software that is blocking the connection.</li>
+<li>You need to have administrative privileges within your network to run the&#xA0; <em>Assembly-CSharp.dll.mdb </em> file in your Temp folder.</li>
+</ul>
+<p>To stop this error from appearing, you will need to ensure your connection is not being blocked by an anti-virus software:</p>
+<ul>
+<li>Close the entire unity application</li>
+<li>Disable any anti-virus that may be blocking your connection.</li>
+<li>Locate the Temp Folder and delete&#xA0;it entirely</li>
+</ul>
+<p>Then you will need to&#xA0;change the admin privileges for the file causing these issues. Go into the folder:</p>
+<p><em>C:\Users\Public\Documents\Unity Projects\New project\Temp\</em> </p>
+<ul>
+<li>When you locate the&#xA0; <em>Assembly-CSharp-firstpass.dll</em> &#xA0;file, right click&#xA0; <strong>Properties</strong> .</li>
+<li>Click on the&#xA0; <strong>Security</strong> &#xA0;tab and then click&#xA0; <strong>Edit</strong> .</li>
+<li>Select your required group or user names and check the&#xA0; <strong>Allow</strong> &#xA0;box for&#xA0; <strong>Full control</strong> .</li>
+<li>Click&#xA0; <strong>Apply</strong> </li>
+</ul>
+<p><strong>More Information</strong> </p>
+<p>If this resolution does not work for you, then you might be experiencing&#xA0;a bug.</p>
+<p>For more information on how to submit a bug report then see this article <a href="/hc/en-us/articles/206336985-How-do-I-submit-a-bug-report-" target="_blank">here</a></p>
+<p>When your bug is submitted, you will receive an automatic confirmation email containing your bug number. Once you get your bug number, you can send it to Support&#xA0;to&#xA0;make sure it gets assigned to the right team quickly.</p>
+<p>You can contact Support <a href="/hc/en-us/requests/new" target="_blank">here</a>.</p>
+<p>&#xA0;</p>
+      

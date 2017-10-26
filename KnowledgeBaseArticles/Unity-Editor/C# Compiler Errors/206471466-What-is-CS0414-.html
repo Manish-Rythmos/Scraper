@@ -1,0 +1,17 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>The following warning is appearing in the console:</p>
+<pre>warning CS0414: The private field `___&apos; is assigned but its value is never used</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0414&#xA0;</em> warning appears&#xA0;when a variable with the <code>private</code> access modifier is assigned with a value, but the value is not used in any of the scripts in the project.&#xA0;</p>
+<p><em>Note: A variable with no access modifier defined is defaulted to private.</em> </p>
+<p><img src="/hc/en-us/article_attachments/202214253/CS0414_a.png" alt=""></p>
+<p>Here&#xA0;is how the warning&#xA0;appears in this example:</p>
+<pre>warning CS0414: The private field `ExampleScript.rigidbodyPlayer&apos; is <br>assigned but its value is never used</pre>
+<p><strong>Resolution</strong> </p>
+<p>The error  <em>CS0414&#xA0;</em> is resolved by&#xA0;using the variable with the <code>private</code> access modifier&#xA0;in the script, or by deleting it entirely.</p>
+<p><img src="/hc/en-us/article_attachments/202061256/CS0414_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/z62k595w(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/z62k595w(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

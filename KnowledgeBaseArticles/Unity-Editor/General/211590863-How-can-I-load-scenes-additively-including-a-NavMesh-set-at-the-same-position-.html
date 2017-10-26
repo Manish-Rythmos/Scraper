@@ -1,0 +1,24 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>
+<p>I have&#xA0;multiple levels that I would like to cache to reduce loading screen time. Each level has its own NavMesh. The geometry for the levels is anchored in the same location in x,y,z space.</p>
+</li>
+</ul>
+
+ <strong>Cause</strong> 
+Loading scenes&#xA0;additively&#xA0;using&#xA0; <strong><code>SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive)&#xA0;</code></strong> seems&#xA0;to also load the  <em>NavMesh</em>  from each one of them, resulting in overlapped  <em>NavMesh</em>  geometry.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+At the current moment, there is no way to disable&#xA0;the mesh once the scene has been loaded. The data linked to the mesh is actually loaded as part of the scene data and not linked to any specific  <em>prefab</em>  or  <em>GameObject</em>  within the scene.
+
+<p>The best option is to continue to have two scenes and use&#xA0;the multi-scene-editing functionality. Here you can&#xA0;offset the  <em>GameObject</em>  prior to building the  <em>NavMeshData</em> . This way, when you load the object, it is already offset&#xA0;and&#xA0;then you use the offlinks to connect the two together when doing the transition.&#xA0; </p>
+
+ <strong>More Information</strong> 
+
+<p><a href="http://docs.unity3d.com/Manual/MultiSceneEditing.html" rel="noreferrer">http://docs.unity3d.com/Manual/MultiSceneEditing.html</a></p>
+
+&#xA0;
+      

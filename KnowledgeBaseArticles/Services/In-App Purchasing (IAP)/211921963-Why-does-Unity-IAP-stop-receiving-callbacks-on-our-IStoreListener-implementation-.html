@@ -1,0 +1,11 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Unity IAP stops receiving callbacks on our IStoreListener implementation</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Unity IAP&#x2019;s StandardPurchasingModule relies upon a persistent GameObject named &#x201C;IAPUtil&#x201D;. This hidden, &#x201C;DontDestroyOnLoad&#x201D;-configured object can be destroyed by a game script which cleans GameObjects from the scene hierarchy (potentially useful for scene transitions). This results in Unity IAP no longer working as expected.&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>To fix, add an exception in the app&#x2019;s hierarchy cleanup script for the &#x201C;IAPUtil&#x201D; GameObject.</p>
+<p><strong>More Information</strong> </p>
+      

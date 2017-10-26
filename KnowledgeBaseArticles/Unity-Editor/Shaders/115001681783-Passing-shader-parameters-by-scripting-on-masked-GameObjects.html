@@ -1,0 +1,87 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>The shader behaves as expected in most cases, but when used with a  <strong>masked UI component</strong> , the values from  <strong>SetColorArray/SetColor/Set*</strong>  are not being passed through to the shader.</li>
+</ul>
+<ul>
+<li>The shader seems to be ignoring my custom parameters sent by scripting when  <strong>Masked</strong> .</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Masks use a method called  <strong>GetModifiedMaterial</strong>  to calculate which pixels are masked using the Stencil buffer. It ignores all custom parameters sent by your scripts as it applies the custom shader by scripting using defaults. &#xA0;When you set the parameters using the setter functions (as  <strong>SetColorArray</strong> ) they will be set momentarily. Before rendering pixels on the screen however, the Mask component will call the method  <strong>GetModifiedMaterial</strong>  on each masked object and will use the default settings in your material. It will ignore your custom settings.</p>
+<p><strong>Resolution</strong> </p>
+<p>To solve this problem, you have to extend the Image class ( <strong>UI.Image </strong> or  <strong>UI.RawImage</strong> ) and override the method  <strong>GetModifiedMaterial</strong> . &#xA0;By doing this you can apply the mask first, to view which pixels are visible, and then send the custom values to the shader. &#xA0;For example, to create a menu button with highlight effect (which has our custom shader) masked by a frame, follow these steps</p>
+<ol>
+<li>Create a frame (Canvas) and put your buttons inside.</li>
+<li>Create a shader which accepts custom parameters as the Highlight color</li>
+</ol>
+<p>Shader &quot;Test/CustomShader&quot;</p>
+<p>{</p>
+<p> &#xA0;&#xA0;&#xA0;Properties</p>
+<p> &#xA0;&#xA0;&#xA0;{</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;_Color (&quot;Color&quot;, Color) = (1,1,1,1)</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;_MainTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}</p>
+<p> &#xA0;&#xA0;&#xA0;}</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;SubShader</p>
+<p> &#xA0;&#xA0;&#xA0;{</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Tags { &quot;RenderType&quot;=&quot;Opaque&quot; }</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;LOD 150</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;CGPROGRAM</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;#pragma surface surf Lambert</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;sampler2D _MainTex;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;fixed4 _Color;</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;struct Input</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;float2 uv_MainTex;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;};</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;void surf (Input IN, inout SurfaceOutput o)</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;half4 tmpTexColor = tex2D (_MainTex, IN.uv_MainTex);</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// Albedo comes from a texture tinted by color</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;half4 color = tmpTexColor * _Color;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;o.Albedo = color.rgb;</p>
+<p> &#xA0;&#xA0;&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;o.Alpha = color.a;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;ENDCG</p>
+<p> &#xA0;&#xA0;&#xA0;}</p>
+<p> &#xA0;&#xA0;&#xA0;FallBack &quot;Mobile/Diffuse&quot;</p>
+<p>}</p>
+<ol>
+<li>Create a new Material called &#x201C;CustomMaterial&#x201D; which uses the Shader created above. </li>
+<li>Attach the Material to the Button component.  <strong>bMaterial </strong> will load our shader later in our script.</li>
+<li>Attach a Mask component to the frame container.</li>
+<li>Create a script ( <strong>CustomRawImage.cs)</strong>  with the following code:</li>
+</ol>
+<p>using UnityEngine;</p>
+<p>using System.Collections;</p>
+<p>using UnityEngine.UI;</p>
+<p>public class CustomRawImage : RawImage</p>
+<p>{</p>
+<p> &#xA0;&#xA0;&#xA0;public override Material GetModifiedMaterial(Material bMaterial)</p>
+<p> &#xA0;&#xA0;&#xA0;{</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <em>// Apply the mask.</em> </p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Material tmp = base.GetModifiedMaterial (bMaterial);</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <em>// Pass your custom shader parameters.</em> </p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;tmp.SetColor(&quot;_CustomColor&quot;,<a href="https://docs.unity3d.com/ScriptReference/Color-red.html"> Color.red</a>);</p>
+<p>&#xA0;</p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <em>// return the material with Mask + Customs applied.</em> </p>
+<p> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return tmp;</p>
+<p> &#xA0;&#xA0;&#xA0;}</p>
+<p>}<br><br></p>
+<ol>
+<li> Replace the  <strong>Image/RawImage</strong>  component on all your buttons with this  <strong>CustomRawimage</strong>  script component.</li>
+</ol>
+<p>The property <strong>bMaterial</strong>  is the material attached to each button. As it is your highlight shader effect, you can replace It by another different material if needed.</p>
+<p><strong>More Information</strong> </p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html">https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Material.html">https://docs.unity3d.com/ScriptReference/Material.html</a></li>
+</ul>
+      

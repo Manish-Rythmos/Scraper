@@ -1,0 +1,24 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am only seeing Unity test ads and not any live ads in my game, which is live. Why is this?</li>
+<li>Why am I still seeing tests ads even with test mode off?</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Your game may still have test mode enabled, which only shows Unity test ads.</p>
+<p><strong>Resolution</strong> </p>
+<p>Test mode can be disabled from the Unity Ads dashboard by doing the following:</p>
+<ol>
+<li>Log in to the&#xA0;<a href="https://dashboard.unityads.unity3d.com/" target="_blank">Unity Ads dashboard</a>.</li>
+<li>Select your project from the list of projects.</li>
+<li>Select the platform (Google Play Store or Apple App Store).</li>
+<li>Select the&#xA0; <strong>Settings</strong>  tab.</li>
+<li>Select the toggle switch to turn on&#xA0; <strong>override client test mode</strong> .</li>
+<li>Select the  <strong>Force test mode OFF for all devices</strong>  option.</li>
+<li>Select  <strong>Save</strong>  to save your changes.</li>
+</ol>
+<p><img src="/hc/en-us/article_attachments/115000600523/testmode.png" alt=""></p>
+<p>After making these changes, test mode will be disabled from the game. Restart the game for the changes to take effect. When the app restarts, it will initialize Unity Ads with a new ad request and will pull live ads instead of test ads.</p>
+<p><strong>More Information</strong> </p>
+<p>If you are initializing ads with code, remember that the second parameter in the initialize method is  <strong>testMode</strong> . Setting this to true means&#xA0;test mode is on. For more information, see documentation on <a href="https://docs.unity3d.com/ScriptReference/Advertisements.Advertisement.Initialize.html">Advertisement.Initialize</a>.</p>
+      

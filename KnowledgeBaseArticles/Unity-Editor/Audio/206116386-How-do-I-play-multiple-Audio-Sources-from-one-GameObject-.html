@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>&#xA0;I have lots of AudioClips that I want to play from one audio source.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have a GameObject in your game that you want to play a variety of sounds on simultaneously. You are able to attach empty GameObjects to the main GameObjects and set each one as an Audio Source to play the sounds, but you want to know if there is an easier way to achieve this without creating multiple child GameObjects.</p>
+<p><strong>Resolution</strong> </p>
+<p>You can attach several Audio Sources to the same GameObject in the Inspector, and get them to play at the same time by calling  <strong><em>PlayOneShot();</em> </strong>  in a script.</p>
+<p>You need the Audio Source attached to your main GameObject and then attach a script to the Audio Source. You can call the script to play multiple AudioClips in the following way:</p>
+<p><strong><img src="/hc/en-us/article_attachments/201975723/script.png" alt=""></strong> </p>
+<p>When you have created this script you will be able to drag your required AudioClips into the relevant script components.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information on calling  <em><strong>AudioSource.PlayOneShot();&#xA0;</strong> </em> then see this document <a href="http://docs.unity3d.com/ScriptReference/AudioSource.PlayOneShot.html" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      

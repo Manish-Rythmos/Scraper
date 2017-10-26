@@ -1,0 +1,19 @@
+
+        
+<p><strong>Symptoms</strong> </p>
+<ul>
+<li>You are calling a method in your script and you receive the following error:</li>
+</ul>
+<pre>error CS1502: The best overloaded method match for `______________&apos; has <br>some invalid arguments.</pre>
+<p><strong>Cause</strong> </p>
+<p>This error occurs when the argument types being passed to a&#xA0;method do not match the parameter types of that method. If the called method is overloaded, then none of the overloaded versions has a signature that matches the argument types being passed.</p>
+<p><img src="/hc/en-us/article_attachments/201953203/BadArguments.png" alt=""></p>
+<p>Error presented in this example:</p>
+<pre>error CS1502: The best overloaded method match for `MyScript.MethodA(int, int)&apos; has some invalid arguments.</pre>
+<p><strong>Resolution</strong> </p>
+<p>Check the types of the arguments that are being passed to the method&#xA0;and make sure that they match the arguments of the method being called.</p>
+<p><img src="/hc/en-us/article_attachments/201796366/CS1502_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/b66k5sz9.aspx">https://msdn.microsoft.com/en-us/library/b66k5sz9.aspx</a></p>
+
+      

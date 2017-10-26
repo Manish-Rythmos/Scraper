@@ -1,0 +1,22 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am receiving an error in my console stating that I have 2 Audio Listeners in the scene</li>
+<li>I want to know how to disable Audio Listeners</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are creating a scene in Unity. You have the following components included in your scene:</p>
+<ul>
+<li>Main Camera</li>
+<li>First Person Controller</li>
+</ul>
+<p>When you test your game in  <em>Playmode</em>  you receive the following error in your console window in the bottom left of the Editor:</p>
+<p><strong><img src="/hc/en-us/article_attachments/201817456/2.png" alt="" width="568" height="57"></strong> </p>
+<p><strong>Resolution</strong> </p>
+<p><strong>Audio Listeners</strong>  are the ears of your player and is a component found on each Camera featured in the scene. This means you have more than one component in your scene which is responsible for receiving sounds played within the scene.</p>
+<p>Your  <strong>Main Camera</strong>  will have an  <strong>Audio Listener</strong>  activated by default however, your  <strong>First Person Controller</strong>  will include two children;  <strong>Graphics</strong>  and  <strong>Camera</strong> . This  <strong>Camera</strong>  also contains its own  <strong>Audio Listener</strong> . You will need to make sure only one  <strong>Audio Listener</strong>  component is active at a time. You can disable the  <strong>Audio Listener</strong>  by unchecking the tick box in the Inspector:</p>
+<p><img src="/hc/en-us/article_attachments/201975373/3.png" alt="" width="564" height="179"></p>
+<p>You can disable the Audio Listener on either of your  <strong>Camera&#x2019;s</strong>  at any point in development as long as only one  <strong>Audio Listener</strong>  is active at the time.</p>
+<p><strong>More Information</strong> </p>
+<p>&#xA0;</p>
+      

@@ -1,0 +1,70 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Profiling a Unity app in the XCode profiler Instruments does not show symbols.&#xA0;</li>
+<li>I have built the app with dSYM enabled, but it does not show the symbols correctly.</li>
+<li>I already run Instruments with symbols, but suddenly the symbols vanished.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Starting Instruments, or restarting a session, does not show symbols for user code although the solution is built with dSYM.&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>Symbols are useful to identify the function responsible for allocations or crashes. You need to build your app with symbols (stored in dSYM file) to show function names instead of cryptic memory addresses during profiling.&#xA0;This will guide you through building a Unity project and profiling it via Xcode/Instruments. This is useful if you want to profile time spent in various methods, or if you want to see some allocations that Unity profiler might fail to catch for some reason.</p>
+<ol>
+<li><code>Unity:</code>  <strong>Build</strong>  iOS Development Build from Unity (Shift + Command + B)</li>
+<li><code>Xcode:</code>  <strong>Stop</strong>  Running App if applicable (Command + .)</li>
+<li><code>Xcode:</code>  <strong>Clean</strong>  Product (Shift + Command + K)</li>
+<li><code>Xcode:</code>  <strong>Build</strong>  Product (Command + B)</li>
+<li><code>Xcode:</code> Open Log Navigator (Command + 7) to find your projects  <strong><code>.app.dSYM</code></strong> path.*<br>
+<ol>
+<li><code>Log:</code> Find entry for  <strong>Generating&#xA0;<code>ProductName.app.dSYM</code></strong> .</li>
+<li><code>Log:</code> Click the icon on right side of entry for more info.</li>
+<li><code>Log:</code> Memorise the  <strong><code>.app.dSYM</code></strong> path.<br>
+<ol>
+<li><code>Path:</code> Will be similar to <code>/Users/YourUserName/Library/Developer/Xcode/DerivedData/Unity-iPhone-bqqxaseotmttydgblyqetnfdzqtg/Build/Products/&lt;mode&gt;-iOS/YourProjectName.app.dSYM<br></code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><code>Xcode:</code>Open Profiler (Command + I) of choice.<br>
+<ol>
+<li><code>Example:</code> Choose  <strong>Allocations</strong> .</li>
+<li><code>Example:</code> Stop Trace (Command + R) after some time.</li>
+</ol>
+</li>
+<li><code>Profiler:</code> Re-Symbolicate Document to get Symbols  <em>if needed</em> .<br>
+<ol>
+<li><code>dSYM:</code> In the top menu, go to  <strong>File/Re-Symbolicate Document...</strong> </li>
+<li><code>dSYM:</code> Enter your Binary name in  <strong>Search box</strong> .<br>
+<ol>
+<li><code>Note:</code> This is your Unity project name.</li>
+</ol>
+</li>
+<li><code>dSYM:</code> Locate  <strong><code>.app.dSYM</code></strong>  for your  <strong>Binary</strong> .<br>
+<ol>
+<li><code>Locate:</code> Select your Binary and press  <strong>Locate</strong> </li>
+<li><code>Locate:</code> Browse to your <code><strong>.app.dSYM</strong> </code> and press  <strong>Open</strong> .</li>
+<li><code>Locate:</code> If you get error here about  <strong>UUID</strong> , do a clean/rebuild.</li>
+</ol>
+</li>
+<li><code>dSYM:</code> Press  <strong>Symbolicate</strong> .</li>
+</ol>
+</li>
+<li><code>Profiler:&#xA0;</code>Your profiler should now have useful information and correct symbols.</li>
+</ol>
+*alternatively you can use the Project Explorer to find the dSYM file by clicking onto the Derived Data arrow and go to  <em>Products/&lt;Mode&gt;-iphoneos/</em> .
+&#xA0;
+<img src="/hc/en-us/article_attachments/203797543/Screen_Shot_2016-04-22_at_12.00.57.png" alt="">
+&#xA0;
+If you want to symbolicate crash logs you can read about it <a href="/hc/en-us/articles/208593516">here</a>.
+&#xA0;
+ <strong>More Information</strong> 
+
+<ul>
+<li>Read more about&#xA0;Instruments <a href="https://developer.apple.com/library/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/">here</a>.</li>
+<li>Read more about dSYM <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/LocatingSymbolsforYourData.html">here</a>.</li>
+<li>Read more about symbolising iOS crash logs&#xA0;<a href="/hc/en-us/articles/208593516">here</a>.&#xA0;</li>
+<li>Read more about profiling <a href="http://blogs.unity3d.com/2016/02/01/profiling-with-instruments/">here</a>.&#xA0;</li>
+</ul>
+
+<p>This article applies to Unity versions 4.6.0f1 and higher, Xcode 6 and higher, iOS 6.0 and&#xA0;higher</p>
+      

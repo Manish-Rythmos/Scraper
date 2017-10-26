@@ -1,0 +1,31 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>I have a sprite in the centre of my screen</li>
+<li>The sprite is in world space, but sometimes it is&#xA0;obscured.</li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+Occasionally, the sprite will collide with objects that it gets too close to and will be&#xA0;obscured.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+There are different options for rendering a sprite in front of everything else in your scene.
+
+<ul>
+<li>Firstly, you can use two cameras: one for UI and another one for the &quot;normal&quot; scene.</li>
+<li>Furthermore, you could use a shader that has a ZTest of &apos;always&apos; (<a href="http://docs.unity3d.com/Manual/SL-CullAndDepth.html" target="_blank">SL-CullAndDepth</a>). Download the <a href="http://unity3d.com/get-unity/update">unity shader source</a> and add that ZTest statement to the sprite shader.</li>
+<li>Another option is to put your UI on a canvas that is set to <a href="http://docs.unity3d.com/Manual/UICanvas.html" target="_blank">screen space - camera</a>&#xA0;and then set the sorting layer to UI.</li>
+<li>Finally, you can overwrite the <a href="http://docs.unity3d.com/ScriptReference/Material-renderQueue.html" target="_blank">render queue</a> on your material.&#xA0;The value for <a href="http://docs.unity3d.com/Manual/SL-SubShaderTags.html" target="_blank">Overlay is 4000</a></li>
+</ul>
+
+&#xA0;
+ <strong>More Information</strong> 
+&#xA0;
+<a href="http://docs.unity3d.com/Manual/SL-SubShaderTags.html" target="_blank">SL-SubShaderTags</a>
+<a href="http://docs.unity3d.com/ScriptReference/Material-renderQueue.html" target="_blank">Material-renderQueue</a>
+<a href="http://docs.unity3d.com/ScriptReference/Canvas.html" target="_blank">Canvas</a>
+<a href="http://docs.unity3d.com/Manual/UICanvas.html" target="_blank">UICanvas</a>
+      

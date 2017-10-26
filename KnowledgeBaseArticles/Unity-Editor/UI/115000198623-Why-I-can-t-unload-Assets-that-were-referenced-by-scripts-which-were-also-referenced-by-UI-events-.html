@@ -1,0 +1,44 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>I am destroying a GameObject and calling  <strong>Resources.UnloadUnusedAssets()</strong>  to unload Assets but I can see that the Assets remain in memory.</p>
+<p><strong>Cause</strong> </p>
+<p>UI events hold strong references to objects. This means they will prevent the object they reference from being garbage collected.</p>
+<p>For example, if you have a GameObject with the following script (which holds a reference to a Texture):</p>
+<pre class="prettyprint">using UnityEngine;
+
+public class MyScript : MonoBehaviour {
+
+     public Texture2D texture;
+
+     public void Foo()
+     {
+
+     }
+}
+</pre>
+<p>And you have a button that uses an on-click event to trigger a function in  <strong>MyScript</strong>  (as shown below), you must then destroy the GameObject using <a href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html"><strong>GameObject.Destroy(gameObject)</strong> </a> and call  <strong><a href="https://docs.unity3d.com/ScriptReference/Resources.html">Resources</a>.<a href="https://docs.unity3d.com/ScriptReference/Resources.UnloadUnusedAssets.html">UnloadUnusedAssets</a></strong> .</p>
+<p><img src="/hc/en-us/article_attachments/115000721243/Screenshot.png" alt=""></p>
+<p>If you check the Memory Profiler you will see that, after calling  <strong>Resources.UnloadUnusedAssets</strong> , the Texture remains in memory. This is because the UI event holds a reference to the script and prevents the Texture from being released.</p>
+<p><strong>Resolution</strong> </p>
+<p>A simple solution to this problem is to set the reference to  <strong>null</strong>  in a DestroySelf function that can be called to destroy the GameObject as shown below:</p>
+<pre class="prettyprint">   void DestroySelf()
+   {
+        texture = null;  // remove the reference
+        GameObject.Destroy(gameObject);
+   }
+</pre>
+<p>Then, after calling  <strong>Resources.UnloadUnusedAssets</strong> , the Texture should be released.</p>
+<p><strong>More Information</strong> </p>
+<p>You may find the following documentation helpful:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Resources.UnloadUnusedAssets.html">Documentation on Resources.UnloadUnusedAssets</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Resources.UnloadAsset.html">Documentation on Resources.UnloadAsset</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/EventSystems.EventTrigger.html">Documentation on EventTrigger</a></li>
+<li><a href="https://docs.unity3d.com/Manual/EventSystem.html">Documentation on Event System</a></li>
+</ul>
+<p>Additionally, you may also find the below tutorials useful:</p>
+<ul>
+<li><a href="https://unity3d.com/learn/tutorials/topics/user-interface-ui/ui-button?playlist=17111">Tutorial on UI buttons</a></li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/user-interface-ui/ui-events-and-event-triggers">Tutorial on UI events and event triggers</a></li>
+</ul>
+      

@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS1656: Cannot assign to `___&apos; because it is a `___&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS1656 error&#xA0;is caused when an&#xA0;invalid assignment occurs. In the example below, we show the error being caused when trying to assign a integer value to a method group. This error is also caused by assigning a value to a&#xA0;foreach iteration variable.</p>
+<p><img src="/hc/en-us/article_attachments/202382823/CS1656_a.png" alt=""></p>
+<p>Errors displayed in this example:</p>
+<pre>error CS1656: Cannot assign to `MyMethod&apos; because it is a `method group&apos;</pre>
+<p><strong>Resolution</strong> </p>
+<p>To fix the CS1656 error you will need to use the assignment in the correct fashion.&#xA0;In this example case we can presume that we are trying to pass the &quot;MyMethod&quot; function the value of 7. This has been corrected in the script below.</p>
+<p><img src="/hc/en-us/article_attachments/202382833/CS1656_b.png" alt="">&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/369xac69.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/369xac69.aspx</a></p>
+<p>&#xA0;</p>
+      

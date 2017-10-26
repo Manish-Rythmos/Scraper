@@ -1,0 +1,22 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am&#xA0;getting build errors when building my iOS project in Unity Cloud Build appearing in the Xcode project.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are&#xA0;building a iOS project&#xA0;on Unity Cloud Build and the project&#xA0;uses a 3rd Party Plugin.</p>
+<p><strong>Resolution</strong> </p>
+<p>Build errors can occur if the post process is not finding the Xcode project and cannot add the appropriate libraries. That path should be passed to OnPostProcessBuild, but your plugin&#xA0;probably does not use this path in their post build process. You need to do this manually with the XCode API.</p>
+<p>Some 3rd party plugins, or your own code, require a way to modify the XCode project to add libraries or files, which can be done using <a href="http://docs.unity3d.com/ScriptReference/Callbacks.PostProcessBuildAttribute.html" rel="noreferrer">post process attributes</a> and the <a href="https://bitbucket.org/Unity-Technologies/xcodeapi/downloads" rel="noreferrer">XCode manipulation API</a>.</p>
+<p>You can read more about the XCode manipulation API <a href="https://bitbucket.org/Unity-Technologies/xcodeapi/downloads" rel="noreferrer">here</a>. You can also see how to add frameworks there.</p>
+<p>There are several Forum posts available, which can help to solve different issues related to iOS projects.</p>
+<ul>
+<li>Add <a href="http://forum.unity3d.com/threads/unity-xcode-api.281305/#post-2204369" rel="noreferrer">frameworks via post process scripts</a> to the XCode project.</li>
+<li>Add items to <a href="http://forum.unity3d.com/threads/ho...targets-info-plist-using-the-xcodeapi.330574/" rel="noreferrer">info.plist via post process scripts</a> to the XCode project.</li>
+<li>Add <a href="http://forum.unity3d.com/threads/ios-build-errors-from-missing-libraries.318494/#post-2066679" rel="noreferrer">other linker flags for missing libraries</a> in 3rd party tools</li>
+<li>Activate <a href="http://forum.unity3d.com/threads/icloud-with-cloud-build.303844/#post-2030466" rel="noreferrer">iCloud settings</a></li>
+<li>Add <a href="http://forum.unity3d.com/threads/solved-ios-build-failed-pushwoosh-dependency.293192/" rel="noreferrer">security Frameworks</a></li>
+<li>XCode <a href="http://forum.unity3d.com/threads/xcode-frameworks.284621/" rel="noreferrer">Frameworks</a></li>
+</ul>
+<p>&#xA0;</p>
+      

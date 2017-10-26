@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I can hear a lot of distortion when I play my audio clips in Unity.</li>
+<li>I want to configure my audio settings to control audio clipping and distortion on my audio clips.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have an issue with audio clipping in your master mix when playing my audio clips in Unity which makes your audio distort.</p>
+<p>You would like to be able to control audio clipping and distortion using a limiter and would like to find out if Unity has a feature included to configure your audio settings in real time.</p>
+<p><strong>Resolution</strong> </p>
+<p>Unity does not have a built-in compressor, which means any waveforms that add up to over 1 will distort. (This will invariably happen if you are importing high-quality and/or loud clips.)</p>
+<p>You can use the Audio Manager in Unity&#x2019;s Editor to tweak the maximum Volume of all sounds played in the scene. </p>
+<p>To open the Audio Manager:</p>
+<ul>
+<li>Click  <em>&#x201C;Edit&#x201D;</em> </li>
+<li>Select  <em>&#x201C;Project Settings&#x201D;</em> </li>
+<li>Select  <em>&#x201C;Audio&#x201D;</em> </li>
+</ul>
+<p>You can apply these configurations individually to each clip  <strong>before</strong>  mixdown, if you decrease the volume enough, you will be able to get rid of distortion.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information on the configuration settings in the Audio Manager then see this document <a href="http://docs.unity3d.com/Manual/class-AudioManager.html" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      
