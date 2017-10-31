@@ -1,0 +1,14 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>The root canvas in my Scene has an Aspect Ratio Fitter added onto it, which is causing my Scene to be marked as dirty.</li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/209265946/Screen_Shot_2016-10-20_at_12.40.55_copy.jpg" alt="" width="327" height="500"></p>
+<p class="wysiwyg-text-align-left"><strong>Cause</strong> </p>
+<p class="wysiwyg-text-align-left">The Scene becomes dirty because of&#xA0;the canvas wanting to set the size of its  <strong>RectTransform</strong> . Due to the Aspect Ratio Fitter also changing the size during the initialization, the Scene becomes dirty and leads to an unsaved change.&#xA0;</p>
+<p class="wysiwyg-text-align-left"><strong>Resolution</strong> </p>
+<p class="wysiwyg-text-align-left">You can still use the Aspect Ratio Fitter but need to place a new, empty GameObject below the canvas group. Moving the Aspect Ratio Fitter from the root canvas group to the new, empty GameObject will stop the Scene from being&#xA0;marked as dirty.</p>
+<p class="wysiwyg-text-align-center"><img src="/hc/en-us/article_attachments/209235163/Screen_Shot_2016-10-20_at_14.34.32.png" alt="" width="645" height="308">&#xA0;</p>
+<p class="wysiwyg-text-align-left"><strong>More Information</strong> </p>
+<p class="wysiwyg-text-align-left">For more information, consult the Unity&#xA0;<a href="https://docs.unity3d.com/Manual/script-AspectRatioFitter.html">Aspect Ratio Fitter documentation</a>.&#xA0;</p>
+      

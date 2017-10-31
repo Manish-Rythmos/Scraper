@@ -1,0 +1,24 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My build in Cloud Build is much darker than a&#xA0;local build.</li>
+<li>3D assets are dark when using Cloud Build to build the game.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Unity Cloud Build does not currently support building light maps. There are a couple of possible causes which might explain what is going wrong:</p>
+<ul>
+<li>You are using  <strong>Precomputed Realtime GI</strong>  for your scene and the  <strong>Auto Build</strong>  for lightmaps is&#xA0;enabled.&#xA0;</li>
+<li>Your build&#xA0;results are not checked into your repository.&#xA0;</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>Make sure that you have turned off  <strong>Auto Build</strong> &#xA0;in your scenes (it is a per-scene setting), and manually build&#xA0;(and commit) your light maps. Depending on what your scene includes, you will need to commit the following files:</p>
+<ul>
+<li>LightingData.asset</li>
+<li>LightmapSnapshot.asset</li>
+<li>Lightmap-xxx.exr</li>
+<li>Lightprobe-xxx.exr</li>
+</ul>
+<p class="p1">The files are stored in a subfolder named after the scene in the same folder as your scene. For more information about lightmaps please read <a href="http://docs.unity3d.com/430/Documentation/Manual/Lightmapping.html">here</a>.&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p>For more information&#xA0;about lighting please read <a href="https://unity3d.com/learn/tutorials/modules/beginner/graphics/lighting-and-rendering">here</a>.&#xA0;<br>Discuss the issue&#xA0;in the Forums <a href="http://forum.unity3d.com/threads/cloud-build-scene-is-much-darker-than-unity-build.359490/">here</a>.&#xA0;</p>
+      

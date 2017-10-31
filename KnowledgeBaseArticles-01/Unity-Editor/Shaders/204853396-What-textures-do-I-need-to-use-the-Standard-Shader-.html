@@ -1,0 +1,22 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>There are many empty slots in my new material using the Standard Shader</li>
+<li>Materials appear not to be benefiting from the visual fidelity possible with Physically Based Shader rendering (PBS) e.g. materials look flat, lacking in contrast or reflectivity&#xA0;properties.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>It may be that the textures you have used do not have physically based colour values to match and key in with the PBS system applied by the standard shader.</p>
+<p><strong>Resolution</strong> </p>
+<p>Please try to generate or derive your textures from colour values that match real world values. These can be either hand painted in a paint package, pasted from photographs and worked into to remove light information, adjusting values, or rendered out from a high res model in your 3D package. You can look up these values from the following <a href="http://docs.unity3d.com/Manual/StandardShaderMaterialCharts.html" target="_blank">charts</a>.</p>
+<p>You can also try using further textures with values from the charts to apply surface parameters such as:</p>
+<ul>
+<ul>
+<li>Normal Maps</li>
+<li>Specular or Metallic</li>
+<li>Smoothness&#xA0;</li>
+</ul>
+</ul>
+<p><strong>More Information</strong> </p>
+<p>This article applies to Unity versions 5.0+</p>
+<p>More information about the Standard Shader and PBS systems can be found in <a href="http://blogs.unity3d.com/2015/02/18/working-with-physically-based-shading-a-practical-approach/">this blogpost</a>.&#xA0;</p>
+      

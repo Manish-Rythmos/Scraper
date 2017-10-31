@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I don&apos;t understand what &quot;ad request&quot; and &quot;ad start&quot; mean. Are the ads not being served to users?</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You would like to better understand the terms &quot;ad request&quot; and &quot;ad start&quot; and the relation between them.</p>
+<p>If the ratio between the two is low, this may indicate that the SDK is being initialized more often than users are playing Unity Ads in your game.</p>
+<p><strong>Resolution</strong> </p>
+<p>An&#xA0; <strong>ad request</strong>  is counted when the SDK initializes using your game ID. The SDK&#xA0;requests a campaign from our servers.</p>
+<p>An  <strong>ad start</strong>  is counted every time a video begins playing on a device.&#xA0;</p>
+<p>The SDK may be initialized more often than users are playing Unity Ads in your game for the following reasons:</p>
+<ul>
+<li>The integration is such that most players do not have the&#xA0;opportunity to watch videos.</li>
+<li>The integration is such that players are not strongly incentivized to watch videos.</li>
+<li>The game uses a mediation service that initializes Unity Ads, but rarely calls our videos.</li>
+</ul>
+      

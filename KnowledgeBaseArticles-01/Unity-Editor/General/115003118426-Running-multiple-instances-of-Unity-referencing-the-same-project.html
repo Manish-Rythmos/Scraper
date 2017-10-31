@@ -1,0 +1,42 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When more than one instance of Unity references the same project folder, all the other instances of Unity (apart from the initial one) will show an Error!&#xA0;message saying &quot;Multiple Unity instances cannot open the same project.&quot;&#xA0;</li>
+</ul>
+<p class="wysiwyg-text-align-center"><img src="/hc/article_attachments/115010317666/Error.png" alt="Error.png"></p>
+<ul>
+<li class="wysiwyg-text-align-left">There are instances where having multiple instances of Unity running the same project is useful. One of these is when testing multiplayer games, where running a version of the project as the host and one as the client allows in-Editor&#xA0;debugging for both host and client.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>This is caused by Unity trying to protect the project from going out of sync. For example, multiple changes to the same object causes conflicts within the project&apos;s references.</p>
+<p><strong>Resolution</strong> </p>
+<p class="wysiwyg-text-align-center"><em><strong>THIS IS NOT SUPPORTED, USE AT YOUR OWN RISK</strong> </em> </p>
+<p>If you are happy to prevent this from happening, you can create a workaround by creating a symbolic link between the project&apos;s Assets and project settings folders of the project.</p>
+<p class="wysiwyg-text-align-center"><img src="/hc/article_attachments/115010321686/folders.png" alt="folders.png"></p>
+<p>This allows you to keep all instances of the Editor in sync when making edits to the initial&#xA0;instance of Unity, but it is recommended that edits in the other instances are not made.</p>
+<table>
+<tbody>
+<tr>
+<td>
+- cd &lt;duplicated_project_folder&gt;
+-&#xA0;mklink /D Assets &lt;original_project_folder&gt;\Assets
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the example project I had, I created a symbolic link to the Assets folder in my new project using this link in Command Prompt</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p>mklink /D &quot;x:\Personal Projects\Tanking_Dub02\Assets&quot; &quot;x:\Personal Projects\Tanking\Assets&quot;</p>
+<p>A translation of this would be:</p>
+<p>mklink&#xA0;/D &lt;location of the&#xA0;symbolic link in your duplicate project&gt; &lt;Orginal file&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>More Information</strong> </p>
+<p><a href="https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/">https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/</a></p>
+<p>&#xA0;</p>
+      

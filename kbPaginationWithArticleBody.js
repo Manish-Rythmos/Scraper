@@ -266,6 +266,9 @@ function parseArticle(url, subcategoryTitle, categoryTitle) {
             // Replace '<em>&#xA0;</em>' with blank line
             articleBodyHtmlContent = articleBodyHtmlContent.replace(/<em>&#xA0;<\/em>/g, '');
 
+            // Replace '*' with '&ast;'
+            articleBodyHtmlContent = articleBodyHtmlContent.replace(/\*/g, '&ast;');
+
             var collectedData = [];
             collectedData.push({ 'title': title, 'authorName': authorName, 'createdDate': createdDate, 'updatedDate': updatedDate, 'labels': labels, 'sections': sections });
 

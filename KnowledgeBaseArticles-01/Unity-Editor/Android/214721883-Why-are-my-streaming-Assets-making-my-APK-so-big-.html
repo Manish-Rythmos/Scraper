@@ -1,0 +1,37 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My files in the  <strong>StreamingAssets</strong>  folder are not being compressed in the APK.</li>
+</ul>
+ <strong>Cause</strong> 
+
+<p>The APK is a normal zip file. Files within this&#xA0;file can use a range of compression methods, with the most common being  <strong>deflate</strong>  and  <strong>store</strong> .&#xA0;</p>
+<ul>
+<li><strong>Deflate</strong>  is the normal zlib/lz77 compression algorithm.</li>
+<li><strong>Store</strong>  is uncompressed raw data, stored as is.</li>
+</ul>
+The Unity-generated APK will contain files of both kinds, with the StreamingAssets data &#x200B;always&#x200B; using store&#xA0;compression.
+&#xA0;
+<img src="/hc/en-us/article_attachments/208052363/apkCompression.png" alt="">
+&#xA0;
+Unity will read the (usually compressed) data from inside&#xA0;the APK file. However, Streaming Assets are left &quot;as is&quot;, and are copied directly into the file structure.
+
+
+<p>Also note that this is the file itself and not the Unity-formatted file used elsewhere. This can be seen by adding a large PSD&#xA0;image file to the StreamingAssets&#xA0;folder, which can then be found inside the APK by extracting its&#xA0;contents and looking at the file inside the extracted Assets folder.</p>
+
+<p><strong>Resolution</strong> </p>
+
+
+<p>If compression is required for the&#xA0;StreamingAssets, this compression must be in the file itself, for example:</p>
+
+
+<ul>
+<li>Use a file format that is compressed (for example PNGs and&#xA0;JPGs) - do not use large file formats (such as PSDs)&#xA0;unnecessarily as these will be copied uncompressed.</li>
+<li>Use compressed AssetBundles.</li>
+<li>Reduce the sizes of the Asset files themselves using compression tools such as <a href="http://pngcrush.com/">PNG Crush</a><em>.</em> </li>
+</ul>
+
+ <strong>More Information</strong> 
+<p>For more information, consult the Android developer guide to <a href="https://developer.android.com/topic/performance/reduce-apk-size.html">reducing APK size</a>.</p>
+
+      

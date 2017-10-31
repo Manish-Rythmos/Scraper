@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to debug a game I am running on an Android device.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You want to perform Android device debugging in either MonoDevelop or Visual Studio. This could be because of the following:</p>
+<ul>
+<li>There are objects with script components on them that are missing their script reference. </li>
+<li>The game hits breakpoints when running in Unity.</li>
+<li>Your game crashes and does not run on an Android device.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>First, you will need to have your Android developer environment setup before you can test your Unity games on the device. This involves downloading and installing the Android SDK with the different Android platforms and adding your physical device to your system. See this <a href="http://docs.unity3d.com/Manual/android-sdksetup.html">document</a> for steps on how to download and add the Android SDK path to Unity.</p>
+<p>You can attach the MonoDevelop debugger to an Android device with ADB via TCP/IP. The process is described in our documentation <a href="http://docs.unity3d.com/Manual/AttachingMonoDevelopDebuggerToAnAndroidDevice.html">here</a>.</p>
+<p>Debugging Unity scripts on an Android device also works through Visual Studio. The only difference will be choosing  <strong><em>Attach Unity Debugger</em> </strong>  in Visual Studio instead of  <strong><em>Attach to process </em> </strong> in MonoDevelop.</p>
+<p><strong>More Information</strong> </p>
+<ol>
+<li>https://docs.unity3d.com/Manual/android-sdksetup.html</li>
+<li>https://docs.unity3d.com/Manual/AttachingMonoDevelopDebuggerToAnAndroidDevice.html</li>
+</ol>
+<p>&#xA0;</p>
+      

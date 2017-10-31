@@ -1,0 +1,20 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to&#xA0;encrypt my C# code to protect it from potential hackers.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You want to protect your C#&#xA0;code with obfuscation for privacy or security purposes and you are looking for tools in Unity to do this.</p>
+<p><strong>Resolution</strong> </p>
+<p>Unity does not promote obfuscation as a security solution, since it can introduce runtime errors and can also affect performance. It is also not possible to prevent a user with access to the software from trying to decompile it. If your concern is related to multiplayer games, make sure not to trust any of the data received from connected clients and always verify the data is valid.</p>
+<p>If you do want to obfuscate your source code you should not change the following:</p>
+<ul>
+<li>Class names </li>
+<li>Unity callback names </li>
+<li>Public field names</li>
+<li>Any methods that are called through string/reflection or via SendMessage, Invoke, StartCoroutine, RPC and similar functions.</li>
+</ul>
+<p>You could also find third party obfuscation tools on the Asset Store.</p>
+<p><strong>More Information</strong> </p>
+<p>&#xA0;</p>
+      

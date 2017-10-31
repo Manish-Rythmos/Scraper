@@ -1,0 +1,25 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My&#xA0;cloud build project has failed because my&#xA0;repository has gone over the GB size limit for my plan.</li>
+<li>I would like to know how the repository size is calculated.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are&#xA0;subscribed to one of the following Unity Cloud Build plans:</p>
+<ul>
+<li>Free Plan</li>
+<li>Pro Plan</li>
+<li>Studio Plan</li>
+<li>Enterprise Plan</li>
+</ul>
+<p>You are trying to build your project, but you are receiving the following error based on your Unity Cloud Build subscription plan:</p>
+<p><em>&quot;postcheckoutstatus failed. Project is too large to build for this tier of service. (2.01 GB exceeds limit by 12.49 MB). See<a class="externalLink" href="https://build.cloud.unity3d.com/plans/" target="_blank" rel="nofollow">https://build.cloud.unity3d.com/plans/</a> to upgrade.&quot;</em> </p>
+<p>This&#xA0;limit is based on the size of your repository.</p>
+<p><strong>Resolution</strong> </p>
+<p>Unity Cloud Build calculates the size of all files downloaded from the source control and tries to exclude all hidden files specific to the source control.</p>
+<p>If you have the Library or Temp folders in your source control they will be included in the size calculation. Please make sure these Folders are unchecked before you build your project.</p>
+<p>If&#xA0;your Library or Temp folders are unchecked and you are still receiving this building failure&#xA0;you can create a new&#xA0;Cloud Build support ticket&#xA0;<a href="/hc/en-us/requests/new" target="_blank">here</a>&#xA0;or post in the <a href="http://forum.unity3d.com/threads/project-size-vs-repo-size.306905/">Unity Cloud Build forums</a>. The Cloud Build team can&#xA0;monitor the build clients used for your project and advise you on how to resolve your issue.</p>
+<p><strong>Note</strong> : Even if your project is in a subfolder of your repository Unity Cloud Build will still clone the whole repository and calculate the size against the whole repository and not only for your project subfolder. &#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p>You can see the repo size limits required for each tier of Unity Cloud Build <a href="https://build.cloud.unity3d.com/plans/" target="_blank">here</a>.</p>
+      

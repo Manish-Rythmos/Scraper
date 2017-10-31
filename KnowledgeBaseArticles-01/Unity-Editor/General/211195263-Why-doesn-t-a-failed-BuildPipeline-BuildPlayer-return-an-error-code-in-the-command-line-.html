@@ -1,0 +1,36 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Using  <strong>-executeMethod</strong>  and  <strong>BuildPipeline.BuildPlayer</strong>  fails when running Unity from the command line, and&#xA0;the exit code 0 (successful) is received where fail is expected.</li>
+</ul>
+ <strong>Cause</strong> 
+<p>When a&#xA0;build fails when using&#xA0;BuildPipeline.BuildPlayer, Unity will continue working on the method after BuildPipeline.BuildPlayer has completed. Once the entire method&#xA0;is run, Unity will stop returning the successful error code.</p>
+
+If there are any exceptions or crashes when opening the project, an error code of failed will be returned.
+<p><strong>Resolution</strong> </p>
+
+
+<p>BuildPipeline.BuildPlayer returns a string - if this string is empty, the build was successful. The following code shows an example of reading the error and exiting Unity, sending the value 0 if the build was successful and 1 if it failed.</p>
+
+<pre class="prettyprint&#x201D;&gt;
+	string[] levels = new String[]{ ">string error = BuildPipeline.BuildPlayer( levels, &quot;iOS &quot;, BuildTarget.iOS, BuildOptions.None );
+if( string.IsNullOrEmpty( error ) )
+    EditorApplication.Exit( 0 );
+else
+    EditorApplication.Exit( 1 );
+</pre>
+Alternatively, if a specific exit code is required (not 1), then when an exception is thrown (for example&#xA0; <strong>throw new System.Exception( &quot;error message&quot; );</strong> ), Unity Editor will exit with exit code 1.
+
+<p>Note that when calling  <strong>EditorApplication.Exit</strong>  from script, -quit is not necessary to automatically exit the Editor once it is completed as the method will already exit the Editor before the end. If an exception is thrown or other errors occur, however, the Editor will remain open if -quit is not used.</p>
+
+ <strong>More Information</strong> 
+<p>For more information, consult the following documentation:</p>
+
+
+<ul>
+<li><a href="http://docs.unity3d.com/Manual/CommandLineArguments.html">Command line arguments</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/BuildPipeline.BuildPlayer.html">BuildPipeline.BuildPlayer</a></li>
+<li><a href="http://docs.unity3d.com/ScriptReference/EditorApplication.Exit.html">EditorApplication.Exit</a></li>
+</ul>
+
+      

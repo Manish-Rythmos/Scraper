@@ -1,0 +1,40 @@
+
+        
+<p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to get&#xA0;pixels from a Texture</li>
+<li>I do not want to set the texture as &quot;readable&quot;</li>
+</ul>
+<p><strong>Causes</strong> </p>
+<p>In order to use <a href="http://docs.unity3d.com/ScriptReference/Texture2D.GetPixels.html">Texture2D.GetPixels</a>&#xA0;you need to select &quot;Read/Write Enabled&quot;&#xA0;on&#xA0;<a href="http://docs.unity3d.com/Manual/class-TextureImporter.html">Texture&#xA0;Import Settings</a>&#xA0;to enable access to the texture data from scripts. Sometimes you need to get pixels from a texture without having to set the texture as readable, similar to how the Unity Editor does it to get preview images from Textures.</p>
+<p><strong>Resolutions</strong> </p>
+You can use a RenderTexture to do that, take a look at the following code:
+&#xA0;
+ <em><strong>&quot;texture&quot; is the texture you want to read which is not marked as readable in importsettings:</strong> </em> 
+&#xA0;
+
+<pre>// Create a temporary RenderTexture of the same size as the texture<br>RenderTexture tmp = RenderTexture.GetTemporary( <br>                    texture.width,
+                    texture.height,
+                    0,
+                    RenderTextureFormat.Default,
+                    RenderTextureReadWrite.Linear);<br>
+// Blit the pixels on texture to the RenderTexture<br>Graphics.Blit(texture, tmp);</pre>
+<pre>// Backup the currently set RenderTexture<br>RenderTexture previous = RenderTexture.active;</pre>
+<pre>// Set the current RenderTexture to the temporary one we created
+RenderTexture.active = tmp;</pre>
+<pre>// Create a new readable Texture2D to copy the pixels to it
+Texture2D myTexture2D = new Texture2D(texture.width, texture.height);</pre>
+<pre>// Copy the pixels from the RenderTexture to the new Texture<br>myTexture2D.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
+myTexture2D.Apply();</pre>
+<pre>// Reset the active RenderTexture<br>RenderTexture.active = previous;</pre>
+<pre>// Release the temporary RenderTexture
+RenderTexture.ReleaseTemporary(tmp);<br><br>// &quot;myTexture2D&quot; now has the same pixels from &quot;texture&quot; and it&apos;s readable.<br></pre>
+
+&#xA0;
+ <strong>You can now get/set pixels from &quot;myTexture2D&quot;.</strong> 
+<p><strong>More Information</strong> </p>
+<a href="http://docs.unity3d.com/ScriptReference/RenderTexture.GetTemporary.html">http://docs.unity3d.com/ScriptReference/RenderTexture.GetTemporary.html</a>
+<a href="http://docs.unity3d.com/ScriptReference/Graphics.Blit.html">http://docs.unity3d.com/ScriptReference/Graphics.Blit.html</a>
+<a href="http://docs.unity3d.com/ScriptReference/Texture2D.ReadPixels.html">http://docs.unity3d.com/ScriptReference/Texture2D.ReadPixels.html</a>
+&#xA0;
+      

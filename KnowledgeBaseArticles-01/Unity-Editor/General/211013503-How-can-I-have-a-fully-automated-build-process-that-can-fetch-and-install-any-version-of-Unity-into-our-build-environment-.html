@@ -1,0 +1,40 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>I need to be able to install Unity to a specific path on MacOSX and Windows.&#xA0;Also, I want to automate the installation by downloading separate components and installing myself. </li>
+</ul>
+
+ <strong>Cause</strong> 
+&#xA0;
+You may not want to use the download assistant to install.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+If you want to automate the installation of Unity, you could use the the command line (or a script) without the Download Assistant.
+&#xA0;
+ <em><strong>On Windows:</strong> </em> 
+
+<p>You can use on Windows this command to install Unity silently to a specific folder:</p>
+<pre class="wysiwyg-indent1"><code>UnitySetup64.exe /S /D=C:\Your Directory\Unity
+</code></pre>
+<p>In this case, the command installs Unity silently to the folder  <em>C:\Your Directory\Unity</em> , which will be the root of the Unity installation. The Unity Editor executable will, in this case, be installed in  <em>C:\Your Directory\Unity\Editor\Unity.exe</em> . &#x201C;/D&#x201D; argument must be last and without quotes, even if the path contains spaces.</p>
+<p><strong><em>On OSX:</em> </strong> </p>
+<pre class="wysiwyg-indent1"><code>sudo installer [-dumplog] -package Unity.pkg -target /</code></pre>
+<p><em>Separate Components:</em> </p>
+<p>In addition, if you want to install the components separately, you can use the same commands with all the component installers. The&#xA0;urls for&#xA0;them&#xA0;are:</p>
+
+ <strong>For Windows:</strong> 
+http://download.unity3d.com/download_unity/{Changeset}/Windows64EditorInstaller/UnitySetup64.exe
+http://download.unity3d.com/download_unity/{Changeset}/WindowsDocumentationInstaller/UnityDocumentationSetup.exe<br>http://download.unity3d.com/download_unity/{Changeset}/WindowsDevelopmentWebPlayerInstaller/UnityWebPlayerDevelopment.exe<br>http://download.unity3d.com/download_unity/{Changeset}/WindowsStandardAssetsInstaller/UnityStandardAssetsSetup.exe<br>http://download.unity3d.com/download_unity/{Changeset}/WindowsExampleProjectInstaller/UnityExampleProjectSetup.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Windows-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Android-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-iOS-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-AppleTV-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Linux-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Mac-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Metro-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-UWP-IL2CPP-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Samsung-TV-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-Tizen-Support-for-Editor-{version}.exe<br>http://download.unity3d.com/download_unity/{Changeset}/TargetSupportInstaller/UnitySetup-WebGL-Support-for-Editor-{version}.exe
+&#xA0;
+ <strong>For OSX:</strong> 
+http://download.unity3d.com/download_unity/{Changeset}/MacEditorInstaller/Unity.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacDocumentationInstaller/Documentation.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacWebPlayerInstaller/WebPlayer.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacStandardAssetsInstaller/StandardAssets.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacExampleProjectInstaller/Examples.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Mac-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-AppleTV-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Linux-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Samsung-TV-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Tizen-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-{version}.pkg<br>http://download.unity3d.com/download_unity/{Changeset}/MacEditorTargetInstaller/UnitySetup-Windows-Support-for-Editor-{version}.pkg
+&#xA0;
+It is important to note that&#xA0;the order is important (you should install the Editor first and then the components).
+&#xA0;
+ <strong>More Information</strong> 
+<a href="http://docs.unity3d.com/Manual/InstallingUnity.html" target="_blank">Installing Unity</a>
+&#xA0;
+&#xA0;
+      

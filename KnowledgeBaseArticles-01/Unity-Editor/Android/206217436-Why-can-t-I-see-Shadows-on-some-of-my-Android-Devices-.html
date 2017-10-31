@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am unable to see Shadows on my Android Device</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are making a game in Unity which you want to&#xA0;deploy to an Android mobile platform.</p>
+<p>You have made an environment for the scene&#xA0;which includes a directional light and shadows are visible in the editor. When you export your project as an .apk however, you find that the shadows have disappeared from view. This makes the scene appear flat and unrealistic:</p>
+<p><img src="/hc/en-us/article_attachments/201936366/2055-missing-shadows.jpg" alt="" width="562" height="676"></p>
+<p><strong>Resolution</strong> </p>
+<p>Shadows require hardware support, so the Android device must be capable of showing them. Device supports shadows if it has a  <em><strong>&quot;GL_OES_depth_texture&quot;</strong> </em>  extension.</p>
+<p>To determine whether your required device supports shadows:</p>
+<ul>
+<li>Run the&#xA0;Unity application on the device.</li>
+<li>During the application start up, Unity will print&#xA0;out all available extensions. All extensions&apos; names start with  <em><strong>&quot;GL_&quot;</strong> </em> .</li>
+<li>If you can&apos;t see the  <strong><em>&quot;GL_OES_depth_texture&quot;</em> </strong>  listed, then your device does not support shadows.</li>
+</ul>
+<p>Unfortunately,&#xA0;there is no resolution if&#xA0;real shadows are not supported on your specific device. The solution for this is to wait for a new version to be released or roll back a patch release.&#xA0;</p>
+<p><em>Please note that Android disabled shadows for Intel PowerVR devices to avoid graphics artifacts. Unfortunately this means there is no current solution for this at present.</em> </p>
+<p><strong>More Information</strong> </p>
+<p>You can check&#xA0;the website for&#xA0;our latest patch releases <a href="https://unity3d.com/unity/qa/patch-releases" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      

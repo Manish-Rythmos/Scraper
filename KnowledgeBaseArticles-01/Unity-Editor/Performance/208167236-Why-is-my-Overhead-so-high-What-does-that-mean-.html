@@ -1,0 +1,47 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>The overhead in my Profiler Window is high. &#xA0;</li>
+<li>I have very complex scenes, or a GPU/CPU bound game.&#xA0;</li>
+<li>I receive memory warnings on target device.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>In the Profiler, the Overhead is the total frame time minus the duration of everything else that is actively measured. It is usually related to the internal processing of the scene. The more complex the scene, the more Overhead it will produce. It also accounts for the vertical synchronization that can be set to a fixed duration with&#xA0;Application.targetFrameRate.&#xA0;</p>
+<p>The complexity of the scene does not refer directly to the amount of objects that compose it, but to the processing in general. If you have lots of objects, processing all of them will take more time than just a few. More importantly, the different engine sub-system tasks on those objects (in this case, tasks that are not being actively measured in the Profiler) will be added to this complexity, increasing the Overhead. Depending on the work performed, this increase could be significant or not. This means that it is not possible for us to provide statistics on the complexity of the scene since it depends on&#xA0;many&#xA0;factors.</p>
+<p>The Profiler&apos;s hierarchy is populated with the processes that are most likely to consume important resources, but lots of hidden tasks will still remain. In order to find what is adding more complexity, or processing to the scene, you could remove or change &quot;aspects&quot; of the scene one by one, then profile and see how that affects the Overhead.</p>
+<p>&quot;Aspects&quot; refers to the groups of objects that are processed by some sub-systems, that is 3D or 2D physics, navmesh, sprites, lighting, scripts and plugins, rendering, GUI, audio, video or particles, etc. The aspects could include settings used by the sub-systems. You might find one of these is considerably affecting the performance, and then you can optimize it.</p>
+<p>When iOS throws memory warnings, it increases the app Overhead. Thus when the iOS player constantly crosses the memory warning line it will also cause lots of large Overhead spikes. Use Instruments Activity Monitor to visualize these warnings as flags on top of the timeline.</p>
+<p><strong>Resolution</strong> </p>
+<p>You can check your project against some of these general performance tips/considerations which can&#xA0;help to reduce the Overhead as well:</p>
+<ul>
+<li>FPS is determined by CPU and GPU usage.</li>
+<li>CPU: Physics, Game code, Skinning (when not done in GPU), Particles, Raycasting (Flares)</li>
+<li>GPU: Fillrate, Shaders, Drawcalls, Image Effects.</li>
+<li>Garbage Collection</li>
+<li>Remove all empty event callbacks (OnGUI, LateUpdate, Update, etc) from scripts.</li>
+<li>Increase the fixedTimeStep (Physics timestep) to reduce the number of time physics simulation is updated. The physics engine runs by&#xA0;default with 50 fps. If it turns out that the game can&apos;t handle 50Hz, then it benefits of reducing the frequency. This helps especially when the Physics.Simulate took longer which is called several times per frame.&#xA0;</li>
+<li>Set the Maximum Allowed Timestep in the Time manager to cap the time spent on physics in the worst case scenario.</li>
+<li>All static moving objects must remain static in the game. If you need to alter them in any way (change size, position, orientation, disable/enable) you should make them Kinematic Rigidbodies.</li>
+<li>For each Flare in your scene Unity performs a Raycast from the Camera position. Make sure only the Flares that should be active are enabled in the scene.</li>
+<li>Remove all unneeded curves (e.g A curve with a constant scale of 1,1,1.) and redundant keyframes from your AnimationClips.</li>
+<li>Use QualitySettings to match the hardware of the device. Try reducing Anti Aliasing, reducing the Shadow distance, and changing the max LOD values.</li>
+<li>Uncompressed AudioClips require less CPU for playback. Use this setting for small clips that don&apos;t use too much space in memory.</li>
+<li>Use HashSet instead of Lists if you need to use Find or Contains every frame. It is a data structure designed for quick searching.</li>
+<li>Cache references instead of performing unnecessary searches.</li>
+<li>Avoid using multiple cameras if possible. Having a second camera will unfortunately have the implication that the culler has to process the scene twice - even if you set a different layer for one of the cameras.</li>
+<li>If you are need to constantly modify a mesh, make sure to call MarkDynamic() on the mesh to allow Unity to optimize the mesh for frequent changes.</li>
+<li>Reduce memory allocations to reduce GC hiccups. Use the GC Alloc column in the Profiler to find code allocating memory.</li>
+<li>Using object pooling for ephemeral objects is faster than creating and destroying them, because it makes memory allocation simpler and removes dynamic memory allocation overhead (mono needs to look at the state of the memory to allocate) and Garbage Collection, or GC.</li>
+<li>Use System.RuntimeMethodHandle.GetFunctionPointer to pre-jit functions.</li>
+<li>AwakeFromLoad can be very expensive and stall the main thread.</li>
+</ul>
+<p>To learn more about the Profiler and Overhead&#xA0;please see the official documentation <a href="http://docs.unity3d.com/Manual/Profiler.html" target="_blank">here</a>.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information see the links below:&#xA0;</p>
+<ul>
+<li><a href="http://answers.unity3d.com/questions/482381/what-are-causes-of-overhead-in-profiler.html">http://answers.unity3d.com/questions/482381/what-are-causes-of-overhead-in-profiler.html</a></li>
+<li><a href="https://unity3d.com/learn/tutorials/modules/intermediate/editor/intro-to-profiler">https://unity3d.com/learn/tutorials/modules/intermediate/editor/intro-to-profiler</a></li>
+</ul>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+      

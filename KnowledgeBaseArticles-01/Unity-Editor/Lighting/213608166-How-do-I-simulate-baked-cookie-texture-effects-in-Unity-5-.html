@@ -1,0 +1,29 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I have a nice&#xA0;baked cookie texture that I was using in Unity 4. I have now upgraded to Unity 5 and do not have baked cookie textures supported in the lighting system, but I still want the same effect.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Unity 5 as of Unity 5.5 does not contain support for cookie textures on lights when using baked lighting, this may change in future releases, but if you are using a version of Unity between 5.0 and 5.5 it is not supported. The dropped support for baked cookie textures was due to a change in the system Unity uses for lighting. Unfortunately&#xA0;part of this system change means not all the old feature set was supported in the new system. Please see the blog post in More Information about the new system and why we moved to it.</p>
+<p><strong>Resolution</strong> </p>
+<p>If you can use real time lighting, consider doing so, as we still support cookie textures for real time lights in Unity 5. If this is not an option for you may want to consider using geometry to block out light in the pattern that you need for your effect. You can use shadow only geometry if you do not want the geometry creating the effect to be visible in your scene. Additionally when combined with a clever material that adds other characteristics to the shadow you may be able to achieve a similar result.</p>
+<p>For example take a look at this cookie texture effect:&#xA0;</p>
+<p><img src="/hc/en-us/article_attachments/208552043/Unity4.png" alt=""></p>
+<p>You will see the yellow spotlight has a very nice &quot;grate&quot; cookie texture creating the black lines on the ground. This effect can easily be achieved using shadows only geometry placed in front of the spot light accordingly.</p>
+<p>Now take a look at the&#xA0;similar results created in Unity 5.4:</p>
+<p><img src="/hc/en-us/article_attachments/208586846/Unity5.png" alt="" width="631" height="530"></p>
+<p>Next&#xA0;open the attachment &quot;LightBakingExample.zip&quot;, to&#xA0;find the Unity 5 project reproducing the same effect using Shadow Only Geomerty. In this project you will find four game objects under the &quot;Spotlight&quot; object creating the shadows on the &quot;Floor&quot;.</p>
+<p>A few things to note about the LightBakingExample Project:</p>
+<ul>
+<li>The shadow geometry renderer has &quot;Shadows Only&quot; selected but it is not required.</li>
+<li>The yellow light is a baked&#xA0;spotlight and the scene is using baked ambient GI.</li>
+<li>I have added a shader and material that uses&#xA0;transparency to get the blended color effect of the black lines.&#xA0;</li>
+<li>Note one effect missing here is the softness of the edges of the shadows, this can be achieved by making a more advanced transparency texture that has some &quot;dirtiness&quot; alpha scaled out from the center of the texture.</li>
+</ul>
+<p><strong>More Information</strong> </p>
+<p>For more information see the links below:&#xA0;</p>
+<p><a href="https://blogs.unity3d.com/2014/09/18/global-illumination-in-unity-5/%20">https://blogs.unity3d.com/2014/09/18/global-illumination-in-unity-5/&#xA0;</a></p>
+<p><a href="https://docs.unity3d.com/Manual/Cookies.html">https://docs.unity3d.com/Manual/Cookies.html&#xA0;</a></p>
+<p><a href="https://docs.unity3d.com/Manual/HOWTO-LightCookie.html">https://docs.unity3d.com/Manual/HOWTO-LightCookie.html</a></p>
+<p>This article applies to Unity versions between 5.0 and 5.5. (Baked cookie texture support may have been added after the time of this writing.)</p>
+      

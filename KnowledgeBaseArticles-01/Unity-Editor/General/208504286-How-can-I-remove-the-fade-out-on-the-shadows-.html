@@ -1,0 +1,31 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Unity&#xA0;does not offer a public API to remove the fade out on the shadows.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>The public API does not offer any method for removing the fade out on the shadows, however with C# and our built-in shaders it is possible to overwrite the shadows fade out.</p>
+<p><strong>Resolution</strong> </p>
+<p>Try adding following script onto your camera:</p>
+
+
+<pre>void OnPreRender ()
+{
+    originalScreenSpaceShadowShader = GraphicsSettings.GetCustomShader(UnityEngine.Rendering.BuiltinShaderType.ScreenSpaceShadows);
+    GraphicsSettings.SetCustomShader(UnityEngine.Rendering.BuiltinShaderType.ScreenSpaceShadows, myScreenSpaceShadowShader);
+}
+
+void OnPostRender()
+{ <br>    GraphicsSettings.SetCustomShader(UnityEngine.Rendering.BuiltinShaderType.ScreenSpaceShadows, originalScreenSpaceShadowShader);
+}
+</pre>
+
+<p>Regarding the screenspace shadow shader itself ( <em>Internal-ScreenSpaceShadows.shader</em> ), comment&#xA0;this line:</p>
+<pre><code>shadow += GET_SHADOW_FADE(wpos, vpos.z);
+</code></pre>
+<p>Please note that there are a few more actions to take after the above. For example: in deferred, the directional light attenuates by itself at shadow distance. In forward, at shadow distance, everything turns black. You need to have this functionality&#xA0;in mind before doing these changes.</p>
+<p>Another option could be to increase the camera distance, and the fade out will appear in a far away distance from the view.</p>
+<p><strong>More Information&#xA0;</strong> </p>
+<p>Additional information can be found <a href="http://forum.unity3d.com/threads/shadow-fadeoff-approaching-far-clip-plane.356893/#post-2459135">here</a>.&#xA0;</p>
+<p>This article applies to Unity version 5.4</p>
+      

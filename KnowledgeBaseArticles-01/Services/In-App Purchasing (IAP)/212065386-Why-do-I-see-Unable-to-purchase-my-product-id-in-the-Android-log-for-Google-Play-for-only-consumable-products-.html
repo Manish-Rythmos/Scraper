@@ -1,0 +1,9 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the error &#x201C;Unable to purchase &lt;my-product-id&gt;&#x201D;.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are receiving the error &#x201C;Unable to purchase &lt;my-product-id&gt;&#x201D; when attempting to purchase a consumable product via Unity IAP and Google Play. One reason you may see this message for consumables after some consumable purchase(s) is if the game does not consume the consumable by returning PurchaseProcessingResult.Complete after a purchase.<br></p>
+<p><strong>Resolution</strong> <br><br>Please ensure that PurchaseProcessingResult.Complete is called after a purchase is made successfully. </p>
+      

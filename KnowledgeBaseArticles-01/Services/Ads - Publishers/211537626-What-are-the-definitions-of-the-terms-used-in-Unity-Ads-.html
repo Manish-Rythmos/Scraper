@@ -1,0 +1,19 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am interested in using Unity Ads to monetize games and would like to familiarize myself with the terminology.</li>
+<li>I am a new user of Unity Ads and would like to better understand the terms I see in the Unity Ads dashboard.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You would like to better understand the terms used in Unity Ads and the dashboard.</p>
+<p><strong>Resolution</strong> </p>
+<p><strong>Ad requests</strong> &#xA0;are generated during SDK initialization.  <strong>Available</strong> &#xA0;corresponds to responses to the number of successful  <strong>ad requests</strong> . There are a few things to be aware of:</p>
+<ul>
+<li>The content of these  <strong>available</strong>  responses is a list of up to 25 ads.</li>
+<li>As long as there is at least one ad available, the response is only counted as one&#xA0; <strong>available</strong>  for each ad request regardless of the number of ads available.</li>
+<li>For performance reasons, the reported values for  <strong>ad request</strong> &#xA0;and  <strong>available</strong> &#xA0;are samplings and not actual values - every 23rd&#xA0; <strong>ad request</strong>  and&#xA0; <strong>available</strong>  is counted and multiplied by 23 to obtain its value. This is why you&apos;ll notice the values for&#xA0; <strong>ad request</strong>  and  <strong>available</strong> &#xA0;are multiples of 23.</li>
+<li>After initialization, another&#xA0; <strong>ad request</strong>  is sent to refresh the list of available ads for every 10 started.</li>
+</ul>
+<p>Fill rate is the  <strong>available</strong> &#xA0;total divided by the number of&#xA0; <strong>ad requests</strong> .</p>
+<p>Lastly, impressions relate to  <strong>started</strong>  while completions relate to  <strong>views</strong> . The values for  <strong>started</strong> &#xA0;and  <strong>views</strong> &#xA0;are actual values - they are not sampled values like those for  <strong>ad</strong>   <strong>requests</strong> &#xA0;and  <strong>available</strong> .</p>
+      

@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When I profile my game I can observe multiple instances of the same shader are getting loaded.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>If you have two AssetBundles using the same shader or material, but they are not tagged into any AssetBundle, Unity will pack the shader in each bundle. This could also happen if you use your shader/material in a local scene and pack the shader/material into an AssetBundle.</p>
+<p><strong>Resolution</strong> </p>
+<p>Choose which assets will be on AssetBundles and which in the executable. You can pack your materials or shaders into one common AssetBundle (for example art.unity3d) and load this bundle first. </p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://docs.unity3d.com/Manual/AssetBundlesIntro.html">https://docs.unity3d.com/Manual/AssetBundlesIntro.html</a></p>
+<p><a href="https://docs.unity3d.com/Manual/Shaders.html">https://docs.unity3d.com/Manual/Shaders.html</a></p>
+<p><a href="https://docs.unity3d.com/Manual/BuildingAssetBundles.html">https://docs.unity3d.com/Manual/BuildingAssetBundles.html</a></p>
+<p><a href="https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-usage-patterns">https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-usage-patterns</a></p>
+<p><a href="https://support.unity3d.com/hc/en-us/articles/208380753-Shaders-are-pink-when-loaded-from-an-AssetBundle">https://support.unity3d.com/hc/en-us/articles/208380753-Shaders-are-pink-when-loaded-from-an-AssetBundle</a></p>
+      

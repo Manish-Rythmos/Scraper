@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am unable to change the Store that Unity IAP targets.</li>
+<li>I would like to switch (for example) from Google Play to Amazon Appstore?</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You wish to use the correct app store when using the IAP service within your game.</p>
+<p><strong>Resolution</strong> </p>
+<p><em><strong>Manually</strong> </em>  set the Android store (aka &#x201C;Android Flavor&#x201D;) using the Window &gt; Unity IAP &gt; Android &gt; Target Amazon menu item.</p>
+<p><img src="/hc/en-us/article_attachments/206585186/image001.png" alt=""></p>
+<p>Or  <em><strong>programmatically</strong> </em>  call UnityPurchasingEditor.TargetAndroidStore(): </p>
+<p class="c2">using UnityEngine;</p>
+<p class="c2">using System.Collections;</p>
+<p class="c2">using UnityEngine.Purchasing;</p>
+<p class="c2">public class Example : MonoBehaviour {</p>
+<p class="c2">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;void SetAndroidStoreTarget ()</p>
+<p class="c2">&#xA0; &#xA0; {</p>
+<p class="c2">&#xA0; &#xA0; &#xA0; &#xA0; UnityPurchasingEditor.TargetAndroidStore(AndroidStore.AmazonAppStore);</p>
+<p class="c2">&#xA0; &#xA0; }</p>
+<p class="c2">}&#xA0;</p>
+<p>&#xA0;</p>
+      

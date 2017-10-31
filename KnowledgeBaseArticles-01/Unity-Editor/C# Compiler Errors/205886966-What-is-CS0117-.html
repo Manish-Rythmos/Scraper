@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>You try to access a member of a type (variable, method, etc.) and you get the error:</li>
+</ul>
+<pre>error CS0117: `________&apos; does not contain a definition for `________&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p>This happens&#xA0;when a reference is made to a member that does not exist for the data type.</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/201955313/CS0117_a.png" alt=""></p>
+<p>Error presented in this example:&#xA0;</p>
+<pre>error CS0117: `UnityEngine.PlayerPrefs&apos; does not contain a definition for <br>`SaveGame&apos;</pre>
+<p><strong>Resolution</strong> </p>
+<p>Look inside the definition of a type to check if the member exists and use that member as a reference.</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/201955323/CS0117_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/c4aad8at(v=vs.90).aspx">https://msdn.microsoft.com/en-us/library/c4aad8at(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

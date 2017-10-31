@@ -1,0 +1,30 @@
+
+         <strong>Symptoms</strong> &#xA0;
+
+<ul>
+<li>I want to use WWW with a Proxy in players (runtime), but it does not work. (Not WebPlayer)</li>
+</ul>
+
+ <strong>Cause</strong> 
+If you use WWW with a Proxy in&#xA0;players (runntime, not WebPlayer) it may fail.
+&#xA0;
+ <strong>Resolution</strong> 
+WebPlayer takes the Proxy settings from the browser automatically. Other players (runtime) work differently and cannot use a Proxy. Therefore you&#xA0;can use this&#xA0;workaround with the WebClient and WebProxy classes and&#xA0;still use the Proxy:
+
+<pre><code>string yourURL = &quot;http://yourURL.com&quot;;
+WebClient client = new WebClient();
+
+WebProxy proxy = new WebProxy(&quot;yourproxyserver.com&quot;); // you can use yourproxyserver.com:port
+// check proxy.Credentials property and NetworkCredential class if you proxy uses user/password
+
+client.Proxy = proxy;</code></pre>
+<p>With this code, you can use WebProxy.Credentials and the NetworkCredential class to set user/password info.</p>
+
+ <strong>More Information</strong> 
+
+<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/system.net.webclient.proxy(v=vs.110).aspx" target="_blank">WebClient</a>&#xA0;Documentation.</li>
+<li><a href="https://msdn.microsoft.com/en-us/library/system.net.webproxy(v=vs.110).aspx" target="_blank">WebProxy</a>&#xA0;Documentation.</li>
+</ul>
+
+      

@@ -1,0 +1,34 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to use ETC1 compression, but want to keep the Alpha channel and do not know how to.&#xA0;</li>
+<li>Unity&apos;s Alpha + ETC1 compression is not working with UI elements.</li>
+</ul>
+<p><strong>Cause</strong> &#xA0;</p>
+<ul>
+<li>ETC1 compression only supports the RGB channel, therefore it will not support an attribute of Transparency for each pixel of the texture.</li>
+<li>A bug that causes the UI shader to have no Alpha + ETC1 support.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>Unity can use ETC1 for textures with Alpha if, prior to that, they are placed on some atlas by specifying them with a packing tag. Also, make sure you have marked the  <em>Override for Android</em>  checkbox as well as the&#xA0; <em>Compress using ETC1</em>  checkbox.&#xA0;Unity will split the resulting atlas into two textures, each without Alpha and then combine them in the final parts of the RenderPipeline.</p>
+<p>The UI shaders in Unity 5.3.0 and earlier DID NOT&#xA0;support ETC1 + Alpha. NONETHELESS, there is&#xA0;a fix to this problem that is going to be released with Unity 5.5.</p>
+<ul>
+<li>https://issuetracker.unity3d.com/issues/ui-etc1-plus-alpha-not-working-on-ui-images-when-the-used-sprite-is-with-packing-tag-set</li>
+</ul>
+<p><strong>Additionally, there is going to be a BACKPORTED FIX&#xA0;available in&#xA0;5.3.7p2.&#xA0;</strong> </p>
+<p>However, It is possible though to modify the shaders to use the Alpha texture, available via <a href="http://docs.unity3d.com/530/Documentation/ScriptReference/Sprite-associatedAlphaSplitTexture.html">Sprite.associatedAlphaSplitTexture</a>.&#xA0;An example of a workaround known of this issue could be the following. UI-Default.shader cloned in a local shader. Modify it to sample the alphaTexture and merge alpha into the final color. &#xA0;(See images below)</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/202346026/Alpha.png" alt="" width="441" height="59"></p>
+<p>And modify the shader code to match the following:</p>
+<p><img src="/hc/en-us/article_attachments/202346036/Alpha2.png" alt="" width="552" height="250"></p>
+<ul>
+<li>Code needs to push the AlphaTexture obtained from the sprite &#xA0;(See image&#xA0;below to see an example of this) &#xA0; &#xA0; &#xA0;</li>
+</ul>
+<p><img src="/hc/en-us/article_attachments/202346066/SecondBestEd.png" alt="" width="584" height="331"></p>
+<p>&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p>For more information see the links below:&#xA0;</p>
+<p><a href="http://forum.unity3d.com/threads/etc1-alpha-feature.350184/#post-2288772">http://forum.unity3d.com/threads/etc1-alpha-feature.350184/#post-2288772</a></p>
+<p><a href="http://docs.unity3d.com/Manual/class-TextureImporterAndroid.html">http://docs.unity3d.com/Manual/class-TextureImporterAndroid.html</a></p>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+      

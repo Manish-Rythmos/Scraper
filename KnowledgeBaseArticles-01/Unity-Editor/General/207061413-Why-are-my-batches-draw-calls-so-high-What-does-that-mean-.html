@@ -1,0 +1,23 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am drawing a lot of objects and the game is running slow</li>
+<li>I am seeing a high CPU&#xA0;overhead</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Every object that is visible in a scene is sent by Unity to the GPU to be drawn, using the select graphics API for the current platform. This can be expensive if you have a lot of objects in your scenes, as in that case the requests made to the GPU will be very high. These are usually called draw calls. <br><br>In modern hardware, draw calls are actually very cheap. What makes the draw calls a problem however, are the changes that the renderer (render states) has to go through when drawing objects. These changes are related to the configuration that the GPU needs to use to render a given object, for instance, the material, textures and shaders used by each object that we want to render from the scene. When these settings don&apos;t change between draw calls, the draw call takes little time to execute, compared to when the settings do change.&#xA0; If there are a lot of objects that do not share&#xA0;the same material, texture, shader etc. then Renderer has to change its state to draw the next object, and the draw calls become expensive and take more time to execute.</p>
+<p><strong>Resolution</strong> </p>
+<p>It is important to know what are draw calls and what are batches. &#xA0;A draw call is a call to the graphics API to draw objects (e.g&#xA0;draw a triangle), while a batch is a group of draw calls to be drawn together. Batching objects to be drawn together, minimizes the state changes needed to draw each object inside the batch. This is turn leads to improved performance by reducing the CPU cost of rendering the objects.</p>
+<p>Unity groups in batches the objects to be drawn in two ways: Dynamic Batching and Static Batching. Only objects that share properties like textures or materials can be batched together.</p>
+<p>Static batching is the recommended batching technique for objects that do not move and it render batched objects very fast. It has a trade off regarding memory, as the meshes need to be combined into a single larger mesh, which is made of the union of all the smaller individual meshes in the scene that are marked as static and meet the criteria to be batched together.&#xA0; To do static batching, you need your objects to be static, thus mark them as static in the inspector. <br><br>Dynamic batching on the other hand, tries to optimize the way non-static objects are rendered, by this transforming their vertices on the CPU, grouping many similar vertices together, and drawing them all in one go. It&apos;s limited to small meshes, as batching larger meshes dynamically is more expensive than not batching them.<br><br>To learn more about how to batch objects or what are draw calls please see the official documentation <a href="http://docs.unity3d.com/Manual/DrawCallBatching.html" target="_blank">here</a>.<br><br></p>
+<p><strong>More Information</strong> </p>
+<p>For more information see the links below:&#xA0;</p>
+<ul>
+<li><a href="http://forum.unity3d.com/threads/what-are-draw-calls.27416/">http://forum.unity3d.com/threads/what-are-draw-calls.27416/</a></li>
+<li><a href="http://answers.unity3d.com/questions/961906/problem-with-draw-calls.html">http://answers.unity3d.com/questions/961906/problem-with-draw-calls.html</a></li>
+<li><a href="http://answers.unity3d.com/questions/295503/draw-calls.html">http://answers.unity3d.com/questions/295503/draw-calls.html</a></li>
+<li><a href="http://forum.unity3d.com/threads/draw-calls-vs-batches-optimization-unity-5.318704/">http://forum.unity3d.com/threads/draw-calls-vs-batches-optimization-unity-5.318704/</a></li>
+</ul>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+      

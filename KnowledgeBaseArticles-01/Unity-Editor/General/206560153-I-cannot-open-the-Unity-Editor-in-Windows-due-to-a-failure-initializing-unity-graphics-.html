@@ -1,0 +1,28 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the following error when I start up Unity in Windows:</li>
+</ul>
+<p class="wysiwyg-indent4"><img class="wysiwyg-text-align-center" src="/hc/en-us/article_attachments/202037533/MROVN.png" alt=""></p>
+<p><strong>Cause</strong> </p>
+<p>You have downloaded and reinstalled Unity after reformatting/re-imaging your Windows machine and you are trying to start up Unity in order to reactivate your license.</p>
+<p>When you open your Unity Editor, it crashes with the error &quot;Failed to initialize unity graphics&quot;. This&#xA0;prevents you from&#xA0;opening the Editor to create an empty project. This error&#xA0;happens when Direct3D Acceleration is not enabled in the DirectX Features on your Windows machine.</p>
+<p><strong>Resolution</strong> </p>
+<p>To check that&#xA0;Direct3D Acceleration is enabled:</p>
+<ul>
+<li>Type  <em>&quot;dxdiag&quot;</em>  into the  <strong>Start</strong>  menu bar.</li>
+<li>Click  <strong>Run</strong>  to open your DirectX Diagnostic Tool.</li>
+<li>Check  <strong>Display</strong>  - All three options should be enabled.</li>
+</ul>
+<p>Alternatively this can also be found in:</p>
+<p><em>C:\Users\(username)\AppData\Local\Unity\Editor.</em> </p>
+<p>Please note that AppData is a hidden folder so you need to enable <em>&#x201C;Show hidden files&#x201D;</em>  from the Folder Options.</p>
+<p>To fix this error:</p>
+<ol>
+<li>Make sure you are running Unity directly on your machine (not through Remote Desktop Connection or in a virtual machine)</li>
+<li>Update the graphic card drivers</li>
+<li>Start Unity in OpenGL mode by using the  <em><strong>&quot;-force-opengl command&quot;</strong> </em> . Instructions can be found <a href="http://docs.unity3d.com/Manual/CommandLineArguments.html" target="_blank">here</a>.</li>
+</ol>
+<p><strong>More Information</strong> </p>
+<p>Please&#xA0;be aware that Unity is&#xA0;not actively testing OpenGL&#xA0;mode and some instability can be expected.</p>
+      

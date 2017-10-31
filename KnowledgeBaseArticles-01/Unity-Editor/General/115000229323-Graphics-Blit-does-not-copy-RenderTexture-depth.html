@@ -1,0 +1,38 @@
+
+        Symptoms:
+<ul>
+<li>I have two RenderTextures with format RenderTexture.Depth, Graphics.Blit is not copying the depth values from one to the other.</li>
+</ul>
+Cause:
+<p>Graphics.Blit draws a quad with Z-Write off, so the depth will not be copied from one RenderTexture to another.</p>
+Resolution:
+<p>Create a &quot;DepthBlit&quot; Shader to sample and output the Depth Texture as depth values:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>//&#xA0;Fragment function outputs&#xA0;depth&#xA0;from&#xA0;_MyDepthTex&#xA0;to&#xA0;depth&#xA0;buffer</strong> <br><strong>half4&#xA0;CopyDepthBufferFragmentShader(v2f&#xA0;i,&#xA0;out&#xA0;float&#xA0;outDepth&#xA0;:&#xA0;SV_Depth)&#xA0;:&#xA0;SV_Target</strong> <br><strong>{</strong> <br><strong>float&#xA0;depth&#xA0;=&#xA0;SAMPLE_DEPTH_TEXTURE(_MyDepthTex,&#xA0;i.uv);</strong> <br><strong>outDepth&#xA0;=&#xA0;depth;</strong> <br><strong><code> return&#xA0;0;<br>}</code></strong> </td>
+</tr>
+</tbody>
+</table>
+<p>The complete Shader is also in this article as an attachment. Note: the GPU needs to support GL_FragDepth extension in order to output the depth, most GPUs&#xA0;do, but some older mobiles might not.</p>
+<p>Then in C# create a Material and do the Blit using it:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>//&#xA0;Create&#xA0;a&#xA0;Material&#xA0;that&#xA0;uses&#xA0;the&#xA0;DepthCopy&#xA0;Shader</strong> <br><strong>Material&#xA0;m_DepthCopyMat&#xA0;=&#xA0;new&#xA0;Material(m_DepthCopyShader);</strong> <br> <br><strong>//&#xA0;Set&#xA0;the&#xA0;_MyDepthTex&#xA0;Shader&#xA0;Texture&#xA0;to&#xA0;our&#xA0;source&#xA0;depth&#xA0;texture&#xA0;to&#xA0;be&#xA0;copied</strong> <br><strong>m_DepthCopyMat.SetTexture(&quot;_MyDepthTex&quot;,&#xA0;m_SrcDepthTexture);</strong> <br> <br><strong>//&#xA0;Do&#xA0;a&#xA0;Blit&#xA0;using&#xA0;the&#xA0;DepthCopy&#xA0;Material/Shader</strong> <br><strong>Graphics.Blit(m_SrcDepthTexture,&#xA0;m_DstDepthTexture,&#xA0;m_DepthCopyMat);</strong> &#xA0;</td>
+</tr>
+</tbody>
+</table>
+ <strong>More Information:</strong> 
+<p>If you do not want to copy the Depth Texture but instead want to have a valid depth buffer that can be shared between the Render Targets then you can use:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Graphics.SetRenderTarget(rendertexture.colorBuffer, depthRT.depthBuffer);</strong> </td>
+</tr>
+</tbody>
+</table>
+<p>before&#xA0;rendering a fullscreen quad for your blit.</p>
+<p>Manual page on how to use depth textures in Unity:&#xA0;<a href="https://docs.unity3d.com/Manual/SL-DepthTextures.html" target="_blank" rel="noopener noreferrer">https://docs.unity3d.com/Manual/SL-DepthTextures.html</a></p>
+<p>Information verified accurate for Unity 5.4.3p4.</p>
+      

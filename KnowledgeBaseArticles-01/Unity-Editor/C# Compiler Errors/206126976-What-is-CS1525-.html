@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>You&#xA0;are seeing the following error in the console window:</li>
+</ul>
+<pre>error CS1525: Unexpected symbol `____&apos;, expecting `____&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p>This is caused when an invalid character is found in an expression. For example, the if statement below does not allow the symbol &quot;a&quot; to appear after &quot;if&quot; in the if statement.</p>
+<p><img src="/hc/en-us/article_attachments/201828236/CS1525_a.png" alt=""></p>
+<p>Error this example presents:</p>
+<pre>error CS1525: Unexpected symbol `a&apos;, expecting `(&apos;</pre>
+<p><strong>Resolution</strong> </p>
+<p>Ensure that the correct symbols appear within the expression. In this example we have placed a &quot;(&quot; symbol after the if statement as this was missing and flagging the &quot;a&quot; as a invalid symbol.</p>
+<p><strong><img src="/hc/en-us/article_attachments/201985403/CS1525_b.png" alt=""></strong> </p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/3hdyz4dw(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/3hdyz4dw(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

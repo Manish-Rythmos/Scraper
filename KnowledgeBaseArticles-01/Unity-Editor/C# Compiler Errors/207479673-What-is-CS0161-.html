@@ -1,0 +1,17 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS0161: `___&apos;: not all code paths return a value</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS0161 error is caused when&#xA0;one or more outcomes of&#xA0;a method with a return type do not return a value.</p>
+<p>In the example below we have a method that uses a GameObject&#xA0;as the return type. This means that all outcomes in this method must return a GameObject or the null value. The Script shown below does not return a value in all outcomes.</p>
+<p><img src="/hc/en-us/article_attachments/202520393/CS0161_a.png" alt=""></p>
+<p>Here&#xA0;is how the error appears in this example:</p>
+<pre>error CS0161: `ExampleScript.SpawnEnemy(int)&apos;: not all code paths return <br>a value</pre>
+<p><strong>Resolution</strong> </p>
+<p>The error CS0161 is resolved by ensuring that all outcomes in&#xA0;the method return a value of the type defined. In this Example we have defined &quot;GameObject&quot; as the return type. We have fixed this example by ensuring that all outcomes return a value.</p>
+<p><img src="/hc/en-us/article_attachments/202356546/CS0161_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/87cz4k9t.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/87cz4k9t.aspx</a></p>
+<p>&#xA0;</p>
+      

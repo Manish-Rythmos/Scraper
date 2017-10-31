@@ -1,0 +1,42 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am calling StaticBatchingUtility.Combine on some meshes, but do not see them getting batched as expected.&#xA0;</li>
+<li>I am statically batching meshes in the Editor, but do not see them getting batched as expected.&#xA0;</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>One or more of the following cases may be the reason your meshes are not batching as expected: </p>
+<ol>
+<li>If one of the meshes you are attempting to combine does not share the same material as the other(s).</li>
+<li>If any of the  <em>GameObjects</em>  are not  <strong><a href="https://docs.unity3d.com/Manual/StaticObjects.html">marked Static</a></strong>  in the Inspector window.</li>
+<li>If there is no mesh instance on one of the  <em>GameObjects</em> &#xA0;getting combined.</li>
+<li>If the mesh renderer is  <em>null</em>  or disabled on any mesh in the batch.</li>
+<li>If the object is already been combined with another mesh batch.</li>
+<li>If any of the materials shader is using DisableBatching tag.</li>
+<li>If the vertex count of the mesh is zero.</li>
+<li>If the maximum number of vertices in the combine batch exceeds 64000. Unity will only&#xA0;do batches of 64k vertices&#xA0;or less, for example if you have 128001(64000x2 + 1) verts it will create 3 batches.</li>
+</ol>
+<p><strong>Resolution</strong> </p>
+<p>Try to determine which of the above situations applies to your project and correct it. If none seem to apply please continue to these troubleshooting steps:</p>
+<ol>
+<li>Make sure you are evaluating your static batching in play mode, static batching works by combining the meshes at build time or runtime with&#xA0;StaticBatchingUtility.Combine.</li>
+<li>There is always the chance you are experiencing a bug in Unity and we have had bugs that have broken batching unnecessarily&#xA0;in the past. If all else fails please backup your project and try it in a newer version of Unity.</li>
+<li>In some rare cases meshes with different baked lightmaps will not batch, this generally will not occur as lightmaps will be packed in such a way to avoid this. In some cases when using many different meshes, with separate Levels Of Detail they may have different lightmaps, which may not batch across different LODs.&#xA0;</li>
+<li>If you are still experiencing issues with static batching, try opening the <a href="https://docs.unity3d.com/Manual/FrameDebugger.html">Unity Frame Debugger</a>&#xA0;(in Play mode), and taking a look at the individual draw calls and which meshes they are on. Take&#xA0;a look at the different materials and render passes the draw calls occur on and try to determine what is different. For instance when looking at two meshes you expect to be batched, does one occur in a different render pass? Does one have a lightmap on it and the other does not?</li>
+</ol>
+<p><strong>More Information</strong> </p>
+<p>For more information see the links below:&#xA0;</p>
+<ul>
+<li>
+<p><a href="https://docs.unity3d.com/Manual/DrawCallBatching.html">https://docs.unity3d.com/Manual/DrawCallBatching.htm</a></p>
+</li>
+<li>
+<p><a href="http://answers.unity3d.com/questions/961906/problem-with-draw-calls.html">http://answers.unity3d.com/questions/961906/problem-with-draw-calls.html</a></p>
+</li>
+<li>
+<p><a href="http://forum.unity3d.com/threads/draw-calls-vs-batches-optimization-unity-5.318704/">http://forum.unity3d.com/threads/draw-calls-vs-batches-optimization-unity-5.318704/</a></p>
+</li>
+<li><a href="https://support.unity3d.com/hc/en-us/articles/207535646-Some-of-my-static-batching-is-being-split-into-separate-batches">https://support.unity3d.com/hc/en-us/articles/207535646-Some-of-my-static-batching-is-being-split-into-separate-batches</a></li>
+</ul>
+<p>This article applies to Unity versions 5.x.</p>
+      

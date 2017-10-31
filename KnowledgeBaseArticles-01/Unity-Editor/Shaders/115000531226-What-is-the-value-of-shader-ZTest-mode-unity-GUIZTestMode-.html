@@ -1,0 +1,29 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I have some UI shaders and noticed there is `ZTest [unity_GUIZTestMode]` inside them.</li>
+<li>How do I set the ZTest compare function from outside of the shader?</li>
+<li>I encountered the following line in one of the shaders we are using: `ZTest [unity_GUIZTestMode]`</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p><code>ZTest [unity_GUIZTestMode]</code> is used in some built-in UI shaders and is set depending on the Canvas type just before a Canvas is rendered.</p>
+<p><strong>Resolution</strong> </p>
+<p><code></code>If you are creating custom shaders/materials for UI components you will need to add `<code>ZTest [unity_GUIZTestMode]` in your shader</code> so the ZTest is automatically set correctly for each Canvas (LEqual, unless the Canvas is set to Screen Space Overlay, which sets it to Always). This should not be set manually as undefined behavior could occur. If this is not for a UI component or if you just want to be able to control the ZTest compare function from outside of a shader then you could create a property instead:</p>
+<pre><code></code></pre>
+<table>
+<tbody>
+<tr>
+<td>
+<pre><code><strong>// In shader
+ZTest [_myCustomCompare]
+
+// In C# script
+m_Material.SetInt(&quot;_myCustomCompare&quot;, (int)UnityEngine.Rendering.CompareFunction.LessEqual)</strong> ;</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="/hc/article_attachments/115007586743/unity_GUIZTestMode.zip"><strong>An example of this can be found attached to the article here.</strong> </a></p>
+<p><strong>More Information</strong> </p>
+<p>Information verified accurate for Unity 5.5.0f3 - 5.6.0f3.</p>
+      

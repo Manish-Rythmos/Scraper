@@ -1,0 +1,25 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the error below appearing in my console:</li>
+</ul>
+<pre>error CS0120: An object reference is required to access non-static <br>member `____&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p>There are a few causes of this and they are listed below:</p>
+<p><strong>1.</strong>  This is caused when a static method is&#xA0;attempting to use a non-static variable by referencing it directly.</p>
+<p><img src="/hc/en-us/article_attachments/201828606/CS0120_a.png" alt=""></p>
+<p>Error this example presents:</p>
+<pre>error CS0120: An object reference is required to access non-static <br>member `MyScript.name&apos;</pre>
+<p><strong>2.</strong>  This error is also generated when a non static method is called from a static method like so:</p>
+<p><img src="/hc/en-us/article_attachments/201986043/CS0120_b.png" alt=""></p>
+<p>Error this example presents:</p>
+<pre>error CS0120: An object reference is required to access non-static <br>member `MyScript.MethodB()&apos;<br></pre>
+<p><strong>Resolution</strong> </p>
+<p><strong>1. </strong> CS0120 can be solved by creating a reference to the non-static variable like so:</p>
+<p><img src="/hc/en-us/article_attachments/201985993/CS0120_a1.png" alt=""></p>
+<p><strong>2.&#xA0;</strong>   CS0120 can be solved by creating a reference to the non-static method&#xA0;like so:</p>
+<p><img src="/hc/en-us/article_attachments/201828936/CS0120_b1.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/s35hcfh7.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/s35hcfh7.aspx</a></p>
+<p>&#xA0;</p>
+      

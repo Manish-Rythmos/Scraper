@@ -1,0 +1,10 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Importing a DLL in Unity 5 is in the order of 5-10 times slower than in Unity 4.</li>
+</ul>
+<p><strong>Cause</strong> <br>The assemblies need to be updated by AssemblyUpdater. (With the introduction of Unity 5.0 the upgrade process is automated with AssemblyUpdater and ScriptUpdater).<br> <br><strong>Resolution</strong> <br>With Unity 5.x a new .Net attribute (UnityAPICompatibilityVersionAttribute) was introduced. This can be applied to assemblies to declare that they only use APIs that are compatible with a specific Unity version. When the assembly updating tool runs, it checks the assembly being processed for this attribute. It assumes the assembly does not need to be updated if the version in the attribute matches the current Unity version (Application.unityVersion).</p>
+<p>With this change, a line like the following can be added:<br>[assembly: UnityEngine.UnityAPICompatibilityVersion(&quot;1.2.3f1&quot;)] // in C# and Boo<br>@assembly: UnityEngine.UnityAPICompatibilityVersion(&quot;1.2.3f1&quot;) // in UnityScript<br> <br>The updater will not bother to check the assembly containing this code when it gets imported into Unity (if Unity has the same version, i.e, 1.2.3f1).</p>
+<p><strong>More Information</strong> <br><a href="http://blogs.unity3d.com/2015/01/06/assemby-updater-faster-api-usage-detection/">http://blogs.unity3d.com/2015/01/06/assemby-updater-faster-api-usage-detection/</a><br><a href="http://blogs.unity3d.com/2014/06/23/unity5-api-changes-automatic-script-updating/%20">http://blogs.unity3d.com/2014/06/23/unity5-api-changes-automatic-script-updating/&#xA0;</a></p>
+<p>This article applies to Unity versions 5.0+</p>
+      

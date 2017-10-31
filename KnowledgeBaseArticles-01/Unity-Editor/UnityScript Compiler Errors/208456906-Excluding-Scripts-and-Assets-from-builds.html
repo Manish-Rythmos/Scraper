@@ -1,0 +1,35 @@
+
+         <strong>Symptoms</strong> &#xA0;
+
+<ul>
+<li>I have some Scripts/Assets for demos and internal tools</li>
+<li>All those Scripts are included in my project when I build, even though my scenes do not reference them in my asset bundles.&#xA0; <br></li>
+</ul>
+
+ <strong>Cause</strong> 
+You&#xA0;want to create a demo, prototype or internal tools. After that, you want to work on your final project, and all those scripts are included in your project when built.
+&#xA0;
+ <strong>Resolution</strong> 
+Currently, there is not way to exclude directories from the build process, but there is a workaround:
+
+<ul>
+<li>To exclude specific scripts, you can use the macro UNITY_EDITOR at the start of your code and it will be excluded for builds.&#xA0;</li>
+</ul>
+<pre><code>#if (UNITY_EDITOR) 
+... your class/code ...
+#endif</code></pre>
+
+
+<ul>
+<li>To exclude directories, you can use symlinks (symbolic links). Try putting the scripts you want to exclude in a folder outside the Assets folder and create a symlink into Resources that points to that folder, so when you want to exclude those assets, you just need to remove the symlink and then recreate it.</li>
+</ul>
+<pre><code>OTestCode/
+MyProject/Assets/TestCode &gt;&gt; OTestCode</code> <br></pre>
+
+ <strong>More Information</strong> 
+More information about Platform Dependent Compilation: <a href="http://docs.unity3d.com/Manual/PlatformDependentCompilation.html" target="_blank">http://docs.unity3d.com/Manual/PlatformDependentCompilation.html</a>&#xA0;
+&#xA0;
+More information about special folders, which can be used to exclude assets&#xA0;with special folder names:
+<a href="http://docs.unity3d.com/Manual/SpecialFolders.html">http://docs.unity3d.com/Manual/SpecialFolders.html</a>
+<p>This article applies to Unity versions 5.0+</p>
+      

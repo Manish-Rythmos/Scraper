@@ -1,0 +1,35 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>When I activate, I get taken back to the serial number page</li>
+<li>I received a pop-up to say that my activation was successful. After clicking &apos;OK&apos;, the serial number page reopens and I cannot proceed</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>This error, involving an infinite loop of returns to the serial number page, is caused by a change to the time zone of the machine. Unity writes the last activation time/date, without recording the current time zone, in the settings (registry / plist). If the time zone is altered, Unity cannot activate successfully.</p>
+<p><strong>Resolution</strong> </p>
+<p>Our License Team are working on a fix for this at the moment. For now, the workaround is to delete the LSValue registry on windows or plist entry on mac. These are found in the locations listed below.</p>
+<p><em><strong>Macintosh 4.x users:</strong> </em> </p>
+<p>~/Library/Preferences/com.unity3d.UnityEditor4.x.plist -&gt; LSValue</p>
+<p><em><strong>Windows 4.x users:</strong> </em> </p>
+<p>HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x\LSValue_h916498513</p>
+<ol>
+<li>Close the Unity Editor.</li>
+<li>Open  <em>&quot;Command Prompt&quot;</em>  as administartor</li>
+<li>Type &quot;regedit&quot; (without quote marks) inside command prompt then press Enter.&#xA0;The registry Editor will then appear</li>
+<li>Navigate to&#xA0;HKEY_CURRENT_USER &gt; Software &gt; Unity Technologies &gt; Unity Editor 4.x</li>
+<li>Delete the file&#xA0;LSValue_h916498513</li>
+<li>Open Unity Editor.</li>
+</ol>
+<p><em><strong>Macintosh 5.x users:</strong> </em> </p>
+<p>~/Library/Preferences/com.unity3d.UnityEditor5.x.plist -&gt; LSValue</p>
+<p><br><em><strong>Windows 5.x users:</strong> </em> </p>
+<ol>
+<li>Close the Unity Editor.</li>
+<li>Open  <em>&quot;Command Prompt&quot;</em>  as administartor</li>
+<li>Type &quot;regedit&quot; (without quote marks) inside command prompt then press Enter.&#xA0;The registry Editor will then appear</li>
+<li>Navigate to&#xA0;HKEY_CURRENT_USER &gt; Software &gt; Unity Technologies &gt; Unity Editor 5.x</li>
+<li>Delete the file&#xA0;LSValue_h9164985</li>
+<li>Open Unity Editor.</li>
+</ol>
+<p><strong>More Information</strong> </p>
+      

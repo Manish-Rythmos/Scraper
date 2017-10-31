@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am getting the error below appearing in my console:</li>
+</ul>
+<pre>NullReferenceException: Object reference not set to an instance of an <br>object</pre>
+<p><strong>Cause</strong> </p>
+<p>This error is caused when an object&#xA0;is trying to be used by a script but does not refer to an instance of an object.</p>
+<p><img src="/hc/en-us/article_attachments/201997873/NullReferenceException_a.png" alt=""></p>
+<p><strong>Resolution</strong> </p>
+<p>To fix this example we can acquire a reference to an instance of the script using <a href="http://docs.unity3d.com/ScriptReference/GameObject.Find.html" target="_blank">GameObject.Find</a> to find the object it is attached to. We then use <a href="http://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html" target="_blank">GetComponent</a> to find the script component we want a reference to.</p>
+<p><img src="/hc/en-us/article_attachments/201840336/NullReferenceException_b.png" alt=""></p>
+<p>You can also double click the error to take you to the line of script where the error is occurring.</p>
+<p>From there you can trace each object back to where they are assigned (if they have been assigned).</p>
+<p><strong>More Information</strong> </p>
+      

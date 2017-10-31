@@ -1,0 +1,56 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to read and write data from a text file that can be in a specific directory or among my other Assets.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>If you don&#x2019;t want to read the file from a directory, you can assign the Asset directly from the Editor using an exposed property of type TextAsset (as you can see in Figure 1) and get the text of the file the using the TextAsset.text property.</p>
+<p><img src="/hc/en-us/article_attachments/115000827843/Screenshot.png" alt=""></p>
+<p><em>Figure 1. Text file assigned to a TextAsset</em> </p>
+<p>Another way to read and write data from a text file that&#x2019;s in a specific directory is to use the  <strong>StreamWriter</strong>  and  <strong>StreamReader</strong>  classes from the  <strong>System.IO</strong>  namespace to access characters from a byte stream and then load the file as a  <strong>TextAsset</strong>  in Unity.</p>
+<p>The following example Editor script prints the data from a file (if it exists) or writes text to a file in the specified path.</p>
+<pre class="prettyprint">using UnityEngine;
+using UnityEditor;
+using System.IO;
+
+public class HandleTextFile
+{
+    [MenuItem(&quot;Tools/Write file&quot;)]
+    static void WriteString()
+    {
+        string path = &quot;Assets/Resources/test.txt&quot;;
+
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(&quot;Test&quot;);
+        writer.Close();
+
+        //Re-import the file to update the reference in the editor
+        AssetDatabase.ImportAsset(path); 
+        TextAsset asset = Resources.Load(&quot;test&quot;);
+
+        //Print the text from the file
+        Debug.Log(asset.text);
+    }
+
+    [MenuItem(&quot;Tools/Read file&quot;)]
+    static void ReadString()
+    {
+        string path = &quot;Assets/Resources/test.txt&quot;;
+
+        //Read the text from directly from the test.txt file
+        StreamReader reader = new StreamReader(path); 
+        Debug.Log(reader.ReadToEnd());
+        reader.Close();
+    }
+
+}
+</pre>
+<p><strong>More Information</strong> </p>
+<p>For more information, consult the following documentation:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/TextAsset.html">Unity TextAsset script reference documentation</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/system.io.streamwriter(v=vs.110).aspx">Microsoft StreamWriter class documentation</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/system.io.streamreader(v=vs.110).aspx">Microsoft StreamReader class documentation</a></li>
+</ul>
+      

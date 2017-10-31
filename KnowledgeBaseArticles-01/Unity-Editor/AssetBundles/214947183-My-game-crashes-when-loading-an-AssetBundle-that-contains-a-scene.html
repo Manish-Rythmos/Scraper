@@ -1,0 +1,21 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>There is a crash when you try to load an  <strong>A</strong> ssetBundle that contains a scene. This error appears: &quot;InvalidOperationException: This method cannot be used on a streamed scene AssetBundle.at UnityEngine.AssetBundle.LoadAllAssets (System.Type type) [0x00000] in &lt;filename unknown&gt;:0&quot;</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>In Unity 5.3.4p5, it is possible to call LoadAllAssets to load scenes if the AssetBundle is a scene bundle. If you upgrade to 5.3.5p5 however, it will crash or show an error.</p>
+<p><strong>Resolution</strong> </p>
+<p>It is not necessary to call LoadAllAssets when you load scenes from AssetBundles.</p>
+<p>You can check if a bundle is a streamed scene using AssetBundle.isStreamedSceneAssetBundle and avoid to use LoadAllAssets when the AssetBundle contains an scene.</p>
+<p>www = new WWW( urlServer + bundleName);</p>
+<p>yield return www;</p>
+<p>AssetBundle bundle = www.assetBundle;</p>
+<p>if ( bundle.isStreamedSceneAssetBundle)</p>
+<p>{</p>
+<p>SceneManager.LoadSceneAsync( sceneName , LoadSceneMode.Additive &#xA0;);<br>}</p>
+<p><strong>More Information</strong> </p>
+<p>This article is for Unity version 5.3.5p5.</p>
+<p><strong><a href="https://docs.unity3d.com/Manual/AssetBundlesIntro.html">https://docs.unity3d.com/Manual/AssetBundlesIntro.html</a></strong> </p>
+<p><strong><a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-assetbundles-and-resources">https://unity3d.com/learn/tutorials/topics/best-practices/guide-assetbundles-and-resources</a></strong> </p>
+      

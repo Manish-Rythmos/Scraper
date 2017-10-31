@@ -1,0 +1,32 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I want to play sounds from a script that is attached to a Prefab</li>
+<li>I want to add several sounds to the script instead of just playing audio from the Audio Source itself.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have imported an audio file into the Unity Editor which creates an AudioClip. You want to:</p>
+<ul>
+<li>Attach your AudioClip to an Audio Source to play it back in your game</li>
+<li>Use the Audio Source in a script to trigger sounds to play at specific points in your game</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>The AudioClip is the actual sound file that will be played back. The Audio Source is a controller for starting and stopping playback of that clip, and modifying other audio properties. Audio Sources need to be attached as a component to a GameObject. GameObjects do not do anything on their own. You need to add the Audio Source as a component to a GameObject to make this object become an Audio feature.</p>
+<p>To create a new Audio Source:</p>
+<ul>
+<li>Import your audio files into your Unity Project. These are now  <strong>AudioClips</strong> .</li>
+<li>Go to  <strong>GameObject</strong>  and click  <strong>Create Empty</strong>  from the menu.</li>
+<li>With the new  <strong>GameObject</strong>  selected in the inspector, click  <strong>Add Component</strong> .</li>
+<li>You can search for  <strong>Audio Source</strong>  and select this. An  <strong>Audio Source</strong>  will be attached to the  <strong>GameObject</strong>  in the inspector.</li>
+<li>Assign your  <strong>AudioClip</strong>  to the  <strong>Audio Source</strong> .</li>
+</ul>
+<p>Once you have your  <strong>Audio Source</strong>  set up correctly, there are two ways to trigger sounds from a script:<br></p>
+<ol>
+<li>The first method to achieve this would be to not have an  <strong>AudioClip</strong>   <strong>Variable</strong>  at all, but instead attach an  <strong>Audio Source</strong>  component to your  <strong>GameObject</strong>  (or to the pickup object), and drag the  <strong>AudioClip</strong>  into that  <strong>Audio Source</strong>  Component. You could then trigger the sound by calling  <strong>audio.Play();</strong>  from a script on the same object.</li>
+<li>The second method to achieve this is would be to trigger the sound by calling  <em><strong>AudioSource.PlayClipAtPoint();</strong> </em>  This will play the sound at the position of the player object that this script is placed on in the 3D world.</li>
+</ol>
+<p><strong>More Information</strong> </p>
+<p>For scripting reference to calling  <strong>audio.Play();</strong>  then see this document <a href="http://docs.unity3d.com/ScriptReference/AudioSource.Play.html" target="_blank">here</a></p>
+<p>For scripting reference to calling  <strong>AudioSource.PlayClipAtPoint();</strong>  then see this document <a href="http://docs.unity3d.com/ScriptReference/AudioSource.PlayClipAtPoint.html" target="_blank">here</a></p>
+<p>&#xA0;</p>
+      

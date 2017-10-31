@@ -1,0 +1,25 @@
+
+         <strong>Symptoms</strong> 
+
+<ul>
+<li>Unity Editor crashed after pressing the Play button and all my changes are unsaved.</li>
+</ul>
+
+ <strong>Cause</strong> 
+Unity saves your scene each time when you hit the Play button.&#xA0;It is not saved over the original scene file, instead it is&#xA0;saved in the project&#x2019;s&#xA0;Temp&#xA0;directory.
+&#xA0;
+ <strong>Resolution</strong> 
+&#xA0;
+If you want to restore your scene file, you cannot re-launch Unity Editor after the crash. If you do, you will lose the scene file and all your progress with it!
+&#xA0;
+If you want to restore your crashed scene, you have to go to your project&#x2019;s&#xA0;directory&#xA0;(this is the folder&#xA0;that also contains the Assets directory) then enter the&#xA0;Temp/__Backupscenes directory. You will find the 0.backup file within. This is your saved scene file.&#xA0;
+&#xA0;
+Now all you have to do is to copy this file and replace your previous scene file with the copy. You will need to set the file extension to&#xA0; <em>unity</em>  in order to make this&#xA0;file recognizable as Unity scene file.
+&#xA0;
+Please remember to backup your project folder before making this kind of changes. If you make any mistake, you can easily go back and try again.
+&#xA0;
+ <strong>More Information</strong> 
+&#xA0;
+Please also see this <a href="http://blog.theknightsofunity.com/can-restore-unsaved-scene-unity-crash/%20" target="_blank">Blog Post</a>.
+&#xA0;
+      

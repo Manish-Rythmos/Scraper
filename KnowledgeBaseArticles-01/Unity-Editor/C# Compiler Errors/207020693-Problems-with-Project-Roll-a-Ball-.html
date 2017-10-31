@@ -1,0 +1,58 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to do the Roll-a-ball tutorial, several issues were raised. Some of them are listed below:</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0; <em>Issue 1</em> </p>
+<ul>
+<li>&#xA0;Get a  <em>NullReferenceException.</em> &#xA0;</li>
+</ul>
+<p><em><em>&#xA0; &#xA0; &#xA0; &#xA0;Issue&#xA0;2</em> &#xA0;</em> </p>
+<ul>
+<li>&#xA0;Script error in the console window (Yellow triangle : <em>The referenced script on this Behaviour is missing!)</em> &#xA0;</li>
+</ul>
+<p><em>&#xA0; &#xA0; &#xA0; &#xA0;Issue&#xA0;3</em> </p>
+<ul>
+<li>Want to add multiple levels to the game &#xA0;&#xA0;</li>
+</ul>
+<p>&#xA0; &#xA0; &#xA0; &#xA0; <em>Issue 4</em> </p>
+<ul>
+<li>The sphere is not collecting the collectables, it goes through the cubes.&#xA0;</li>
+</ul>
+<p><strong>Cause</strong> &#xA0;</p>
+<p><em>Issue 1-2</em> </p>
+<ul>
+<li>You have written the  <em>Start()</em>  function without capital &apos;S&apos; for the  <em>NullExceptionError</em>  or&#xA0; <em>FixedUpdate</em> &#xA0;without capital &apos;F&apos; for the&#xA0; <em>The referenced script on this Behaviour</em> &#xA0;error. &#xA0;When you get a&#xA0; <em>NullExceptionError</em> , it means that there is a variable that is not being assigned. This is correct because the Start function is written incorrectly, therefore any variable supposed to be assigned in this function is not being called.</li>
+</ul>
+<p><img src="/hc/en-us/article_attachments/202141046/Screen_Shot_2015-12-04_at_4.20.48_PM.png" alt=""></p>
+<p><em>Issue 2</em> </p>
+<ul>
+<li>You don&apos;t have a script assigned in the Script component.<img src="/hc/en-us/article_attachments/202309253/Screen_Shot_2015-12-04_at_4.09.04_PM.png" alt=""></li>
+</ul>
+<p><em>Issue 3</em> </p>
+<ul>
+<li>You are not aware of how to add levels to a game.&#xA0;</li>
+</ul>
+<p><em>Issue 4</em> </p>
+<ul>
+<li>The OnTriggerEnter function is written wrong.&#xA0;</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p><em>Issue 1-2-4</em> </p>
+<ul>
+<li>If you wrote the  <em>Start()</em>  function without capital &apos;S&apos;, then just change the &apos;s&apos; to&#xA0;a capital &apos;S&apos;. It is that simple! If it happened to the  <em>FixedUpdate</em> &#xA0;function, just do&#xA0;the same as with&#xA0;the <em>&#xA0;Start() function.</em> &#xA0;When you are programming, you have to be careful with typos and case is important. Also, please ensure that you write&#xA0;a semi colon (&apos;;) at the end of each line. On the other hand, if you wrote onTriggerEnter, just change it to OnTriggerEnter.</li>
+</ul>
+<p><em>Issue 2</em> </p>
+<ul>
+<li>Click the circle next to the right of the text field ( <em>Missing (Mono Script))</em>  and below the gear icon and select the  <em>GameController</em>  script.</li>
+</ul>
+<p><em>Issue 3</em> </p>
+<ul>
+<li>Think of levels as Scenes. Therefore if you want to add a level, just create a new Scene. (Remember to save the one you were using before moving to the new scene). Before a level will load, you need to add it to the list of levels used in the game by using:  <em>File --&gt; Build Settings&#xA0;</em> and add the current scene to the build. Afterwards just add the following line of code to when you want to load the level:</li>
+</ul>
+<p>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;<img src="/hc/en-us/article_attachments/202155746/Screen_Shot_2015-12-07_at_11.43.35_AM.png" alt=""></p>
+<p>&#xA0;</p>
+<p><strong>More Information</strong> </p>
+<p>&#xA0;<a href="http://docs.unity3d.com/ScriptReference/Application.LoadLevel.html">http://docs.unity3d.com/ScriptReference/Application.LoadLevel.html</a></p>
+<p>This article applies to Unity versions 5.x</p>
+<p>&#xA0;</p>
+<p>&#xA0;</p>
+      

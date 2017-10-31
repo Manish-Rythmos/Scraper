@@ -1,0 +1,93 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I don&apos;t see the event data that I would expect to see on my Analytics Dashboard. I want to confirm that my device is sending Analytics events from my Unity game.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You might see delays in data (or no data at all) appearing on your Unity Analytics Dashboard, and want to confirm that your mobile application is indeed sending events. You also might want to confirm that expected events are firing at the correct location within your game.</p>
+<p><strong>Resolution</strong> </p>
+<p>Charles Proxy is a great utility that allows you to monitor network activity on your mobile device from your PC. When configured correctly, you are able to see individual network requests and responses as they are generated on your mobile device. This can be handy to confirm that your game is sending events over the network to the Unity data center. This article will explain the steps to get Charles Proxy installed and operating successfully and will give you the ability to watch individual network calls from your mobile device as they are being made during your game execution.</p>
+<p>The general steps are as follows, details below under More Information.</p>
+<ul>
+<li>Install and configure Charles Proxy on your PC or Mac</li>
+<li>Configure your Android or iOS mobile device to use your PC as a network proxy</li>
+<li>Launch your game and monitor the network activity in Charles&#xA0;</li>
+</ul>
+<p><strong>More Information</strong> </p>
+<p>Here are the detailed steps to install and configure Charles Proxy</p>
+<p>1. Install Charles Proxy on your PC or Mac. You can install it from <a href="https://www.charlesproxy.com/download/latest-release/" target="_blank" rel="noopener noreferrer">here</a>&#xA0;. The 30 day free trial is fully functional, but will only run for 30 minutes at a time.</p>
+<p>2. Upon launching, you should see a screen like this. Note the two toolbar buttons, Clear events and Start/Pause recording. Note that the Structure tab is selected which groups the events by URL. The Sequence tab shows all events in chronological order.</p>
+<p><img src="/hc/article_attachments/115009779466/Charles1.png" alt="Charles1.png" width="719" height="499"></p>
+<p>3. If you don&apos;t see the Request and Response tabs on the right pane, go to Preferences/Viewers and uncheck the two Combine checkboxes as shown here:</p>
+<p><img src="/hc/article_attachments/115009917183/Charles2.png" alt="Charles2.png" width="723" height="497"></p>
+<p>4. To avoid seeing local traffic on the PC/Mac, from the Proxy menu, uncheck Windows Proxy/macOS Proxy.</p>
+<p>5. Enable SSL proxying by navigating to the Proxy menu and choosing SSL Proxying Settings. On the next dialog box, check Enable SSL Proxying, and Add *.* as in the following image:</p>
+<p><img src="/hc/article_attachments/115009780406/Charles3.png" alt="Charles3.png" width="725" height="458"></p>
+<p>6. We will now configure your mobile device to use your PC as the network proxy.&#xA0;</p>
+<p class="wysiwyg-indent2"><strong>For Android:</strong> </p>
+<ul>
+<li>Two-finger swipe from the top of the device (if using the default UI)</li>
+<li>Choose the gear icon from the top of the screen (to go to Settings)</li>
+<li>Select Wi-Fi</li>
+<li>Select the same Wifi network that you are using on your PC using a long press which will provide the additional option to Modify Network</li>
+<li>Check Show Advanced Options which will allow you to set a Manual Proxy</li>
+<li>For Proxy hostname, use the IP address of your PC. You can easily obtain this value&#xA0;from within Charles by selecting Local IP Address from the Help menu</li>
+<li>For Proxy port, use the Charles default of 8888</li>
+<li>Select Save</li>
+<li>Stop and Restart Wi-Fi on the device by selecting the On/Off slider (or restart the device)</li>
+<li>You will likely receive a pop up in Charles asking to to Allow or Deny the device requests</li>
+<li>On the device, browse to chls.pro/ssl to download and install the Charles certificate. Name the certificate to your choosing.</li>
+<li>On the PC/Mac, ensure that Recording is enabled.</li>
+<li>On the device, launch your game.</li>
+<li>You should now start to see the events being recorded (see note on Android Nougat below). You should see requests being sent to one or more of the following URLs. Expand them to see the actual events.</li>
+</ul>
+<p class="wysiwyg-indent4">https://config.uca.cloud.unity3d.com</p>
+<p class="wysiwyg-indent4">https://api.uca.cloud.unity3d.com (generally the one you want to monitor)</p>
+<p class="wysiwyg-indent4">https://cdp.cloud.unity3d.com</p>
+<p>If you are running Android Nougat 7, you will need to perform the additional steps:</p>
+<ul>
+<li>In your Unity project, add the following to the <code>application</code> element in your android manifest:</li>
+</ul>
+<p class="wysiwyg-indent2"><code>android:networkSecurityConfig=&quot;@xml/network_security_config&quot;</code></p>
+<ul>
+<li>Create a&#xA0;<code>network_security_config.xml</code>&#xA0;file in the following folder:</li>
+</ul>
+<p class="wysiwyg-indent2"><code>Assets/Plugins/Android/res/xml</code></p>
+<ul>
+<li>Contents of network_security_config.xml:</li>
+</ul>
+<pre class="wysiwyg-indent2"><code>&lt;network-security-config&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&lt;base-config&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&lt;trust-anchors&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&lt;certificates src=&quot;user&quot; /&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&lt;certificates src=&quot;system&quot; /&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&lt;/trust-anchors&gt;
+&#xA0;&#xA0;&#xA0;&#xA0;&lt;/base-config&gt;
+&lt;/network-security-config&gt;</code></pre>
+<ul>
+<li>Build and deploy the app using Android Studio</li>
+</ul>
+<p class="wysiwyg-indent1"><strong>For IOS:</strong> </p>
+<p class="wysiwyg-indent1">The steps are similar as above.</p>
+<ul>
+<li class="wysiwyg-indent1">Go to Settings/Wi-Fi</li>
+<li class="wysiwyg-indent1">Next to the Wifi network name, click the &quot;i&quot; (information) icon</li>
+<li class="wysiwyg-indent1">Scroll down to the HTTP PROXY section</li>
+<li class="wysiwyg-indent1">Set the Server and Port as above (do not check Authentication)</li>
+<li class="wysiwyg-indent1">Stop and then start Wifi</li>
+<li class="wysiwyg-indent1">Download and install the Charles certificate as above by browsing to chls.pro/ssl on the device</li>
+<li class="wysiwyg-indent1">Trust the certificate by going to Settings/General/About/Certificate Trust Settings, and select Enable Full Trust for Root Certificates for the Charles Proxy certificate.</li>
+<li class="wysiwyg-indent1">Launch your Analytics-enabled Unity application. You should begin to see the events listed in Charles.</li>
+</ul>
+<p class="wysiwyg-indent1">&#xA0; <strong>For PC - Windows 10:</strong> </p>
+<ul>
+<li class="wysiwyg-indent1">In Charles, from the SSL Proxying menu, choose Install Charles Root Certificate</li>
+<li class="wysiwyg-indent1">In the subsequent dialog, choose Install Certificate. Choose Current User, and choose Automatically select the certificate store, then Finish.</li>
+<li class="wysiwyg-indent1">We will now run the Windows Certificate Manager from the Windows Start Menu, All Apps, Windows System, and Run. In the Run dialog, enter certmgr.msc and click OK.</li>
+<li class="wysiwyg-indent1">By clicking and dragging, move the Charles Proxy CA certificate from the Personal/Certificates store to the Trusted Root Certification Authorities/Certificates store as shown below. Charles should now capture and display network traffic on your PC</li>
+</ul>
+<p class="wysiwyg-indent1"><img src="/hc/article_attachments/115010267643/Charles4.png" alt="Charles4.png" width="727" height="493"></p>
+<p class="wysiwyg-indent1">&#xA0;</p>
+<p><code>
+</code><code></code></p>
+      

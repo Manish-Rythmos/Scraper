@@ -1,0 +1,59 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>You found that some Asset bundles are larger than expected.</li>
+<li>You need to know what is packed into the Asset bundle.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>If you have an Asset marked as  <strong>none</strong>  in the Inspector bundle name but other Assets have a dependency on it, it will be included in the bundle.</p>
+<p>This will cause repeated Assets in AssetBundles.</p>
+<p><strong>Resolution</strong> </p>
+<p>The simple way to inspect an Asset bundle is to create a public Asset bundle variable. Load the Asset bundle and double-click the Asset bundle object in the Inspector to open the Inspector with the content of the Asset bundle.</p>
+<p>You now have a list of the elements that include the Asset bundle and a list of their dependencies.</p>
+<p><strong>Example:</strong> </p>
+<pre class="prettyprint">public AssetBundle assetBundle;
+</pre>
+<p><img src="/hc/en-us/article_attachments/115000972706/Screenshot_1.png" alt="" width="441" height="99"></p>
+<p><img src="/hc/en-us/article_attachments/115000972726/Screenshot_2.png" alt="" width="440" height="645"></p>
+<p><em>Double-click on the cube bar in the Inspector window to view the bundle&apos;s properties.</em> </p>
+<p>Another alternative is to use an Editor script to load the Asset bundle as a SerializedObject and iterate for all the elements of the object.</p>
+<pre class="prettyprint">[MenuItem(&quot;SUPPORT/Bundles/Print Contents&quot;)]
+    static void PrintContents()
+    {
+        if( Selection.activeObject == null )
+            return;
+
+        AssetBundle bundle = AssetBundle.LoadFromFile( Application.dataPath + AssetDatabase.GetAssetPath( Selection.activeObject ).Remove(0,6) );
+
+        if( bundle != null )
+        {
+            SerializedObject so = new SerializedObject( bundle );
+            System.Text.StringBuilder str = new System.Text.StringBuilder();
+
+            str.Append( &quot;Preload table:\n&quot; );
+            foreach( SerializedProperty d in so.FindProperty( &quot;m_PreloadTable&quot; ) )
+            {
+                if( d.objectReferenceValue != null )
+                    str.Append( &quot;\t&lt;color=green&gt;&quot; + d.objectReferenceValue.name + &quot; &quot; + d.objectReferenceValue.GetType().ToString() + &quot;\n&quot; );
+            }
+
+            str.Append( &quot;Container:\n&quot; );
+            foreach( SerializedProperty d in so.FindProperty( &quot;m_Container&quot; ) )
+                str.Append( &quot;\t&quot; + d.displayName + &quot;\n&quot; );
+
+            Debug.Log( str.ToString() );
+            bundle.Unload( false );
+        }
+</pre>
+<p>Additionally, you can check the Editor log after you build the Asset bundles.</p>
+<p><strong>More Information</strong> </p>
+<p>For more information, consult the following:</p>
+<ul>
+<li><a href="https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/">New AssetBundle graph tool prototype article</a></li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-assetbundles-and-resources">A guide to AssetBundles and Resources</a></li>
+<li><a href="https://docs.unity3d.com/Manual/AssetBundlesIntro.html">AssetBundles documentation</a></li>
+<li><a href="https://docs.unity3d.com/Manual/LogFiles.html">Log files documentation</a></li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-fundamentals?playlist=30089">AssetBundles fundamentals</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Editor.html">Editor script reference documentation</a></li>
+</ul>
+      

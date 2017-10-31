@@ -1,0 +1,55 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>You need to get the runtime memory reported by iOS.</li>
+<li>Your app crashes after running out of memory.</li>
+<li>You are getting memory warnings.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>You can get the value for all the memory reserved by the application via scripting and send it back to your managed code.</p>
+<p>Using Xcode&#x2019;s  <strong>Instruments &gt; Activity Monitor</strong> , you can find the memory reserved by the application in the  <strong>Real Memory</strong>  column.</p>
+<p><img src="/hc/en-us/article_attachments/115000734046/Screenshot.png" alt="" width="698" height="356"></p>
+<p>Use this information to analyze your memory on runtime in all the game&#x2019;s Scenes and on different devices.</p>
+<p>You can also implement a native plugin to send this information to your server and analyze the memory from the user&#x2019;s gameplay session.</p>
+<p>Follow the steps below to get the memory information to Unity:</p>
+<p>1. Create a native plugin with a function that sends the information back to managed C# code. Place this file under  <strong>Assets/Plugins/iOS</strong>  to be included in the Project.</p>
+<pre class="prettyprint">#include &lt;mach/mach.h&gt;
+extern &quot;C&quot;
+{
+    int Report_memory(void)
+    {
+        struct task_basic_info info;
+        mach_msg_type_number_t size = sizeof(info);
+        kern_return_t kerr = task_info(mach_task_self(),
+                                       TASK_BASIC_INFO,
+                                       (task_info_t)&amp;info,
+                                       &amp;size);
+
+        if( kerr == KERN_SUCCESS )
+        {
+            return (int)info.resident_size/1024/1024;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
+</pre>
+<p>2. Create a MonoBehaviour script that calls the native iOS plugins to get the memory report.</p>
+<pre class="prettyprint">float deviceRealMemory
+[DllImport (&quot;__Internal&quot;)]
+private static extern int Report_memory();
+IEnumerator GetMemoryIOS()
+{
+        deviceRealMemory = Report_memory ();
+}
+</pre>
+<p><strong>More Information</strong> </p>
+<p>For more information, see the following documentation:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/NativePluginInterface.html">Low-level native plugin interface documentation</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Profiling.Profiler.html">Profiler script reference documentation</a></li>
+<li><a href="http://stackoverflow.com/questions/787160/programmatically-retrieve-memory-usage-on-iphone">How to programmatically retrieve memory usage on iPhone</a></li>
+</ul>
+      

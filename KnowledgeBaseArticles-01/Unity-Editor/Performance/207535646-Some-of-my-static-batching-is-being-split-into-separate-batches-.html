@@ -1,0 +1,13 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My scene contains a group of static Mesh Renderers and a dynamic/ non-static Mesh Renderer. For some reason, the static Meshes are being split into separate draw calls.</li>
+</ul>
+<p><strong>Cause</strong> &#xA0;</p>
+<p>Unity does a rough front-to-back sort for opaque objects, to increase GPU efficiency. This change&#xA0;can result in more batches (more CPU work).</p>
+<p><strong>Resolution</strong> </p>
+<p>If you know your application is more CPU-bound, then turning this behaviour off might be useful, e.g. &quot;Camera.main.opaqueSortMode = UnityEngine.Rendering.OpaqueSortMode.NoDistanceSort;&quot;</p>
+<p>Please note that this sorting is done by the CPU, and only if&#xA0;it&#xA0;will benefit the GPU, for example this is off by default when on PowerVR/Apple GPUs because the geometry already gets sorted front-to-back by&#xA0;the GPU.<br><br><strong>More Information</strong> </p>
+<p><a href="https://docs.unity3d.com/ScriptReference/Camera-opaqueSortMode.html" target="_blank">Camera.opaqueSortMode</a></p>
+<p>This article applies to Unity version 5.x</p>
+      

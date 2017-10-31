@@ -1,0 +1,49 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>&#xA0;I am developing a game for iOS platform</li>
+<li>&#xA0;I want to&#xA0;set&#xA0;ENABLE_BITCODE=NO in the Xcode project as the default setting for a Xcode project exported&#xA0;by Unity.</li>
+<li>I have several&#xA0;third party libraries which still do not support Bitcode on iOS.&#xA0;</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>In version 5.3.1p1 Bitcode support was enabled by default.&#xA0;</p>
+<p><strong>Resolution</strong> </p>
+<p>An easy way to disable Bitcode support is by using UnityEditor.iOS.Xcode.PBXProject helper class.</p>
+<p>The documentation is available here:</p>
+<ul>
+<li><a href="http://docs.unity3d.com/ScriptReference/iOS.Xcode.PBXProject.html" target="_blank">http://docs.unity3d.com/ScriptReference/iOS.Xcode.PBXProject.html</a></li>
+</ul>
+<p>And the source code is available here :</p>
+<ul>
+<li><a href="https://bitbucket.org/Unity-Technologies/xcodeapi">https://bitbucket.org/Unity-Technologies/xcodeapi</a></li>
+</ul>
+<p><br>The following is an example of how you can change the ENABLE_BITCODE property:</p>
+<pre class="prettyprint">using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.Callbacks;
+using UnityEditor.iOS.Xcode;
+
+public static class MyBuildPostprocess
+{
+    [PostProcessBuild(999)]
+    public static void OnPostProcessBuild( BuildTarget buildTarget, string path)
+    {
+        if(buildTarget == BuildTarget.iOS)
+        {
+            string projectPath = path + &quot;/Unity-iPhone.xcodeproj/project.pbxproj&quot;;
+
+            PBXProject pbxProject = new PBXProject();
+            pbxProject.ReadFromFile(projectPath);
+
+            string target = pbxProject.TargetGuidByName(&quot;Unity-iPhone&quot;);            
+            pbxProject.SetBuildProperty(target, &quot;ENABLE_BITCODE&quot;, &quot;NO&quot;);
+
+            pbxProject.WriteToFile (projectPath);
+        }
+    }
+}</pre>
+<p><strong>More Information</strong> </p>
+<p>It is not recommend to disable Bitcode, but there are cases were it is inevitable. Read more about what benefits you gain by&#xA0;letting Bitcode enabled <a href="/hc/en-us/articles/209933103">here</a>.&#xA0;&#xA0;</p>
+<p>This article applies to Unity versions 5.3.1p1 and higher</p>
+      

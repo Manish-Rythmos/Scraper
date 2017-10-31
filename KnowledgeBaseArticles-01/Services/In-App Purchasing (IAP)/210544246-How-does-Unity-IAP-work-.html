@@ -1,0 +1,21 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I would like to understand the fundamental workings of In App Purchasing</li>
+<li>I would like to know how Unity IAP purchasing works</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>It is sometimes not&#xA0;enough to just know how to follow a step by step guide. You may be curious as to how In App Purchasing (IAP) works!</p>
+<p><strong>Resolution</strong> </p>
+<p><em><u>Initialization:</u></em> </p>
+<p>In the initialization stage, we create a new instance of the &quot;ConfigurationBuilder&quot; class. This is the class that will help define the&#xA0;products that you are selling in your game.</p>
+<p><em>Define the products:</em> </p>
+<p>We then add products and specify their Store-identifiers. The identifiers are strings that refer to the different products.</p>
+<p>If you are using different stores, and your products have different identifiers in each store, then this is here you can define each one&#x2019;s identifier.</p>
+<p>Please take a look at the <a href="https://docs.unity3d.com/Manual/UnityIAPDefiningProducts.html" target="_blank">documentation</a> for more information.</p>
+<p><em>Listen for Responses:</em> </p>
+<p>Next, we have Unity IAP listen to responses by using the &quot;IStoreListener&quot; interface. You should initialize the IStoreListener&#xA0;after the products have been defined using the &quot;UnityPurchasing&quot; class.</p>
+<p><em>Process the purchase:</em> </p>
+<p>Finally, we create a method that is invoked when the listener detects a purchase by the user. The method takes a string (the product&apos;s identifier) and checks if this product exists and is ready to be sold. If the product exists and is ready to be sold, then we supply the product to the customer.</p>
+<p><strong>More Information</strong> </p>
+      

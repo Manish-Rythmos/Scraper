@@ -1,0 +1,19 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>You&#xA0;are seeing the following error in the console window:</li>
+</ul>
+<pre>error CS0101: The namespace `__&apos; already contains a definition for `__&apos;</pre>
+<p><strong>Cause</strong> </p>
+<p><em>CS0101</em> &#xA0;is caused when a namespace has duplicated identifiers. The example below has the same identifiers for both methods.</p>
+<p><img src="/hc/en-us/article_attachments/202011703/CS0101_a.png" alt=""></p>
+<p>Error displayed in this example:</p>
+<pre>error CS0101: The namespace `ExampleNamespace&apos; already contains a definition for `Method&apos;</pre>
+<p><strong>Resolution</strong> </p>
+<p>In order to fix the  <em>CS0101</em> , you will need to ensure that each identifier in your namespace is unique. Please see how we have fixed the example below:</p>
+<p><img src="/hc/en-us/article_attachments/202011713/CS0101_b.png" alt=""></p>
+<p>This error can also be fixed by ensuring that all classes&#xA0;have a unique&#xA0;identifier. It is common to have duplicate scripts in a project.</p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/5b4kb4we(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/5b4kb4we(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

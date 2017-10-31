@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>You&#xA0;are seeing the following error in the console window:</p>
+<pre>error CS0118: `__&apos; is a `__&apos; but a `__&apos; was expected.</pre>
+<p><strong>Cause</strong> </p>
+<p>This error is caused when a construct is not used correctly, or a disallowed operation was tried on a construct.</p>
+<p>In the script below, I try to pass a&#xA0;namespace into a function. This then displays the CS0118 error as I am incorrectly using a namespace by passing&#xA0;it into a function.</p>
+<p><img src="/hc/en-us/article_attachments/202151973/CS0118_b.png" alt=""></p>
+<p>The error this example presents:</p>
+<pre>error CS0118: `Helper&apos; is a `namespace&apos; but a `type&apos; was expected.</pre>
+<p><strong>Resolution</strong> </p>
+<p>The resolution is to use the correct construct (In this example&#xA0;a Type) or find an alternative way to use the construct (In this example a namespace).</p>
+<p>I&apos;ve fixed this example by accessing DisplayCredits()&#xA0;without passing it into the function.</p>
+<p><img src="/hc/en-us/article_attachments/202151983/CS0118_c.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/fzc6hyft(v=vs.90).aspx">https://msdn.microsoft.com/en-us/library/fzc6hyft(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

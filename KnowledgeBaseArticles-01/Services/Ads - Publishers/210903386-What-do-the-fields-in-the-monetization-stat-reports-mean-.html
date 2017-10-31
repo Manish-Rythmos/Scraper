@@ -1,0 +1,26 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I use Unity Ads for my game, but am unsure as to what the different terms found in the report mean.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You would like to know what the following terms mean:</p>
+<ul>
+<li>ad requests</li>
+<li>available ad requests</li>
+<li>fill rate</li>
+<li>starts</li>
+<li>views / completions</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p><em><strong>Ad requests</strong> </em>  are typically generated during SDK initialization.<br><br><em><strong>Available</strong> </em> &#xA0;number of successful ad requests.<br><br><em><strong>Fill rate</strong> </em>  is the number of available&#xA0;divided by&#xA0;the number of ad requests. (generally 99%+)</p>
+<p>A&#xA0;few things to be aware of:</p>
+<ol>
+<li>By default, the service offers  up to 25 ads per day. Additional ad requests&#xA0;will return false.</li>
+<li>As long as there is at least one ad available, the response is only counted as 1 available for each ad request regardless of the number of ads available.</li>
+<li>For performance reasons, the reported values for ad request and available are samplings and not actual values; every 23rd ad request and available is counted and multiplied by 23 to obtain its value. This is why you will notice values for ad request and available as multiples of 23.</li>
+<li>After initialization, another ad request is sent to refresh the list of available ads after every 10 started.</li>
+</ol>
+<p><em><strong>Starts </strong> </em> are generated when a video begins playing.<br><br><strong><em>Views </em> </strong> or <strong><em>completions</em> &#xA0;</strong> are generated when a video completes. The values for started and views are actual values; they are not sampled like those for ad requests and available.</p>
+<p>&#xA0;</p>
+      

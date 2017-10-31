@@ -1,0 +1,20 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am developing a game on Android and I get a lot of sound delay when I play an AudioClip.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have made a game for Android. When you are playing AudioClips in real-time there is an unacceptable amount of latency in the response you hear back.</p>
+<p><strong>Resolution</strong> </p>
+<p>Typically, the audio-in latency needs to be below 25ms to be useable.</p>
+<p>On iOS, audio-in latency is around 20ms, which is perfect for recording software or producing real-time effects. On Android, however, the latency is around 200-300ms, which causes a noticeable delay in the sound you hear in real-time.</p>
+<p>A workaround you can try to fix this issue within Unity is change the DSP Buffer Size to set your audio to Best Latency in the Audio Manager:</p>
+<ol>
+<li>In the Unity Editor click Edit</li>
+<li>Click Project Settings</li>
+<li>Select Audio. You will see the DSP Buffer Size in the list of options within the Audio Manager in your Inspector view;  <em>Default, Best latency, Good latency, Best Performance.</em> </li>
+<li>Select  <strong><em>Best latency</em> </strong>  to see if this improves your audio response in real time.</li>
+</ol>
+<p><strong>More Information</strong> </p>
+<p>If this method fails to improve your latency, you can purchase and download this <a href="https://www.assetstore.unity3d.com/en/#!/content/35295" target="_blank">plugin</a> via Unity&#x2019;s Asset Store which has been developed to provide easy access to the native Android audio system for low-latency audio playback.</p>
+      

@@ -1,0 +1,21 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I received&#xA0;the error&#xA0; <em>&quot;oops something happened,&quot;</em> &#xA0;which made my&#xA0;build restart.</li>
+<li>There is an unusually high restart rate for the iOS and Android builds on our project.</li>
+<li>There is an unusually high restart rate only for iOS build on our project.&#xA0;</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Your&#xA0;builds keep restarting and/or failing due to an inability to check out the project from your SVN server in a reasonable amount of time. This could be due to the following factors:</p>
+<ul>
+<li>Your have a&#xA0;large project&#xA0;which you are trying to build locally and your&#xA0;build needs to checkout the project first.</li>
+<li>You may have a weaker SCM&#xA0;server&#xA0;depending on where you are&#xA0;geographically located.</li>
+<li>Your project seems to be much more prone to restarts than others.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>Your project will restart more frequently if something has gone wrong with the build. This depends on where your source control is hosted, how large your total project is in source control and also how large your compiled Unity project is, as this could produce time-outs. You should check the settings of your firewall and overall connection and checkout speed of your SCM server. If you host it on a external service, you can test the connection speed if you checkout your project locally and compare it with other services. Test different services to find a hoster which suits your project requirements in combination with Unity Cloud Build.</p>
+<p class="p1">Restarts on iOS occur as some projects seem much more prone to restarts than others. iOS projects will always be a little more likely to restart as they can hang in either the Unity or the Xcode steps with post-processing, which is unique to iOS as the XCode manipulation API is only available for&#xA0;iOS projects. </p>
+<p class="p1">Restarted builds are not subject to cool-downs,&#xA0;and if you have a high level of&#xA0;restarts, you can create a new&#xA0;Cloud Build support ticket&#xA0;<a href="/hc/en-us/requests/new" target="_blank">here</a>&#xA0;or in the <a href="http://forum.unity3d.com/threads/constant-restarting-hanging-on-processing.305986/#post-2001258">Unity Cloud Build forums</a>. The Cloud Build team can&#xA0;monitor the build clients used for your project and advise you on how to resolve your issue.</p>
+<p><strong>More Information</strong> </p>
+<p>&#xA0;</p>
+      

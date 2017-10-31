@@ -1,0 +1,49 @@
+
+        
+<p><strong>Symptoms</strong> </p>
+<ul>
+<li>You have a built Scene bundle but you are not sure what was included in the bundle. </li>
+<li>You have a built Scene bundle that is larger than expected and need to understand why it&#x2019;s the size that it is.</li>
+</ul>
+<p><strong>Cause</strong> Scenes in Unity are treated as a collection of serialized objects before they are put into a bundle. This means that, when the Scene is added to a bundle, it is included as a serialized Scene object and is listed as  <strong>&lt;SceneName&gt;.unity</strong>  in the Asset bundle manifest. This makes it difficult to find individual objects included in that serialized Scene object.</p>
+<p><strong>Resolution</strong>  <strong>Note: </strong> The below applies to installations of Unity 5.4 or later.</p>
+<p>You need to use two different tools found in the Unity installation to unpack a Scene bundle and find out exactly what is inside.</p>
+<p>You can find these tools in the following default install locations on each platform:</p>
+<p><strong>Windows:</strong> <br><em>C:\Program Files\Unity\Editor\Data\Tools</em> </p>
+<p><strong>Mac OSX:</strong> <br><em>/Applications/Unity/Unity.app/Contents/Tools</em> </p>
+<p>First use  <strong>WebExtract</strong> , which extracts the Scene bundle into an uncompressed data folder. Next use  <strong>binary2text</strong> , which converts the Scene bundle into a human-readable format.</p>
+<p>These are command line tools, and will need to be run from your command prompt or terminal window. First of all, run a change directory command to the directories above.</p>
+<p><strong>Example:</strong> <br><strong>1.</strong>  Run the following:<br><em>cd /Applications/Unity/Unity.app/Contents/Tools</em> </p>
+<p><strong>2.</strong>  Run webextract:<br><em>WebExtract &lt;FilePathToSceneBundle&gt;</em> </p>
+<p>This will extract the data to a folder called whatever your Scene bundle name is with _data appended (for example  <strong>YourSceneBundleName_data</strong> ).</p>
+<p><strong>3.</strong>  Run binary2text:<br><em>binary2text YourSceneBundleName_data/BuildPlayer-SceneBundleName&quot;</em> </p>
+<p>This will produce a text file containing all of the serialized object information for objects included in the Scene bundle. Each object in the text file will look something like this:</p>
+
+
+
+
+
+
+<p><img src="/hc/en-us/article_attachments/210997783/lightprobe.png" alt=""></p>
+<p>&#xA0;</p>
+<p>The ID number in this object is the index of the object in the Scene bundle.</p>
+<p>The class ID is the number used to reference the type of class the object is - see <a href="https://docs.unity3d.com/Manual/ClassIDReference.html">Class ID reference documentation</a> for more information.</p>
+<p>The binary2text tool also provides the text for the class ID (which in the above example is  <strong>LightProbes</strong> ). You can find each variable in the object listed with its value and type, for example:</p>
+<ul>
+<li><strong>m_Name</strong>  is the variable name</li>
+<li><strong>&#x201C;&#x201D;</strong>  is the value&#xA0;</li>
+<li><strong>(string)</strong>  is the type</li>
+</ul>
+<p>You can break down every variable in this way with array types listed with indents.</p>
+<p>Using this text file, you should be able to determine exactly what is in your Scene bundle.</p>
+<p><strong>More Information</strong> <br>If you need to see the Assets included in a non-Scene bundle, you can open the manifest file (.manifest), which is generated in the same root folder as the Asset bundle. Inside the manifest file you will find a list of Assets under the  <strong>Assets: </strong> scope.</p>
+<p>The screenshot below shows what a manifest file looks like. Note that you can see &#x201C; <strong>Assets/MyImageName.png</strong> &#x201D; under the  <strong>Assets:</strong>  scope - this is the filepath to the Asset included in this bundle. Each Asset included in the bundle will be listed here. </p>
+<p><img src="/hc/en-us/article_attachments/115000619186/Manifest_FIle.png" alt=""></p>
+<p>You can also load the bundle and each object from the bundle to see exactly what&#x2019;s inside it.</p>
+<p>See the <a href="https://docs.unity3d.com/ScriptReference/AssetBundle.html">AssetBundle API</a> and <a href="https://docs.unity3d.com/ScriptReference/AssetDatabase.html">AssetDataBase API</a> for more utility functions.</p>
+
+
+
+
+
+      

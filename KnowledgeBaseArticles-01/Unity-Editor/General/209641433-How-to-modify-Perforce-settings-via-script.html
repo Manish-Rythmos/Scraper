@@ -1,0 +1,39 @@
+
+         <strong>Symptoms</strong> 
+<ul>
+<li><a href="http://docs.unity3d.com/ScriptReference/EditorPrefs.html">EditorPrefs</a> class allows me to modify&#xA0;Perforce settings via script, but the keys are not published on Unity Docs.</li>
+</ul>
+ <strong>Cause</strong> 
+<a href="http://docs.unity3d.com/ScriptReference/EditorPrefs.html">EditorPrefs</a> class allows to modify&#xA0;Perforce settings via script to minimize user input. The keys are not published on Unity Docs, but are accessible on BitBucket.
+ <strong>Resolution</strong> 
+
+<p>The source of the built-in version control plugins that are shipped with Unity is open source on <a href="https://bitbucket.org/Unity-Technologies/versioncontrolplugins" target="_blank">Bitbucket</a>.</p>
+<p>Perforce settings are visible here: <a href="https://bitbucket.org/Unity-Technologies/versioncontrolplugins/src/dba3f95436497a5cc91c661772671e0e3f87e7e6/P4Plugin/Source/P4Command.cpp?at=master&amp;fileviewer=file-view-default" target="_blank">VersionControlPlugins/P4Plugin/Source/P4ConfigCommand.cpp</a>&#xA0;and all the commands are available.</p>
+<p>The most important ones to note are:</p>
+<p><em>vcPerforceUsername -&gt; string</em> <br><em>vcPerforcePassword -&gt; string</em> <br><em>vcPerforceWorkspace -&gt; string</em> <br><em>vcPerforceServer -&gt; string</em> <br><em>vcPerforceHost -&gt; string</em> <br><em>vcSharedLogLevel -&gt; one of these strings: &quot;notice&quot;, &quot;fatal&quot; or &quot;info&apos;</em> </p>
+<p>The following script&#xA0;is executed when the Editor is launched and changes the Perforce settings:&#xA0;</p>
+
+
+
+<pre>using UnityEngine;
+using UnityEditor;
+
+[InitializeOnLoad]
+public class PerforceSettings {
+    static PerforceSettings () {
+        EditorUserSettings.SetConfigValue (&quot;vcPerforceUsername&quot;,  &quot;myUserName&quot;);
+        EditorUserSettings.SetConfigValue (&quot;vcPerforcePassword&quot;,  &quot;myPassword&quot;);
+        EditorUserSettings.SetConfigValue (&quot;vcPerforceWorkspace&quot;, &quot;myWorkspace&quot;);
+        EditorUserSettings.SetConfigValue (&quot;vcPerforceServer&quot;,    &quot;10.11.12.13:1234&quot;);
+        EditorUserSettings.SetConfigValue (&quot;vcPerforceHost&quot;,      &quot;Hostname&quot;);
+        EditorUserSettings.SetConfigValue (&quot;vcSharedLogLevel&quot;,    &quot;info&quot;);  //&quot;notice&quot;, &quot;fatal&quot; or &quot;info&quot;;
+    }
+}
+</pre>
+
+&#xA0;
+ <strong>More Information</strong> 
+<a href="https://bitbucket.org/Unity-Technologies/versioncontrolplugins/src/dba3f95436497a5cc91c661772671e0e3f87e7e6/P4Plugin/Source/P4Command.cpp?at=master&amp;fileviewer=file-view-default" target="_blank">P4ConfigCommand.cpp</a>
+<a href="http://docs.unity3d.com/ScriptReference/EditorPrefs.html" target="_blank">http://docs.unity3d.com/ScriptReference/EditorPrefs.html</a>
+&#xA0;
+      

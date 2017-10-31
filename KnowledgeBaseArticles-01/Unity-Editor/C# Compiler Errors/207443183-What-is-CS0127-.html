@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS0127: `__&apos;: A return keyword must not be followed by any <br>expression when method returns void</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS0127&#xA0;error is caused when&#xA0;a method trying to return a value&#xA0;uses void as it&apos;s return value type.</p>
+<p><img src="/hc/en-us/article_attachments/202309276/CS0127_a.png" alt=""></p>
+<p>Here&#xA0;is how the error appears in this example:</p>
+<pre>error CS0127: `ExampleScript.MyMethod()&apos;: A return keyword must not be followed by any <br>expression when method returns void</pre>
+<p><strong>Resolution</strong> </p>
+<p>The error CS0127&#xA0;is resolved by&#xA0;changing the return value type to reflect the type that is being returned. In this example the return type is int as we are returning a value of type int.</p>
+<p><img src="/hc/en-us/article_attachments/202477083/CS0127_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/wttka33z(v=vs.90).aspx" target="_blank">https://msdn.microsoft.com/en-us/library/wttka33z(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

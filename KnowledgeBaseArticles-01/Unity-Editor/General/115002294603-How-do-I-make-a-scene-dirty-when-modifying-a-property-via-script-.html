@@ -1,0 +1,51 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I modify a property via the scripting API. </li>
+<li>The scene is not made dirty.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Scripting APIs do not use the undo mechanism nor mark the scene dirty by default. One can, however, enforce these behaviours.</p>
+<p><strong>Resolution</strong> </p>
+<p>There are two different options for solving this:</p>
+<p><em><strong>Option 1:</strong> </em> </p>
+<p>If you have access to the object itself you can use the  <strong><a href="https://docs.unity3d.com/ScriptReference/Undo.html">Undo.RecordObject</a></strong>  method before setting the property from the script.</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Undo.RecordObject (myGameObject.transform, &quot;Zero Transform Position&quot;);</strong> 
+<p><strong>myGameObject.transform.position = Vector3.zero;</strong> </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>An example showing using how the scene is marked dirty with Undo.RecordObject is attached to <a href="/hc/article_attachments/115007423746/dirtyScene%20Article.zip"><strong>this article.</strong> </a></p>
+<p class="wysiwyg-text-align-center"><strong><img src="/hc/article_attachments/115007423926/UndoRecordObject.png" alt="UndoRecordObject.png"></strong> </p>
+<p><em><strong>Option 2:</strong> </em> </p>
+<p>One can also mark the scene as dirty manually using:</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>EditorSceneManager.MarkSceneDirty</strong> </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>after setting a property from script.</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>LightmapEditorSettings.bakeResolution = 14;</strong> </p>
+<p><strong>EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());</strong> </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>More information</strong> </p>
+<p><strong><a href="https://docs.unity3d.com/ScriptReference/Undo.html">Undo</a></strong> </p>
+<p><strong><a href="https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.html">EditorSceneManager</a></strong> </p>
+<p>&#xA0;</p>
+<p><br><br><br></p>
+      

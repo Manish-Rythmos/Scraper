@@ -1,0 +1,16 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am changing the fog settings of my built game scene at runtime using the RenderSettings.fog API to include fog in my scene but it&apos;s not showing.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>By default, shader variants used to handle Fog modes that are not used by any of the scenes are not included in the game data. This is done to help cut down on shader data size.</p>
+<p><strong>Resolution</strong> </p>
+<p>In the  <strong>Graphics settings</strong>  panel under  <strong><em>Edit -&gt; Project Settings -&gt; Graphics</em> </strong>  there is a  <strong>Fog&#xA0;modes&#xA0;</strong> drop down box. By default, the drop down is set to  <strong>Automatic</strong> . This will strip the Fogging variants of the shader if it is not found on any of the scenes. You can set these to be overridden&#xA0;by setting the drop down property to  <strong>Manual</strong> . This will enable&#xA0;additional&#xA0;options (which can be seen in the screen capture below). You can leave them all selected&#xA0;if you are unsure which lighting type you will be using, but specifying the lightmap types will help optimize the shader variants.</p>
+<p>&#xA0;<img src="/hc/en-us/article_attachments/203253383/Screen_Shot_2016-03-11_at_14.18.28.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="http://docs.unity3d.com/Manual/OptimizingShaderLoadTime.html">http://docs.unity3d.com/Manual/OptimizingShaderLoadTime.html</a></p>
+<p><a href="http://docs.unity3d.com/Manual/class-GraphicsSettings.html">http://docs.unity3d.com/Manual/class-GraphicsSettings.html</a></p>
+<p>This article applies to Unity version 5.3</p>
+<p>&#xA0;</p>
+      

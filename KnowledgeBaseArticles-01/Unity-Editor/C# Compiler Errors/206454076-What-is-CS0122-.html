@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS0122: `___&apos; is inaccessible due to it&apos;s protection level public</pre>
+<p><strong>Cause</strong> </p>
+<p>The  <em>CS0122</em> &#xA0;error is caused when&#xA0;a member without the&#xA0;<code>public </code>access modifier applied is invoked from another script.</p>
+<p>In this example&#xA0;we have created a private method and attempted to invoke it after checking the value of a private variable.</p>
+<p><img src="/hc/en-us/article_attachments/202357606/CS0122_a.png" alt=""></p>
+<p><img src="/hc/en-us/article_attachments/202357616/CS0122_b.png" alt=""></p>
+<p>Here&#xA0;is how the errors appear in this example:</p>
+<pre>error CS0122: `PrivateMethodScripts.dragonsSpawned&apos; is inaccessible due <br>to its protection level<br><br>error CS0122: `PrivateMethodScripts.SpawnDragons()&apos; is inaccessible due <br>to it&apos;s protection level<br></pre>
+<p><strong>Resolution</strong> </p>
+<p>The error  <em>CS0122</em> &#xA0;is resolved by changing the member&apos;s&#xA0;access modifier to&#xA0;<code>public</code>.</p>
+<p><img src="/hc/en-us/article_attachments/202520863/CS0122_c.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/ha94aebs.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/ha94aebs.aspx</a></p>
+<p>&#xA0;</p>
+      

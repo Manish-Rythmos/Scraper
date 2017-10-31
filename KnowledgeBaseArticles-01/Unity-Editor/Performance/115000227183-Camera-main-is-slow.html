@@ -1,0 +1,30 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I use Camera.main many times in scripts and I want to optimize my game performance.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Camera.main takes more time to execute than you might expect. If you use it many times per game loop, you will be wasting time unnecessarily.</p>
+<p>Below you can see the cost reported by the profiler&#xA0;Camer.main (Camer.get_main() in the profiler) when being called 100000 times in this extreme example.</p>
+<p><img src="/hc/en-us/article_attachments/115001472026/Screen_Shot_2017-01-30_at_11.25.39.png" alt="" width="712" height="217"></p>
+<p><strong>Resolution</strong> </p>
+<p>You should store a reference to each of your Cameras once in the lifetime of that Camera, and then use that stored reference in the rest of the code. For example:</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>// Initialization code for scene</strong> </p>
+<p><strong>Camera mainCamera = Camera.main;</strong> </p>
+<p><strong>// Game code, executed once per frame or more</strong> </p>
+<p><strong>Vector3 pos = mainCamera.transform.position;</strong> </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/hc/en-us/article_attachments/115001472066/Screen_Shot_2017-01-30_at_11.26.06.png" alt="" width="712" height="206"></p>
+<p>Below is the same test as above but using the Camera MainCamera = Camera.main reference instead of calling Camer.main. You can see the time spent in Update() is considerably lower.</p>
+<p><strong>More Information</strong> </p>
+<p>Camera.main returns the first Camera in the scene tagged &quot;MainCamera&quot;, so it may be slower if you have additional Cameras that are tagged differently. Even for a single Camera, the tag checking means it will always be slower than a direct reference.</p>
+<p>Script Reference page:&#xA0;<a href="https://docs.unity3d.com/ScriptReference/Camera-main.html">https://docs.unity3d.com/ScriptReference/Camera-main.html</a></p>
+<p>&#xA0;</p>
+      

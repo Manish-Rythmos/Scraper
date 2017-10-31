@@ -1,0 +1,28 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I have Unity Ads implemented in my game and would like to obtain a report showing my earned revenue.</li>
+<li>I have integrated Unity Ads in several projects and would like to know the total earnings for a given time period.</li>
+<li>I want to know the stats and earnings of my game so I can submit an invoice.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You have a game and would like to generate a stats report for it.</p>
+<p>You have multiple games and would like to receive an automated report.</p>
+<p>You are interested in obtaining revenue for your game or games in preparation for submitting an invoice.</p>
+<p><strong>Resolution</strong> </p>
+<p>There are different ways to obtain reports:</p>
+<p><strong>CSV Report Per Project</strong> </p>
+<p>To generate a report, you can select a project, go to the  <strong>Statistics</strong>  page and generate a .csv file at the bottom. Here you can select the date range, split the data by platform, country, and/or placement, and also see daily, weekly, or total stats (see screenshot below).</p>
+<p><img src="/hc/en-us/article_attachments/115000278363/Screen_Shot_2016-12-22_at_16.32.45.png" alt="" width="706" height="246"></p>
+<p><strong>Automated Reporting</strong> </p>
+<p>You can also have reports sent to you automatically. From the main dashboard, select  <strong>Reports</strong> &#xA0;and add a new Report with the  <strong>+ Add new report</strong>  button (see the screenshot below).</p>
+<p><img src="/hc/en-us/article_attachments/115000278606/Screen_Shot_2016-12-22_at_16.33.32.png" alt="" width="702" height="273"></p>
+<p>From there, you can select many of the same settings as the .csv file and set up how frequently you would like to receive automated reports.</p>
+<p><strong>Monetization Stats API for All Projects (recommended with many projects)</strong> </p>
+<p>You can use the Monetization Stats API to generate a report - see the Request Format&#xA0;section of our documentation on <a href="http://unityads.unity3d.com/help/monetization/stats-api">Monetization Stats API</a>&#xA0;for more information on this.</p>
+<p>You can enter a command like the below in the command line or terminal to generate a report whenever you need:</p>
+<p><em>curl -L &quot;http://gameads-admin.applifier.com/stats/monetization-api?apikey=689a4104cbcad5db3b00d5fda13c4544a9cb28922c1158863bfef80fc6b4e4b4&amp;splitBy=none&amp;fields=revenue&amp;start=2016-10-01&amp;end=2016-10-30&amp;scale=month&quot; &gt; ~/unityadsstats.csv</em> </p>
+<p>In the above example, this command uses your <a href="/hc/en-us/articles/115000564946" target="_blank">API key</a> and sets the date range to October 1st 2016 and October 30th 2016. It also leaves off the  <em>&amp;sourceIds=7162</em>  part of the example, which will then pull all your games. It also sets the splitBy field to &quot;none&quot; so you can see a grand total. Lastly, it will write to a .csv file called  <strong>unityadsstats</strong>  in your home directory (you can name it whatever you like). If you do not write to a file, it will display the stats in your window.</p>
+<p><strong>More Information</strong> </p>
+<p>While the Unity Ads dashboard does create charts to view your data at a glance, you can generate a .csv (comma separated values file), open it in your preferred spreadsheet software and manipulate the data however you like.</p>
+      

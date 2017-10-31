@@ -1,0 +1,29 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>I am the sound designer for all the sound and music in a game </li>
+<li>My audio files have a sample rate of 48kHz (24bit), but they play back at 44kHz (16bit), which is 2 semitones lower.</li>
+<li>I want to know if Unity supports audio sampling rates higher than 44kHz (16bit)</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>You are producing sound and music to be imported into a game. You want to be able to play inputs of any sample rate into Unity without the output sampling rate being dramatically reduced.</p>
+<p><strong>Resolution</strong> </p>
+<p>Unity will play an AudioClip of any input sample rate and will seamlessly resample the audio to Unity&apos;s selected output sample rate 44kHz.</p>
+<p><em>Audio Output Sample Rates at 44kHz (16bit)</em> </p>
+<p>All compressed formats (vorbis, mp3, adpcm etc) convert the AudioClip to 16bit prior to encoding. The compression results in smaller files but with somewhat lower quality but this format is best for medium length sound effects and music.</p>
+<p><em>Audio Output Sample Rates higher than 48kHz (24bit)</em> </p>
+<p>Unity is able however, to support audio output sampling rates higher than 44kHz. If you wish to produce AudioClips in a higher sample rate, this is possible depending on the compression format. If you leave the data uncompressed (PCM) it should stay at 48kHz (24bit). In general, PCM is the only thing that potentially preserves the bit depth. This option offers higher quality at the expense of larger file size and is best for very short sound effects.</p>
+<p>Setting the sample rate from scripts is not supported in Unity versions 5 and above. This has to be manually set in the Sample Rate Setting. You can modify the sample rate by doing the following:</p>
+<ol>
+<li>Click directly on the AudioClip you have imported into your Project. </li>
+<li>The following window will appear in your Inspector</li>
+</ol>
+<p><img src="/hc/en-us/article_attachments/201817646/5.png" alt=""></p>
+<p>&#xA0; &#xA0; &#xA0;3. Change the Sample Rate Setting in one of three ways:</p>
+<ul>
+<li><strong><em>Preserve Sample Rate</em> </strong>  - This setting keeps the sample rate unmodified by default</li>
+<li><strong><em>Optimize Sample Rate</em> </strong>  - This setting automatically optimizes the sample rate according to the highest frequency content analyzed.</li>
+<li><strong><em>Override Sample Rate</em> </strong>  - This setting allows manual overriding of the sample rate and can be used to discard frequency content. </li>
+</ul>
+<p><strong>More Information</strong> </p>
+      

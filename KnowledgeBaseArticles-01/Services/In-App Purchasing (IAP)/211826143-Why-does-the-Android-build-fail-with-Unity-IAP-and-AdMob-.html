@@ -1,0 +1,12 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>My Android build is failing</li>
+<li>I am using both Unity IAP and AdMob.</li>
+</ul>
+<p><strong>Cause</strong> </p>
+<p>Both Unity IAP and AdMob include the  <em><strong>in-app-billing-service-aidl.jar</strong> </em> , resulting in two copies of the file.&#xA0;The Android build fails since it is unable to resolve the duplication.</p>
+<p><strong>Resolution</strong> </p>
+<p>Delete one of the copies of the file &quot; <strong><em>in-app-billing-service-aidl.jar</em> </strong> &quot; from your project and the build should work.</p>
+<p><strong>More Information</strong> </p>
+      

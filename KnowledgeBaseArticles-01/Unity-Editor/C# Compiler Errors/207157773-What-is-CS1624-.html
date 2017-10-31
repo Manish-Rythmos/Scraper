@@ -1,0 +1,18 @@
+
+        <p><strong>Symptoms</strong> </p>
+<p>When trying to enter play mode, I am receiving&#xA0;the error below:</p>
+<pre>error CS1624: The body of `__&apos; cannot be an iterator block because `__&apos; <br>is not an iterator interface type</pre>
+<p><strong>Cause</strong> </p>
+<p>The CS1624&#xA0;warning&#xA0;is caused when an&#xA0;iterator accessor is used but the return type is not one of the iterator interface types: <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerable(v=vs.90).aspx">IEnumerable</a>, <a href="https://msdn.microsoft.com/en-us/library/9eekhta0(v=vs.90).aspx">IEnumerable&lt;T&gt;</a>, <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerator(v=vs.90).aspx">IEnumerator</a>,<a href="https://msdn.microsoft.com/en-us/library/78dfe2yb(v=vs.90).aspx">IEnumerator&lt;T&gt;</a>.</p>
+<p>This example uses&#xA0;an iterator&#xA0;accessor to start a coroutine in a method that uses &quot;void&quot; as the return type for the WaitCheck() method.&#xA0;</p>
+<p><img src="/hc/en-us/article_attachments/202521023/CS1624_a.png" alt=""></p>
+<p>Errors displayed in this example:</p>
+<pre>error CS1624: The body of `ExampleScript.WaitCheck()&apos; cannot be an <br>iterator block because `void&apos;is not an iterator interface type</pre>
+<p><strong>Resolution</strong> </p>
+<p>To fix the CS1624&#xA0;error you will need to&#xA0;use one of the iterator interface types as a return type.</p>
+<p>The example is fixed&#xA0;by&#xA0;using the IEnumerator&#xA0;iterator interface type for the WaitCheck function.&#xA0;</p>
+<p><img src="/hc/en-us/article_attachments/202180876/CS1624_b.png" alt=""></p>
+<p><strong>More Information</strong> </p>
+<p><a href="https://msdn.microsoft.com/en-us/library/7e87ybkb(v=vs.90).aspx" target="_blank">&#xA0;https://msdn.microsoft.com/en-us/library/7e87ybkb(v=vs.90).aspx</a></p>
+<p>&#xA0;</p>
+      

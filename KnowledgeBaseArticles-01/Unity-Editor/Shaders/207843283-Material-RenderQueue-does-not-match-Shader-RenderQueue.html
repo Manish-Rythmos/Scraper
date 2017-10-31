@@ -1,0 +1,48 @@
+
+        <p><strong>Symptoms</strong> </p>
+<ul>
+<li>Objects may appear in unexpected depths</li>
+<li>Order in Layer is ignored i.e. in Sprite Renderer</li>
+</ul>
+<p><strong>Causes</strong> </p>
+<p>This might have occurred for a couple of reasons:</p>
+<ul>
+<li>By using an Editor or Runtime script that intentionally overrides the <a href="http://docs.unity3d.com/ScriptReference/Material-renderQueue.html">Material.renderQueue</a> of the material. This material could then be duplicated or reused in another project expecting that the RenderQueue is inherited by the Shader&apos;s RenderQueue. For example:<br>
+<pre>gameObject.GetComponent&lt;Renderer&gt;().sharedMaterial.renderQueue = 2000;</pre>
+</li>
+<li>By using an older version of Unity (prior to 5.1.3, see More Information below), which did not reset the Material RenderQueue when a new Shader was assigned to the material.</li>
+</ul>
+<p><strong>Resolution</strong> </p>
+<p>Reset Material RenderQueue to the Shader RenderQueue.<br><br>The following Editor script goes through all the Materials in the project and sets the Material RenderQueue to the Shader RenderQueue:<br><br></p>
+
+<pre>using UnityEditor;
+using UnityEngine;
+
+public class ResetMaterialsRenderQueue
+{
+	[MenuItem (&quot;Assets/Reset Materials RenderQueue&quot;)]
+	static void DoResetMaterialsRenderQueue()
+	{
+        Material[] materials = (Material[])Resources.FindObjectsOfTypeAll(typeof(Material));
+
+	    int materialsLength = materials.Length;
+
+	    for (int i = 0; i &lt; materialsLength; ++i)
+	    {
+	        if (materials[i].shader != null)
+	        {
+	            materials[i].renderQueue = materials[i].shader.renderQueue;
+	        }
+	    }  
+	}
+}
+</pre>
+
+<p><strong><br>More Information</strong> <a href="https://unity3d.com/unity/whats-new/unity-5.1.3">Release notes for 5.1.3</a> - Graphics: Switching shaders in the material inspector should reset the material&apos;s RenderQueue to default.<br>This article applies to Unity versions 5.2+</p>
+<p><strong>Further Instructions</strong> </p>
+<ul>
+<li>Download the file below</li>
+<li>Unzip into Assets/Editor folder</li>
+<li>In Unity Editor, go to Assets&#xA0;and select&#xA0;Reset&#xA0;Materials RenderQueue<br><br></li>
+</ul>
+      

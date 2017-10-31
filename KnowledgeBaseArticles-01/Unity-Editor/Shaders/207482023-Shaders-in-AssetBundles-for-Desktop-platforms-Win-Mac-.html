@@ -1,0 +1,27 @@
+
+         <strong>Symptoms</strong> &#xA0;
+
+<ul>
+<li>The AssetBundle I built with the OSX Editor does not work in my Windows build (or vice-versa).</li>
+<li>The shader packed into the AssetBundle with the OSX Editor does not work in my Windows build and shows as pink.</li>
+</ul>
+
+ <strong>Cause</strong> 
+
+<ul>
+<li>If you want to use a shader from an AssetBundle built from Mac to Windows.</li>
+<li>If you want to use a shader from an AssetBundle built from Windows to Mac. &#xA0;</li>
+</ul>
+
+ <strong>Resolution</strong> 
+
+<ul>
+<li>Check if you have the &quot;Mac Build Support&quot; and &quot;Windows Build Support&quot;&#xA0;components&#xA0;installed.</li>
+<li>You have&#xA0;must add the DirectX and OpenGL graphics APIs in the Player Settings.</li>
+<li>Build your bundle for BuildTarget.StandaloneOSXUniversal or BuildTarget.StandaloneWindow depends on your case. <br></li>
+</ul>
+
+ <strong>More Information</strong> 
+This article applies to Unity versions 5.0+
+More information about installation and Components: <a href="http://docs.unity3d.com/Manual/InstallingUnity.html">http://docs.unity3d.com/Manual/InstallingUnity.html</a>
+      
