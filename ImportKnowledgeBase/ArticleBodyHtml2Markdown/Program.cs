@@ -19,7 +19,7 @@ namespace ArticleBodyHtml2Markdown
             if (Directory.Exists(knowledgeBaseDirectoryPath))
             {
                 // This path is a directory
-                //ProcessDirectory(knowledgeBaseDirectoryPath);
+                ProcessDirectory(knowledgeBaseDirectoryPath);
                 ConvertFileSystemToTreeStructureObject(knowledgeBaseDirectoryPath);
             }
         }
