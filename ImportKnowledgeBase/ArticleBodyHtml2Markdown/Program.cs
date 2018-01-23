@@ -3,21 +3,24 @@ using Html2Markdown;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ArticleBodyHtml2Markdown
 {
     class Program
     {
+        static string tocFileName = "TableOfContents.json";
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            
-            string knowledgeBaseDirectoryPath = @"D:\Unity\POC\GitHubProjects\Scraper\KnowledgeBaseArticles";
+
+            string knowledgeBaseDirectoryPath = @"D:\KBArticle";
 
             if (Directory.Exists(knowledgeBaseDirectoryPath))
             {
                 // This path is a directory
-                ProcessDirectory(knowledgeBaseDirectoryPath);
+                //ProcessDirectory(knowledgeBaseDirectoryPath);
+                ConvertFileSystemToTreeStructureObject(knowledgeBaseDirectoryPath);
             }
         }
 
@@ -100,5 +103,93 @@ namespace ArticleBodyHtml2Markdown
             txt.Close();
         }
 
+        public static void ConvertFileSystemToTreeStructureObject(string fileSystemPath)
+        {
+            string fileParentPath = string.Empty;
+            List<TreeNode> treeNodes = new List<TreeNode>();
+            List<string> directories = Directory.GetDirectories(fileSystemPath).ToList();
+            foreach (string directory in directories)
+            {
+                TreeNode newNode = new TreeNode();
+                newNode.NodeName = Path.GetFileName(directory);
+                fileParentPath = newNode.NodeName;
+                if (Directory.GetDirectories(directory).Count() > 0)
+                {
+                    List<string> childDirectories = Directory.GetDirectories(directory).ToList();
+                    foreach (string childDirectory in childDirectories)
+                    {
+                        TreeNode child = new TreeNode();
+                        GetChildFileSystemEntriesRecursively(fileParentPath, childDirectory, child);
+                        newNode.ChildNodes.Add(child);
+                    }
+                }
+
+                if (Directory.GetFiles(directory).Count() > 0)
+                {
+                    List<string> files = Directory.GetFiles(directory).ToList();
+                    foreach (string file in files)
+                    {
+                        if (Path.GetExtension(file) == ".md")
+                        {
+                            TreeNode childNode = new TreeNode();
+                            childNode.NodeName = Path.GetFileNameWithoutExtension(file);
+                            childNode.FileName = fileParentPath + "\\" + Path.GetFileName(file);
+                            newNode.ChildNodes.Add(childNode);
+                        }
+                    }
+                }
+
+                treeNodes.Add(newNode);
+            }
+
+            string tableOfContent = JsonConvert.SerializeObject(treeNodes);
+            File.WriteAllText(fileSystemPath + "\\" + tocFileName, tableOfContent);
+        }
+
+        private static void GetChildFileSystemEntriesRecursively(string fileParentPath, string parentDirectory, TreeNode objNode)
+        {
+            objNode.NodeName = Path.GetFileName(parentDirectory);
+            fileParentPath = fileParentPath + "\\" + objNode.NodeName;
+            if (Directory.GetDirectories(parentDirectory).Count() > 0)
+            {
+                List<string> childDirectories = Directory.GetDirectories(parentDirectory).ToList();
+                foreach (string childDirectory in childDirectories)
+                {
+                    TreeNode child = new TreeNode();
+                    GetChildFileSystemEntriesRecursively(fileParentPath, childDirectory, child);
+                    objNode.ChildNodes.Add(child);
+                }
+            }
+
+            if (Directory.GetFiles(parentDirectory).Count() > 0)
+            {
+                List<string> files = Directory.GetFiles(parentDirectory).ToList();
+                foreach (string file in files)
+                {
+                    if (Path.GetExtension(file) == ".md")
+                    {
+                        TreeNode childNode = new TreeNode();
+                        childNode.NodeName = Path.GetFileNameWithoutExtension(file);
+                        childNode.FileName = fileParentPath + "\\" + Path.GetFileName(file);
+                        objNode.ChildNodes.Add(childNode);
+                    }
+                }
+            }
+        }
+    }
+
+    public class TreeNode
+    {
+        private List<TreeNode> childNodes = new List<TreeNode>();
+
+        public string NodeName { get; set; }
+
+        public string FileName { get; set; }
+
+        public List<TreeNode> ChildNodes
+        {
+            get { return this.childNodes; }
+            set { this.childNodes = value; }
+        }
     }
 }
